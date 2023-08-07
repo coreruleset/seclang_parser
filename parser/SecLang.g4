@@ -28,50 +28,46 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /*
 Adapted from pascal.g by  Hakki Dogusan, Piet Schoutteten and Marton Papp
 */
-grammar seclang;
+grammar SecLang;
 
 configuration
-     : expressionList EOF
+     : stmt*
      ;
 
-
-expressionList:
-    expression (NEWLINE expression)*
+stmt:
+    stmt_engine
+    | stmt_rules
+    | COMMENT
     ;
 
-expression:
-    engine_configuration
-    | rules_configuration
-    ;
-
-rules_configuration:
-    | CONFIG_SEC_RULE_REMOVE_BY_ID
+stmt_rules:
+    CONFIG_SEC_RULE_REMOVE_BY_ID
     | CONFIG_SEC_RULE_REMOVE_BY_MSG
     | CONFIG_SEC_RULE_REMOVE_BY_TAG
     | CONFIG_SEC_RULE_UPDATE_ACTION_BY_ID actions
-    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_ID variables_pre_process
-    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG variables_pre_process
-    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG variables_pre_process
+    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_ID var_stmt
+    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG var_stmt
+    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG var_stmt
     | DIRECTIVE variables op
     | DIRECTIVE variables op actions
     | DIRECTIVE_SECRULESCRIPT actions
     ;
 
-engine_configuration:
-    audit_log_configuration
+stmt_engine:
+    stmt_audit_log
     | CONFIG_COMPONENT_SIG
     | CONFIG_CONN_ENGINE (CONFIG_VALUE_ON | CONFIG_VALUE_OFF)
     | CONFIG_CONTENT_INJECTION (CONFIG_VALUE_ON | CONFIG_VALUE_OFF)
-    | CONFIG_DIR_ARGS_LIMIT
+    | CONFIG_DIR_ARGS_LIMIT INT
     | CONFIG_DIR_DEBUG_LOG
-    | CONFIG_DIR_DEBUG_LVL
+    | CONFIG_DIR_DEBUG_LVL INT
     | CONFIG_DIR_GEO_DB
     | CONFIG_DIR_GSB_DB
-    | CONFIG_DIR_PCRE_MATCH_LIMIT
+    | CONFIG_DIR_PCRE_MATCH_LIMIT INT
     | CONFIG_DIR_PCRE_MATCH_LIMIT_RECURSION
     | CONFIG_DIR_REQ_BODY (CONFIG_VALUE_ON | CONFIG_VALUE_OFF)
-    | CONFIG_DIR_REQ_BODY_JSON_DEPTH_LIMIT
-    | CONFIG_DIR_REQ_BODY_LIMIT
+    | CONFIG_DIR_REQ_BODY_JSON_DEPTH_LIMIT INT
+    | CONFIG_DIR_REQ_BODY_LIMIT INT
     | CONFIG_DIR_REQ_BODY_LIMIT_ACTION (CONFIG_VALUE_PROCESS_PARTIAL | CONFIG_VALUE_REJECT)
     | CONFIG_DIR_REQ_BODY_NO_FILES_LIMIT
     | CONFIG_DIR_RESPONSE_BODY_MP
@@ -91,7 +87,7 @@ engine_configuration:
     | CONFIG_SEC_ARGUMENT_SEPARATOR
     | CONFIG_SEC_CACHE_TRANSFORMATIONS
     | CONFIG_SEC_CHROOT_DIR
-    | CONFIG_SEC_COLLECTION_TIMEOUT
+    | CONFIG_SEC_COLLECTION_TIMEOUT INT
     | CONFIG_SEC_CONN_R_STATE_LIMIT
     | CONFIG_SEC_CONN_W_STATE_LIMIT
     | CONFIG_SEC_COOKIEV0_SEPARATOR
@@ -111,11 +107,11 @@ engine_configuration:
     | CONFIG_SEC_SERVER_SIG
     | CONFIG_SEC_STREAM_IN_BODY_INSPECTION
     | CONFIG_SEC_STREAM_OUT_BODY_INSPECTION
-    | CONFIG_SEC_WEB_APP_ID
+    | CONFIG_SEC_WEB_APP_ID IDENT
     | CONFIG_XML_EXTERNAL_ENTITY (CONFIG_VALUE_ON | CONFIG_VALUE_OFF)
     ;
 
-audit_log_configuration:
+stmt_audit_log:
     CONFIG_DIR_AUDIT_DIR_MOD
     | CONFIG_DIR_AUDIT_DIR
     | CONFIG_DIR_AUDIT_ENG CONFIG_VALUE_RELEVANT_ONLY
@@ -134,125 +130,69 @@ audit_log_configuration:
     | CONFIG_UPLOAD_SAVE_TMP_FILES (CONFIG_VALUE_ON | CONFIG_VALUE_OFF)
     ;
 
+
+actions:
+    QUOTATION_MARK actions_may_quoted QUOTATION_MARK
+    | actions_may_quoted
+    ;
+
+
+actions_may_quoted:
+    actions_may_quoted COMMA action
+    | action
+    ;
+
 variables:
-    variables_pre_process
+    QUOTATION_MARK? var_stmt QUOTATION_MARK?
     ;
 
-variables_pre_process:
-    variables_may_be_quoted
-    | QUOTATION_MARK variables_may_be_quoted QUOTATION_MARK
-    ;
-
-variables_may_be_quoted:
-    variables_may_be_quoted PIPE var
-    | variables_may_be_quoted PIPE VAR_EXCLUSION var
-    | variables_may_be_quoted PIPE VAR_COUNT var
+var_stmt:
+    var_stmt PIPE var
+    | var_stmt PIPE VAR_EXCLUSION var
+    | var_stmt PIPE VAR_COUNT var
     | var
     | VAR_EXCLUSION var
     | VAR_COUNT var
-    | VARIABLE_ARGS DICT_ELEMENT_REGEXP
-    | VARIABLE_ARGS
-    | VARIABLE_ARGS_POST DICT_ELEMENT
-    | VARIABLE_ARGS_POST DICT_ELEMENT_REGEXP
-    | VARIABLE_ARGS_POST
-    | VARIABLE_ARGS_GET DICT_ELEMENT
-    | VARIABLE_ARGS_GET DICT_ELEMENT_REGEXP
-    | VARIABLE_ARGS_GET
-    | VARIABLE_FILES_SIZES DICT_ELEMENT
-    | VARIABLE_FILES_SIZES DICT_ELEMENT_REGEXP
-    | VARIABLE_FILES_SIZES
-    | VARIABLE_FILES_NAMES DICT_ELEMENT
-    | VARIABLE_FILES_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_FILES_NAMES
-    | VARIABLE_FILES_TMP_CONTENT DICT_ELEMENT
-    | VARIABLE_FILES_TMP_CONTENT DICT_ELEMENT_REGEXP
-    | VARIABLE_FILES_TMP_CONTENT
-    | VARIABLE_MULTIPART_FILENAME DICT_ELEMENT
-    | VARIABLE_MULTIPART_FILENAME DICT_ELEMENT_REGEXP
-    | VARIABLE_MULTIPART_FILENAME
-    | VARIABLE_MULTIPART_NAME DICT_ELEMENT
-    | VARIABLE_MULTIPART_NAME DICT_ELEMENT_REGEXP
-    | VARIABLE_MULTIPART_NAME
-    | VARIABLE_MATCHED_VARS_NAMES DICT_ELEMENT
-    | VARIABLE_MATCHED_VARS_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_MATCHED_VARS_NAMES
-    | VARIABLE_MATCHED_VARS DICT_ELEMENT
-    | VARIABLE_MATCHED_VARS DICT_ELEMENT_REGEXP
-    | VARIABLE_MATCHED_VARS
-    | VARIABLE_FILES DICT_ELEMENT
-    | VARIABLE_FILES DICT_ELEMENT_REGEXP
-    | VARIABLE_FILES
-    | VARIABLE_REQUEST_COOKIES DICT_ELEMENT
-    | VARIABLE_REQUEST_COOKIES DICT_ELEMENT_REGEXP
-    | VARIABLE_REQUEST_COOKIES
-    | VARIABLE_REQUEST_HEADERS DICT_ELEMENT
-    | VARIABLE_REQUEST_HEADERS DICT_ELEMENT_REGEXP
-    | VARIABLE_REQUEST_HEADERS
-    | VARIABLE_RESPONSE_HEADERS DICT_ELEMENT
-    | VARIABLE_RESPONSE_HEADERS DICT_ELEMENT_REGEXP
-    | VARIABLE_RESPONSE_HEADERS
-    | VARIABLE_GEO DICT_ELEMENT
-    | VARIABLE_GEO DICT_ELEMENT_REGEXP
-    | VARIABLE_GEO
-    | VARIABLE_REQUEST_COOKIES_NAMES DICT_ELEMENT
-    | VARIABLE_REQUEST_COOKIES_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_REQUEST_COOKIES_NAMES
-    | VARIABLE_MULTIPART_PART_HEADERS DICT_ELEMENT
-    | VARIABLE_MULTIPART_PART_HEADERS DICT_ELEMENT_REGEXP
-    | VARIABLE_MULTIPART_PART_HEADERS
-    | VARIABLE_RULE DICT_ELEMENT
-    | VARIABLE_RULE DICT_ELEMENT_REGEXP
-    | VARIABLE_RULE
-    | RUN_TIME_VAR_ENV DICT_ELEMENT
-    | RUN_TIME_VAR_ENV DICT_ELEMENT_REGEXP
-    | RUN_TIME_VAR_ENV
-    | RUN_TIME_VAR_XML DICT_ELEMENT
-    | RUN_TIME_VAR_XML DICT_ELEMENT_REGEXP
-    | RUN_TIME_VAR_XML
-    | VARIABLE_FILES_TMP_NAMES DICT_ELEMENT
-    | VARIABLE_FILES_TMP_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_FILES_TMP_NAMES
+    | VARIABLE_ARGS (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_ARGS_POST (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_ARGS_GET (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_FILES_SIZES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)
+    | VARIABLE_FILES_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_FILES_TMP_CONTENT (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_MULTIPART_FILENAME (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_MULTIPART_NAME (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_MATCHED_VARS_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_MATCHED_VARS (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_FILES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_REQUEST_COOKIES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_REQUEST_HEADERS (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_RESPONSE_HEADERS (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_GEO (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_REQUEST_COOKIES_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_MULTIPART_PART_HEADERS (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_RULE (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | RUN_TIME_VAR_ENV (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | RUN_TIME_VAR_XML (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_FILES_TMP_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_RESOURCE run_time_string
-    | VARIABLE_RESOURCE DICT_ELEMENT
-    | VARIABLE_RESOURCE DICT_ELEMENT_REGEXP
-    | VARIABLE_RESOURCE
+    | VARIABLE_RESOURCE (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_IP run_time_string
-    | VARIABLE_IP DICT_ELEMENT
-    | VARIABLE_IP DICT_ELEMENT_REGEXP
-    | VARIABLE_IP
+    | VARIABLE_IP (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_GLOBAL run_time_string
-    | VARIABLE_GLOBAL DICT_ELEMENT
-    | VARIABLE_GLOBAL DICT_ELEMENT_REGEXP
-    | VARIABLE_GLOBAL
+    | VARIABLE_GLOBAL (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_USER run_time_string
-    | VARIABLE_USER DICT_ELEMENT
-    | VARIABLE_USER DICT_ELEMENT_REGEXP
-    | VARIABLE_USER
+    | VARIABLE_USER (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_TX run_time_string
-    | VARIABLE_TX DICT_ELEMENT
-    | VARIABLE_TX DICT_ELEMENT_REGEXP
-    | VARIABLE_TX
+    | VARIABLE_TX (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_SESSION run_time_string
-    | VARIABLE_SESSION DICT_ELEMENT
-    | VARIABLE_SESSION DICT_ELEMENT_REGEXP
-    | VARIABLE_SESSION
-    | VARIABLE_ARGS_NAMES DICT_ELEMENT
-    | VARIABLE_ARGS_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_ARGS_NAMES
-    | VARIABLE_ARGS_GET_NAMES DICT_ELEMENT
-    | VARIABLE_ARGS_GET_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_ARGS_GET_NAMES
-    | VARIABLE_ARGS_POST_NAMES DICT_ELEMENT
-    | VARIABLE_ARGS_POST_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_ARGS_POST_NAMES
-    | VARIABLE_REQUEST_HEADERS_NAMES DICT_ELEMENT
-    | VARIABLE_REQUEST_HEADERS_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_REQUEST_HEADERS_NAMES
-    | VARIABLE_RESPONSE_CONTENT_TYPE
-    | VARIABLE_RESPONSE_HEADERS_NAMES DICT_ELEMENT
-    | VARIABLE_RESPONSE_HEADERS_NAMES DICT_ELEMENT_REGEXP
-    | VARIABLE_RESPONSE_HEADERS_NAMES
+    | VARIABLE_SESSION (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_ARGS_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_ARGS_GET_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_ARGS_POST_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_REQUEST_HEADERS_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
+    | VARIABLE_RESPONSE_HEADERS_NAMES (DICT_ELEMENT | DICT_ELEMENT_REGEXP)?
     | VARIABLE_ARGS_COMBINED_SIZE
+    | VARIABLE_RESPONSE_CONTENT_TYPE
     | VARIABLE_AUTH_TYPE
     | VARIABLE_FILES_COMBINED_SIZE
     | VARIABLE_FULL_REQUEST
@@ -326,7 +266,7 @@ variables_may_be_quoted:
     | RUN_TIME_VAR_TIME_YEAR
     ;
 
-act:
+action:
     | ACTION_ALLOW
     | ACTION_APPEND
     | ACTION_AUDIT_LOG
@@ -671,10 +611,14 @@ setvar_action:
 //    | var SETVAR_OPERATION_EQUALS_MINUS run_time_string
     ;
 
-DICT_ELEMENT_REGEXP
-    : SLASH DICT_ELEMENT_NO_PIPE SLASH (SPACE | PIPE)
-    | QUOTE SLASH DICT_ELEMENT_WITH_PIPE SLASH QUOTE PIPE
-    ;
+
+WS
+   : [ \t\r\n]+ -> skip
+   ;
+
+COMMENT
+   : '#' .*? '\r'? '\n'
+   ;
 
 SPACE
     : ' '
@@ -850,7 +794,7 @@ ACTION_EXPIRE_VAR
 	;
 
 ACTION_ID
-	: 'id:' QUOTE_BUT_SCAPED? NUM_INT+ QUOTE_BUT_SCAPED?
+	: 'id:' QUOTE_BUT_SCAPED? INT+ QUOTE_BUT_SCAPED?
 	;
 
 ACTION_INITCOL
@@ -1717,9 +1661,9 @@ COL_FREE_TEXT_SPACE_COMMA
 	: ([^,"])+
 	;
 
-COL_NAME
-	: [A-Za-z]+
-	;
+//COL_NAME
+//	: [A-Za-z]+
+//	;
 
 CONFIG_COMPONENT_SIG
 	: 'SecComponentSignature'
@@ -2017,9 +1961,9 @@ CONFIG_VALUE_HTTPS
 	: 'https'
 	;
 
-CONFIG_VALUE_NUMBER
-	: [0-9]+
-	;
+//CONFIG_VALUE_NUMBER
+//	: [0-9]+
+//	;
 
 CONFIG_VALUE_ON_OFF
     : CONFIG_VALUE_ON | CONFIG_VALUE_OFF
@@ -2093,25 +2037,6 @@ CONFIG_DIR_SEC_TMP_DIR
 	: 'SecTmpDir'
 	;
 
-DICT_ELEMENT
-	: (~["|,\n \t}=]|(~[\\]'"'))+
-	;
-
-DICT_ELEMENT_WITH_PIPE
-    : [^ =\t"]+
-	;
-
-DICT_ELEMENT_NO_PIPE
-    : [^ =|\t"]+
-	;
-
-DICT_ELEMENT_NO_MACRO
-    : (~ ["|,%{\n \t}=]| (~["]))+
-	;
-
-DICT_ELEMENT_WITH_EQUALS
-    : (~ ["|,\n \t}] | (~ ["]))+
-	;
 
 DIRECTIVE
 	: 'SecRule'
@@ -2121,13 +2046,15 @@ DIRECTIVE_SECRULESCRIPT
 	: 'SecRuleScript'
 	;
 
-FREE_TEXT_NEW_LINE
-	: ~ ["|\n]+
-	;
+//FREE_TEXT_NEW_LINE
+//	: ~ ["|\n]+
+//	;
 
-FREE_TEXT_QUOTE
-	: (~['] | (~[\\]) )+
-	;
+//FREE_TEXT_QUOTE
+//	: (~['] | (~[\\]) )+
+//	;
+
+//ESC : '\\"' | '\\\\' ;
 
 QUOTE_BUT_SCAPED
 	: '\\' '\''
@@ -2144,54 +2071,54 @@ COMMA_BUT_SCAPED
 FREE_TEXT_QUOTE_MACRO_EXPANSION
 	: (([^%'])|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][']|[^\\]([\\][\\])+[\\]['])+
 	;
-
-FREE_TEXT_DOUBLE_QUOTE_MACRO_EXPANSION
-	: ((([^"%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\]["]|[^\\]([\\][\\])+[\\]["])+
-	;
-
-FREE_TEXT_EQUALS_MACRO_EXPANSION
-	: ((([^",=%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][=]|[^\\]([\\][\\])+[\\][=])+
-	;
-
-FREE_TEXT_EQUALS_QUOTE_MACRO_EXPANSION
-	: ((([^'",=%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][=]|[^\\][\\][']|[^\\]([\\][\\])+[\\][=])+
-	;
-
-FREE_TEXT_COMMA_MACRO_EXPANSION
-	: (([^%,])|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][,]|[^\\]([\\][\\])+[\\][,])+
-	;
-
-FREE_TEXT_COMMA_DOUBLE_QUOTE_MACRO_EXPANSION
-	: ((([^,"%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\]["]|[^\\]([\\][\\])+[\\]["])+
-	;
-
-FREE_TEXT_SPACE_MACRO_EXPANSION
-    : (([^% ])|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][ ]|[^\\]([\\][\\])+[\\][ ])+
-	;
+//
+//FREE_TEXT_DOUBLE_QUOTE_MACRO_EXPANSION
+//	: ((([^"%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\]["]|[^\\]([\\][\\])+[\\]["])+
+//	;
+//
+//FREE_TEXT_EQUALS_MACRO_EXPANSION
+//	: ((([^",=%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][=]|[^\\]([\\][\\])+[\\][=])+
+//	;
+//
+//FREE_TEXT_EQUALS_QUOTE_MACRO_EXPANSION
+//	: ((([^'",=%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][=]|[^\\][\\][']|[^\\]([\\][\\])+[\\][=])+
+//	;
+//
+//FREE_TEXT_COMMA_MACRO_EXPANSION
+//	: (([^%,])|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][,]|[^\\]([\\][\\])+[\\][,])+
+//	;
+//
+//FREE_TEXT_COMMA_DOUBLE_QUOTE_MACRO_EXPANSION
+//	: ((([^,"%])|([%][^{]))|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\]["]|[^\\]([\\][\\])+[\\]["])+
+//	;
+//
+//FREE_TEXT_SPACE_MACRO_EXPANSION
+//    : (([^% ])|([^\\][\\][%][{])|([^\\]([\\][\\])+[\\][%][{])|[^\\][\\][ ]|[^\\]([\\][\\])+[\\][ ])+
+//	;
 
 START_MACRO_VARIABLE
 	: '%{'
 	;
 
-FREE_TEXT_QUOTE_COMMA
-	: ~ [,']+
-	;
+//FREE_TEXT_QUOTE_COMMA
+//	: ~ [,']+
+//	;
 
-FREE_TEXT_SPACE
-    : ~ [ \t]+
-	;
+//FREE_TEXT_SPACE
+//    : ~ [ \t]+
+//	;
 
-FREE_TEXT_SPACE_COMMA
-    : ~ [, \t]+
-	;
+//FREE_TEXT_SPACE_COMMA
+//    : ~ [, \t]+
+//	;
 
 FREE_TEXT_SPACE_COMMA_QUOTE
     : ~ [", \t\n\r]+
 	;
 
-FREE_TEXT_COMMA_QUOTE
-	: ~ [",\n\r]+
-	;
+//FREE_TEXT_COMMA_QUOTE
+//	: ~ [",\n\r]+
+//	;
 
 NEW_LINE_FREE_TEXT
     : ~ [", \t\n\r]+
@@ -2205,17 +2132,17 @@ REMOVE_RULE_BY
     : ('0'..'9' | 'A'..'Z' | 'a'..'z' | '_' | '/' | '.' | '-' | '*' | ':' | ';' | '[' | '$')+
 	;
 
-VAR_FREE_TEXT_QUOTE
-	: (~ ['] | ( ~ [\\] QUOTE ) )+
-	;
+//VAR_FREE_TEXT_QUOTE
+//	: (~ ['] | ( ~ [\\] QUOTE ) )+
+//	;
 
-VAR_FREE_TEXT_SPACE
-    : ~ [ \t"]+
-	;
+//VAR_FREE_TEXT_SPACE
+//    : ~ [ \t"]+
+//	;
 
-VAR_FREE_TEXT_SPACE_COMMA
-    : (~ (',' | ' ' | '\t' | '"' ))+
-	;
+//VAR_FREE_TEXT_SPACE_COMMA
+//    : (~ (',' | ' ' | '\t' | '"' ))+
+//	;
 
 JSON
 	: 'JSON'
@@ -2245,35 +2172,50 @@ QUOTATION_MARK
     : '"'
     ;
 
-WS
-   : [ \t\r\n]+ -> skip
-   ;
-
-COMMENT
-   : '#' ~ [\r\n]* -> channel(HIDDEN)
-   ;
 
 IDENT
-   : ('A' .. 'Z') ('A' .. 'Z' | '0' .. '9' | '_')*
+   : ('A' .. 'Z') ('A' .. 'Z' | DIGIT | '_')*
    ;
 
 STRING_LITERAL
    : '\'' ('\'\'' | ~ ('\''))* '\''
    ;
 
-NUM_INT
-   : ('0' .. '9') +
+INT
+   : DIGIT+
    ;
 
-
-actions:
-    QUOTATION_MARK actions_may_quoted QUOTATION_MARK
-    | actions_may_quoted
+DIGIT:
+    '0' .. '9'
     ;
 
-
-actions_may_quoted:
-    actions_may_quoted COMMA act
-    | act
+LETTER:
+    'a' .. 'z' | 'A' .. 'Z'
     ;
 
+mode VARS;
+
+DICT_ELEMENT
+	: (~["|,\n \t}=]|(~[\\]'"'))+
+	;
+
+DICT_ELEMENT_WITH_PIPE
+    : [^ =\t"]+
+	;
+
+DICT_ELEMENT_NO_PIPE
+    : [^ =|\t"]+
+	;
+
+DICT_ELEMENT_NO_MACRO
+    : (~ ["|,%{\n \t}=]| (~["]))+
+	;
+
+DICT_ELEMENT_WITH_EQUALS
+    : (~ ["|,\n \t}] | (~ ["]))+
+	;
+
+DICT_ELEMENT_REGEXP
+    : SLASH DICT_ELEMENT_NO_PIPE SLASH (SPACE | PIPE)
+    | QUOTE SLASH DICT_ELEMENT_WITH_PIPE SLASH QUOTE PIPE
+    ;
