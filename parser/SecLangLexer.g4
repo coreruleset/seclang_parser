@@ -1385,10 +1385,6 @@ CONFIG_VALUE_HTTPS
 //	: [0-9]+
 //	;
 
-CONFIG_VALUE_ON_OFF
-    : CONFIG_VALUE_ON | CONFIG_VALUE_OFF
-    ;
-
 CONFIG_VALUE_OFF
 	: 'Off'
 	;
@@ -1398,12 +1394,13 @@ CONFIG_VALUE_ON
 	;
 
 CONFIG_VALUE_PARALLEL
-	: 'Parallel|Concurrent'
+	: 'Parallel'
+	| 'Concurrent'
 	;
 
-//CONFIG_VALUE_PATH
-//	: [-0-9A-Za-z_/.*:]+
-//	;
+CONFIG_VALUE_PATH
+	: [-0-9A-Za-z_/.*:]+
+	;
 
 CONFIG_VALUE_PROCESS_PARTIAL
 	: 'ProcessPartial'
@@ -1456,7 +1453,6 @@ CONFIG_DIR_SEC_STATUS_ENGINE
 CONFIG_DIR_SEC_TMP_DIR
 	: 'SecTmpDir'
 	;
-
 
 DIRECTIVE
 	: 'SecRule'
@@ -1573,6 +1569,10 @@ mode VARS;
 VAR_FREE_TEXT_SPACE_COMMA
     : (~ (',' | ' ' | '\t' | '"' ))+ -> popMode
 	;
+
+REGEXP
+    : QUOTE? SLASH (~ [\\] SLASH | SLASH SLASH)* SLASH QUOTE? -> popMode
+    ;
 
 DICT_ELEMENT
 	: (~["|,\n \t}=]|(~[\\]'"'))+
