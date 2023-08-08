@@ -8,7 +8,7 @@ import (
 )
 
 type TreeShapeListener struct {
-	*parsing.BaseSecLangListener
+	*parsing.BaseSecLangParserListener
 }
 
 func NewTreeShapeListener() *TreeShapeListener {
