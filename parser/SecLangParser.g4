@@ -280,7 +280,7 @@ variable_name:
     ;
 
 action:
-    action_name action_value?
+    action_name ( '=' action_value)?
     ;
 
 action_name:
@@ -342,6 +342,11 @@ action_name:
     | ACTION_XMLNS
     | transformation_action
     ;
+
+action_value:
+    free_text
+    | variable_name
+    | variable_value;
 
 transformation_action:
     | ACTION_TRANSFORMATION_PARITY_ZERO_7_BIT

@@ -33,7 +33,7 @@ lexer grammar SecLangLexer;
 //options { superClass = SecLangLexerBase; }
 
 WS
-   : [ \t\r\n]+ -> skip
+   : ([ \t\r\n]+ | '\\' '\n')  -> skip
    ;
 
 COMMENT
@@ -1399,7 +1399,7 @@ CONFIG_VALUE_PARALLEL
 	;
 
 CONFIG_VALUE_PATH
-	: [-0-9A-Za-z_/.*:]+
+	: [-0-9A-Za-z_/.*]+
 	;
 
 CONFIG_VALUE_PROCESS_PARTIAL
