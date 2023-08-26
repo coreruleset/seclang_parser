@@ -33,7 +33,7 @@ parser grammar SecLangParser;
 options { tokenVocab=SecLangLexer; }
 
 configuration
-     : stmt*
+     : stmt* EOF
      ;
 
 stmt:
