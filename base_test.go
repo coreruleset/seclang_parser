@@ -1,10 +1,15 @@
+// Copyright 2023 Felipe Zipitria
+// SPDX-License-Identifier: Apache-2.0
+
 package main
 
 import (
 	"fmt"
-	"github.com/antlr4-go/antlr/v4"
-	"github.com/fzipi/seclang_parser/parsing"
 	"testing"
+
+	"github.com/antlr4-go/antlr/v4"
+
+	"github.com/fzipi/seclang_parser/parsing"
 )
 
 type TreeShapeListener struct {

@@ -44,7 +44,7 @@ func Format() error {
 	if err := sh.RunV("go", "run", fmt.Sprintf("github.com/rinchsan/gosimports/cmd/gosimports@%s", gosImportsVer),
 		"-w",
 		"-local",
-		"github.com/fzipi/secrules_parser",
+		"github.com/fzipi/seclang_parser",
 		"."); err != nil {
 		return err
 	}
@@ -58,7 +58,7 @@ func Format() error {
 		"--section",
 		"blank",
 		"--section",
-		"prefix(github.com/fzipi/secrules_parser)",
+		"prefix(github.com/fzipi/seclang_parser)",
 		"--custom-order",
 		"--skip-generated",
 		".")
@@ -70,7 +70,7 @@ func Lint() error {
 		return err
 	}
 
-	if err := sh.RunV("go", "run", fmt.Sprintf("github.com/fzipp/gocyclo/cmd/gocyclo@%s", goCycloVer), "-over", "15", "."); err != nil {
+	if err := sh.RunV("go", "run", fmt.Sprintf("github.com/fzipp/gocyclo/cmd/gocyclo@%s", goCycloVer), "-over", "15", "-ignore", "parsing", "."); err != nil {
 		return err
 	}
 
