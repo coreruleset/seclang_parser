@@ -24,7 +24,6 @@ jobs:
     - name: Build
       run: | 
         go run mage.go generate
-        go run mage.go build
 
     - name: Test
       run: go test -v ./...
