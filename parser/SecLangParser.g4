@@ -37,14 +37,9 @@ configuration
      ;
 
 stmt:
-    directive variables operator actions?
-    | directive values
+    rules_directive variables operator actions
+    | engine_config_directive values
     | COMMENT
-    ;
-
-directive:
-    engine_config_directive
-    | rules_directive
     ;
 
 rules_directive:
@@ -153,20 +148,65 @@ values:
     | CONFIG_VALUE_PATH
     ;
 
-actions:
-    QUOTATION_MARK action (COMMA action) QUOTATION_MARK
+operator:
+    QUOTE NOT? AT operator_name operator_value QUOTE
+    ;
+
+operator_name:
+    OPERATOR_UNCONDITIONAL_MATCH
+    | OPERATOR_DETECT_SQLI
+    | OPERATOR_DETECT_XSS
+    | OPERATOR_VALIDATE_URL_ENCODING
+    | OPERATOR_VALIDATE_UTF8_ENCODING
+    | OPERATOR_INSPECT_FILE
+    | OPERATOR_FUZZY_HASH
+    | OPERATOR_VALIDATE_BYTE_RANGE
+    | OPERATOR_VALIDATE_DTD
+    | OPERATOR_VALIDATE_HASH
+    | OPERATOR_VALIDATE_SCHEMA
+    | OPERATOR_VERIFY_CC
+    | OPERATOR_VERIFY_CPF
+    | OPERATOR_VERIFY_SSN
+    | OPERATOR_VERIFY_SVNR
+    | OPERATOR_GSB_LOOKUP
+    | OPERATOR_RSUB
+    | OPERATOR_WITHIN
+    | OPERATOR_CONTAINS_WORD
+    | OPERATOR_CONTAINS
+    | OPERATOR_ENDS_WITH
+    | OPERATOR_EQ
+    | OPERATOR_GE
+    | OPERATOR_GT
+    | OPERATOR_IP_MATCH_FROM_FILE
+    | OPERATOR_IP_MATCH
+    | OPERATOR_LE
+    | OPERATOR_LT
+    | OPERATOR_PM_FROM_FILE
+    | OPERATOR_PM
+    | OPERATOR_RBL
+    | OPERATOR_RX
+    | OPERATOR_RX_GLOBAL
+    | OPERATOR_STR_EQ
+    | OPERATOR_STR_MATCH
+    | OPERATOR_BEGINS_WITH
+    | OPERATOR_GEOLOOKUP
+    ;
+
+operator_value:
+    variable_name
+    | FREE_TEXT_QUOTE_MACRO_EXPANSION
     ;
 
 variables:
-    '"' NOT? VAR_COUNT? var_stmt '"' (PIPE '"' var_stmt '"')*
+    QUOTE? NOT? VAR_COUNT? var_stmt QUOTE? (PIPE QUOTE var_stmt QUOTE)*
     ;
 
 var_stmt:
-    variable_name (':' collection_element_or_regexp) variable_value?
+    variable_name (':' collection_element_or_regexp)? variable_value?
     ;
 
 collection_element_or_regexp:
-    IDENT
+    VARIABLE_NAME
     | REGEXP
     ;
 
@@ -197,7 +237,7 @@ variable_name:
     | VARIABLE_MATCHED_VAR_NAME
     | VARIABLE_MSC_PCRE_ERROR
     | VARIABLE_MSC_PCRE_LIMITS_EXCEEDED
-    | VARIABLE_MULTIPART_BOUNDARY_QUOTED
+    | VARIABLE_MULTIPART_BOUNDARY_SINGLE_QUOTED
     | VARIABLE_MULTIPART_BOUNDARY_WHITESPACE
     | VARIABLE_MULTIPART_CRLF_LF_LINES
     | VARIABLE_MULTIPART_DATA_AFTER
@@ -279,22 +319,39 @@ variable_name:
     | RUN_TIME_VAR_XML
     ;
 
-action:
-    action_name ( '=' action_value)?
+actions:
+    QUOTE action (COMMA action)* QUOTE
     ;
 
-action_name:
-    | ACTION_ALLOW
+action:
+    action_only
+    | action_with_params COLON NOT? EQUAL? action_value
+    ;
+
+action_only:
+    ACTION_ALLOW
     | ACTION_APPEND
-    | ACTION_AUDIT_LOG
     | ACTION_BLOCK
     | ACTION_CAPTURE
     | ACTION_CHAIN
-    | ACTION_CTL_AUDIT_ENGINE
+    | ACTION_AUDIT_LOG
+    | ACTION_DENY
+    | ACTION_DROP
+    | ACTION_MULTI_MATCH
+    | ACTION_NO_AUDIT_LOG
+    | ACTION_NO_LOG
+    | ACTION_LOG
+    | ACTION_PASS
+    | ACTION_PAUSE
+    | transformation_action
+    ;
+
+action_with_params:
+    ACTION_CTL_AUDIT_ENGINE
     | ACTION_CTL_AUDIT_LOG_PARTS
-    | ACTION_CTL_BDY_JSON
-    | ACTION_CTL_BDY_XML
-    | ACTION_CTL_BDY_URLENCODED
+    | ACTION_CTL_BODY_JSON
+    | ACTION_CTL_BODY_XML
+    | ACTION_CTL_BODY_URLENCODED
     | ACTION_CTL_FORCE_REQ_BODY_VAR
     | ACTION_CTL_REQUEST_BODY_ACCESS
     | ACTION_CTL_RULE_ENGINE
@@ -302,22 +359,6 @@ action_name:
     | ACTION_CTL_RULE_REMOVE_BY_TAG
     | ACTION_CTL_RULE_REMOVE_TARGET_BY_ID
     | ACTION_CTL_RULE_REMOVE_TARGET_BY_TAG
-    | ACTION_DENY
-    | ACTION_DEPRECATE_VAR
-    | ACTION_DROP
-    | ACTION_EXEC
-    | ACTION_EXPIRE_VAR
-    | ACTION_ID
-    | ACTION_INITCOL
-    | ACTION_LOG_DATA
-    | ACTION_LOG
-    | ACTION_MATURITY
-    | ACTION_MSG
-    | ACTION_MULTI_MATCH
-    | ACTION_NO_AUDIT_LOG
-    | ACTION_NO_LOG
-    | ACTION_PASS
-    | ACTION_PAUSE
     | ACTION_PHASE
     | ACTION_PREPEND
     | ACTION_PROXY
@@ -332,7 +373,7 @@ action_name:
     | ACTION_SETRSC
     | ACTION_SETSID
     | ACTION_SETUID
-    | ACTION_SETVAR setvar_action
+    | ACTION_SETVAR
     | ACTION_SEVERITY
     | ACTION_SKIP
     | ACTION_SKIP_AFTER
@@ -340,16 +381,28 @@ action_name:
     | ACTION_TAG
     | ACTION_VER
     | ACTION_XMLNS
-    | transformation_action
-    ;
+    | ACTION_DEPRECATE_VAR
+    | ACTION_EXEC
+    | ACTION_EXPIRE_VAR
+    | ACTION_ID
+    | ACTION_INITCOL
+    | ACTION_LOG_DATA
+    | ACTION_MATURITY
+    | ACTION_MSG
+
+;
 
 action_value:
-    free_text
+    INT
     | variable_name
-    | variable_value;
+    | variable_value
+    | setvar_action
+    | STRING_LITERAL
+    | FREE_TEXT_QUOTE_MACRO_EXPANSION
+    ;
 
 transformation_action:
-    | ACTION_TRANSFORMATION_PARITY_ZERO_7_BIT
+    ACTION_TRANSFORMATION_PARITY_ZERO_7_BIT
     | ACTION_TRANSFORMATION_PARITY_ODD_7_BIT
     | ACTION_TRANSFORMATION_PARITY_EVEN_7_BIT
     | ACTION_TRANSFORMATION_SQL_HEX_DECODE
@@ -393,64 +446,16 @@ transformation_action:
 variable_value:
     DICT_ELEMENT
     | DICT_ELEMENT_REGEXP
-    | free_text
-    ;
-
-free_text:
-    FREE_TEXT_QUOTE_MACRO_EXPANSION
-    ;
-
-operator:
-    NOT? operator_name operator_value
-    ;
-
-operator_value:
-    free_text
-    | variable_name
-    ;
-operator_name:
-    OPERATOR_UNCONDITIONAL_MATCH
-    | OPERATOR_DETECT_SQLI
-    | OPERATOR_DETECT_XSS
-    | OPERATOR_VALIDATE_URL_ENCODING
-    | OPERATOR_VALIDATE_UTF8_ENCODING
-    | OPERATOR_INSPECT_FILE
-    | OPERATOR_FUZZY_HASH
-    | OPERATOR_VALIDATE_BYTE_RANGE 
-    | OPERATOR_VALIDATE_DTD
-    | OPERATOR_VALIDATE_HASH
-    | OPERATOR_VALIDATE_SCHEMA
-    | OPERATOR_VERIFY_CC
-    | OPERATOR_VERIFY_CPF
-    | OPERATOR_VERIFY_SSN
-    | OPERATOR_VERIFY_SVNR
-    | OPERATOR_GSB_LOOKUP
-    | OPERATOR_RSUB
-    | OPERATOR_WITHIN
-    | OPERATOR_CONTAINS_WORD
-    | OPERATOR_CONTAINS
-    | OPERATOR_ENDS_WITH
-    | OPERATOR_EQ
-    | OPERATOR_GE
-    | OPERATOR_GT
-    | OPERATOR_IP_MATCH_FROM_FILE
-    | OPERATOR_IP_MATCH
-    | OPERATOR_LE
-    | OPERATOR_LT
-    | OPERATOR_PM_FROM_FILE
-    | OPERATOR_PM
-    | OPERATOR_RBL
-    | OPERATOR_RX
-    | OPERATOR_RX_GLOBAL
-    | OPERATOR_STR_EQ
-    | OPERATOR_STR_MATCH
-    | OPERATOR_BEGINS_WITH
-    | OPERATOR_GEOLOOKUP
     ;
 
 setvar_action:
-    variables
-//    | var SETVAR_OPERATION_EQUALS
-//    | var SETVAR_OPERATION_EQUALS_PLUS
-//    | var SETVAR_OPERATION_EQUALS_MINUS
+    var_stmt assignemt values
     ;
+
+assignemt:
+    EQUAL
+    | EQUALS_PLUS
+    | EQUALS_MINUS
+    ;
+
+

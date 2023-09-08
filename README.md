@@ -10,7 +10,14 @@ There has been efforts towards having parsers in different languages. Using ANTL
 
 ## Usage
 
-TBD.
+Right now this repo contains the ANTLR files and golang basic tests.
+
+To run the tests:
+
+```bash
+go generate ./...
+go test ./...
+```
 
 ## Author
 
