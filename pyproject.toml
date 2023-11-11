@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "seclang_parser"
+version = "0.1.0"
+description = "SecLang Parser using ANTLR"
+authors = ["Felipe Zipitria <felipe.zipitria@owasp.org>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+antlr4-python3-runtime = "^4.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+parser = 'base_test:main'

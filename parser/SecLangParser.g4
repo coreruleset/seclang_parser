@@ -38,9 +38,8 @@ configuration
 
 stmt:
     rules_directive variables operator actions
-    | engine_config_directive values
-    | COMMENT
-    ;
+    | engine_config_directive config_value_types
+    | COMMENT;
 
 rules_directive:
     CONFIG_SEC_RULE_REMOVE_BY_ID
@@ -131,6 +130,10 @@ stmt_audit_log:
     | INT
     ;
 
+config_value_types:
+    QUOTE values QUOTE
+    ;
+
 values:
     CONFIG_VALUE_ON
     | CONFIG_VALUE_OFF
@@ -145,9 +148,8 @@ values:
     | CONFIG_VALUE_DETC
     | CONFIG_VALUE_PROCESS_PARTIAL
     | CONFIG_VALUE_REJECT
-    | CONFIG_VALUE_PATH
     ;
-
+// | CONFIG_VALUE_PATH
 operator:
     QUOTE NOT? AT operator_name operator_value QUOTE
     ;
@@ -316,7 +318,7 @@ variable_name:
     | RUN_TIME_VAR_TIME_WDAY
     | RUN_TIME_VAR_TIME_WDAY
     | RUN_TIME_VAR_TIME_YEAR
-    | RUN_TIME_VAR_XML
+//    | RUN_TIME_VAR_XML
     ;
 
 actions:
@@ -324,8 +326,8 @@ actions:
     ;
 
 action:
-    action_only
-    | action_with_params COLON NOT? EQUAL? action_value
+    action_with_params COLON NOT? EQUAL? action_value
+    | action_only
     ;
 
 action_only:
@@ -347,18 +349,7 @@ action_only:
     ;
 
 action_with_params:
-    ACTION_CTL_AUDIT_ENGINE
-    | ACTION_CTL_AUDIT_LOG_PARTS
-    | ACTION_CTL_BODY_JSON
-    | ACTION_CTL_BODY_XML
-    | ACTION_CTL_BODY_URLENCODED
-    | ACTION_CTL_FORCE_REQ_BODY_VAR
-    | ACTION_CTL_REQUEST_BODY_ACCESS
-    | ACTION_CTL_RULE_ENGINE
-    | ACTION_CTL_RULE_REMOVE_BY_ID
-    | ACTION_CTL_RULE_REMOVE_BY_TAG
-    | ACTION_CTL_RULE_REMOVE_TARGET_BY_ID
-    | ACTION_CTL_RULE_REMOVE_TARGET_BY_TAG
+    ACTION_CTL
     | ACTION_PHASE
     | ACTION_PREPEND
     | ACTION_PROXY
@@ -397,6 +388,15 @@ action_value:
     | variable_name
     | variable_value
     | setvar_action
+    | ACTION_CTL_FORCE_REQ_BODY_VAR
+    | ACTION_CTL_REQUEST_BODY_ACCESS
+    | ACTION_CTL_RULE_ENGINE
+    | ACTION_CTL_RULE_REMOVE_BY_ID
+    | ACTION_CTL_RULE_REMOVE_BY_TAG
+    | ACTION_CTL_RULE_REMOVE_TARGET_BY_ID
+    | ACTION_CTL_RULE_REMOVE_TARGET_BY_TAG
+    | ACTION_CTL_AUDIT_ENGINE
+    | ACTION_CTL_AUDIT_LOG_PARTS
     | STRING_LITERAL
     | FREE_TEXT_QUOTE_MACRO_EXPANSION
     ;
@@ -449,10 +449,15 @@ variable_value:
     ;
 
 setvar_action:
-    var_stmt assignemt values
+    SINGLE_QUOTE setvar_stmt assignment values SINGLE_QUOTE
     ;
 
-assignemt:
+setvar_stmt:
+    COLLECTION_ELEMENT
+    | COLLECTION_WITH_MACRO
+    ;
+
+assignment:
     EQUAL
     | EQUALS_PLUS
     | EQUALS_MINUS

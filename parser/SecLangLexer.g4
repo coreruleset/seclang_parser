@@ -30,14 +30,12 @@ Adapted from pascal.g by  Hakki Dogusan, Piet Schoutteten and Marton Papp
 */
 lexer grammar SecLangLexer;
 
-//options { superClass = SecLangLexerBase; }
-
 WS
    : ([ \t\r\n]+ | '\\' '\n')  -> skip
    ;
 
 COMMENT
-   : '#' .*? '\r'? '\n' {}
+   : '#' .*? '\r'? '\n' -> skip
    ;
 
 SPACE
@@ -149,52 +147,51 @@ ACTION_CHAIN
 	: 'chain'
 	;
 
+ACTION_CTL
+    : 'ctl'
+    ;
+
 ACTION_CTL_AUDIT_ENGINE
-	: 'ctl:auditEngine'
+	: 'auditEngine'
 	;
 
 ACTION_CTL_AUDIT_LOG_PARTS
-	: 'ctl:auditLogParts'
+	: 'auditLogParts'
 	;
 
-ACTION_CTL_BODY_JSON
-	: 'ctl:requestBodyProcessor=JSON'
+ACTION_CTL_REQUEST_BODY_PROCESSOR
+	: 'requestBodyProcessor'
 	;
 
-ACTION_CTL_BODY_XML
-	: 'ctl:requestBodyProcessor=XML'
-	;
-
-ACTION_CTL_BODY_URLENCODED
-	: 'ctl:requestBodyProcessor=URLENCODED'
-	;
+ACTION_CTL_BODY_PROCESSOR_TYPE
+    : 'JSON' | 'XML' | 'URLENCODED';
 
 ACTION_CTL_FORCE_REQ_BODY_VAR
-	: 'ctl:forceRequestBodyVariable'
+	: 'forceRequestBodyVariable'
 	;
 
 ACTION_CTL_REQUEST_BODY_ACCESS
-	: 'ctl:requestBodyAccess'
+	: 'requestBodyAccess'
 	;
 
 ACTION_CTL_RULE_ENGINE
-	: 'ctl:ruleEngine'
+	: 'ruleEngine'
 	;
 
 ACTION_CTL_RULE_REMOVE_BY_TAG
-	: 'ctl:ruleRemoveByTag'
+	: 'ruleRemoveByTag'
 	;
 
 ACTION_CTL_RULE_REMOVE_BY_ID
-	: 'ctl:ruleRemoveById'
+	: 'ruleRemoveById'
 	;
 
 ACTION_CTL_RULE_REMOVE_TARGET_BY_ID
-	: 'ctl:ruleRemoveTargetById'
+	: 'ruleRemoveTargetById'
 	;
 
 ACTION_CTL_RULE_REMOVE_TARGET_BY_TAG
-	: 'ctl:ruleRemoveTargetByTag'
+	: 'ruleRemoveTargetByTag'
 	;
 
 ACTION_DENY
@@ -318,7 +315,7 @@ ACTION_SETUID
 	;
 
 ACTION_SETVAR
-	: 'setvar'
+	: 'setvar' -> mode(SETVAR)
 	;
 
 ACTION_SEVERITY
@@ -917,9 +914,9 @@ RUN_TIME_VAR_TIME_YEAR
 	: 'TIME_YEAR'
 	;
 
-RUN_TIME_VAR_XML
-	: 'XML'
-	;
+//RUN_TIME_VAR_XML
+//	: 'XML'
+//	;
 
 VAR_COUNT
 	: '&'
@@ -1086,7 +1083,7 @@ AUDIT_PARTS
 //	;
 
 CONFIG_COMPONENT_SIG
-	: 'SecComponentSignature'
+	: 'SecComponentSignature' -> pushMode(CONFIG_STRING_VALUE)
 	;
 
 CONFIG_SEC_SERVER_SIG
@@ -1512,10 +1509,6 @@ START_MACRO_VARIABLE
 //    : '"' ( DOUBLE_SINGLE_QUOTE_BUT_SCAPED | ~'"' )* '"'
 //    ;
 
-JSON
-	: 'JSON'
-	;
-
 NATIVE
 	: 'NATIVE'
 	;
@@ -1524,16 +1517,8 @@ NEWLINE
 	: [\n\r]+
 	;
 
-EQUALS_PLUS
-	: EQUAL '+'
-	;
-
-EQUALS_MINUS
-	: EQUAL '-'
-	;
-
 SINGLE_QUOTE
-    : '\'' -> skip
+    : '\''
     ;
 
 QUOTE
@@ -1605,10 +1590,32 @@ FREE_TEXT_QUOTE_MACRO_EXPANSION
     : ~([\\"] )+ -> popMode
     ;
 
+    mode CONFIG_STRING_VALUE;
+
+CONFIG_STRING
+    : ~([\\"])+ -> popMode
+    ;
+
 mode MACRO;
 
 MACRO_EXPANSION
     : VARIABLE_NAME '}' -> popMode
 	;
 
+mode SETVAR;
 
+COLLECTION_ELEMENT
+    : 'tx.' IDENT -> popMode
+    ;
+
+COLLECTION_WITH_MACRO
+    : 'tx.' IDENT '{%' -> mode(MACRO)
+    ;
+
+EQUALS_PLUS
+	: EQUAL '+'
+	;
+
+EQUALS_MINUS
+	: EQUAL '-'
+	;
