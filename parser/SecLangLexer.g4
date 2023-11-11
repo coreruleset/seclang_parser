@@ -30,14 +30,12 @@ Adapted from pascal.g by  Hakki Dogusan, Piet Schoutteten and Marton Papp
 */
 lexer grammar SecLangLexer;
 
-//options { superClass = SecLangLexerBase; }
-
 WS
    : ([ \t\r\n]+ | '\\' '\n')  -> skip
    ;
 
 COMMENT
-   : '#' .*? '\r'? '\n' {}
+   : '#' .*? '\r'? '\n' -> skip
    ;
 
 SPACE
@@ -69,7 +67,7 @@ ASSIGN
    ;
 
 COMMA
-   : ',' -> skip
+   : ','
    ;
 
 SEMI
@@ -77,7 +75,7 @@ SEMI
    ;
 
 COLON
-   : ':' -> skip
+   : ':'
    ;
 
 EQUAL
@@ -149,52 +147,51 @@ ACTION_CHAIN
 	: 'chain'
 	;
 
+ACTION_CTL
+    : 'ctl'
+    ;
+
 ACTION_CTL_AUDIT_ENGINE
-	: 'ctl:auditEngine'
+	: 'auditEngine'
 	;
 
 ACTION_CTL_AUDIT_LOG_PARTS
-	: 'ctl:auditLogParts'
+	: 'auditLogParts'
 	;
 
-ACTION_CTL_BDY_JSON
-	: 'ctl:requestBodyProcessor=JSON'
+ACTION_CTL_REQUEST_BODY_PROCESSOR
+	: 'requestBodyProcessor'
 	;
 
-ACTION_CTL_BDY_XML
-	: 'ctl:requestBodyProcessor=XML'
-	;
-
-ACTION_CTL_BDY_URLENCODED
-	: 'ctl:requestBodyProcessor=URLENCODED'
-	;
+ACTION_CTL_BODY_PROCESSOR_TYPE
+    : 'JSON' | 'XML' | 'URLENCODED';
 
 ACTION_CTL_FORCE_REQ_BODY_VAR
-	: 'ctl:forceRequestBodyVariable'
+	: 'forceRequestBodyVariable'
 	;
 
 ACTION_CTL_REQUEST_BODY_ACCESS
-	: 'ctl:requestBodyAccess'
+	: 'requestBodyAccess'
 	;
 
 ACTION_CTL_RULE_ENGINE
-	: 'ctl:ruleEngine'
+	: 'ruleEngine'
 	;
 
 ACTION_CTL_RULE_REMOVE_BY_TAG
-	: 'ctl:ruleRemoveByTag'
+	: 'ruleRemoveByTag'
 	;
 
 ACTION_CTL_RULE_REMOVE_BY_ID
-	: 'ctl:ruleRemoveById'
+	: 'ruleRemoveById'
 	;
 
 ACTION_CTL_RULE_REMOVE_TARGET_BY_ID
-	: 'ctl:ruleRemoveTargetById'
+	: 'ruleRemoveTargetById'
 	;
 
 ACTION_CTL_RULE_REMOVE_TARGET_BY_TAG
-	: 'ctl:ruleRemoveTargetByTag'
+	: 'ruleRemoveTargetByTag'
 	;
 
 ACTION_DENY
@@ -218,7 +215,7 @@ ACTION_EXPIRE_VAR
 	;
 
 ACTION_ID
-	: 'id:' QUOTE_BUT_SCAPED? INT+ QUOTE_BUT_SCAPED?
+	: 'id'
 	;
 
 ACTION_INITCOL
@@ -318,7 +315,7 @@ ACTION_SETUID
 	;
 
 ACTION_SETVAR
-	: 'setvar' -> pushMode(VARS)
+	: 'setvar' -> mode(SETVAR)
 	;
 
 ACTION_SEVERITY
@@ -338,7 +335,7 @@ ACTION_SKIP
 	;
 
 ACTION_STATUS
-	: 'status:[0-9]+'
+	: 'status'
 	;
 
 ACTION_TAG
@@ -557,8 +554,8 @@ VARIABLE_MSC_PCRE_LIMITS_EXCEEDED
 	: 'MSC_PCRE_LIMITS_EXCEEDED'
 	;
 
-VARIABLE_MULTIPART_BOUNDARY_QUOTED
-	: 'MULTIPART_BOUNDARY_QUOTED'
+VARIABLE_MULTIPART_BOUNDARY_SINGLE_QUOTED
+	: 'MULTIPART_BOUNDARY_SINGLE_QUOTED'
 	;
 
 VARIABLE_MULTIPART_BOUNDARY_WHITESPACE
@@ -917,160 +914,160 @@ RUN_TIME_VAR_TIME_YEAR
 	: 'TIME_YEAR'
 	;
 
-RUN_TIME_VAR_XML
-	: 'XML'
-	;
+//RUN_TIME_VAR_XML
+//	: 'XML'
+//	;
 
 VAR_COUNT
 	: '&'
 	;
 
 OPERATOR_BEGINS_WITH
-	: '@beginsWith'
+	: 'beginsWith' -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_CONTAINS
-	: '@contains'
+	: 'contains'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_CONTAINS_WORD
-	: '@containsWord'
+	: 'containsWord'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_DETECT_SQLI
-	: '@detectSQLi'
+	: 'detectSQLi'
 	;
 
 OPERATOR_DETECT_XSS
-	: '@detectXSS'
+	: 'detectXSS'
 	;
 
 OPERATOR_ENDS_WITH
-	: '@endsWith'
+	: 'endsWith'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_EQ
-	: '@eq'
+	: 'eq'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_FUZZY_HASH
-	: '@fuzzyHash'
+	: 'fuzzyHash' -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_GE
-	: '@ge'
+	: 'ge'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_GEOLOOKUP
-	: '@geoLookup'
+	: 'geoLookup'
 	;
 
 OPERATOR_GSB_LOOKUP
-	: '@gsbLookup'
+	: 'gsbLookup'
 	;
 
 OPERATOR_GT
-	: '@gt'
+	: 'gt'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_INSPECT_FILE
-	: '@inspectFile'
+	: 'inspectFile'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_IP_MATCH_FROM_FILE
-	: '(@ipMatchF|@ipMatchFromFile)'
+	: '(ipMatchF|ipMatchFromFile)'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_IP_MATCH
-	: '@ipMatch'
+	: '@ipMatch'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_LE
-	: '@le'
+	: 'le'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_LT
-	: '@lt'
+	: 'lt'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_PM_FROM_FILE
-	: '(@pmf|@pmFromFile)'
+	: '(pmf|pmFromFile)'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_PM
-	: '@pm'
+	: 'pm'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_RBL
-	: '@rbl'
+	: 'rbl'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_RSUB
-	: '@rsub'
+	: 'rsub'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_RX
-	: '@rx'
+	: 'rx'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_RX_GLOBAL
-	: '@rxGlobal'
+	: 'rxGlobal'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_STR_EQ
-	: '@streq'
+	: 'streq'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_STR_MATCH
-	: '@strmatch'
+	: 'strmatch'  -> pushMode(OPERATOR_VALUES)
 	;
 
 OPERATOR_UNCONDITIONAL_MATCH
-	: '@unconditionalMatch'
+	: 'unconditionalMatch'
 	;
 
 OPERATOR_VALIDATE_BYTE_RANGE
-	: '@validateByteRange'
+	: 'validateByteRange'
 	;
 
 OPERATOR_VALIDATE_DTD
-	: '@validateDTD'
+	: 'validateDTD'
 	;
 
 OPERATOR_VALIDATE_HASH
-	: '@validateHash'
+	: 'validateHash'
 	;
 
 OPERATOR_VALIDATE_SCHEMA
-	: '@validateSchema'
+	: 'validateSchema'
 	;
 
 OPERATOR_VALIDATE_URL_ENCODING
-	: '@validateUrlEncoding'
+	: 'validateUrlEncoding'
 	;
 
 OPERATOR_VALIDATE_UTF8_ENCODING
-	: '@validateUtf8Encoding'
+	: 'validateUtf8Encoding'
 	;
 
 OPERATOR_VERIFY_CC
-	: '@verifyCC'
+	: 'verifyCC'
 	;
 
 OPERATOR_VERIFY_CPF
-	: '@verifyCPF'
+	: 'verifyCPF'
 	;
 
 OPERATOR_VERIFY_SSN
-	: '@verifySSN'
+	: 'verifySSN'
 	;
 
 OPERATOR_VERIFY_SVNR
-	: '@verifySVNR'
+	: 'verifySVNR'
 	;
 
 OPERATOR_WITHIN
-	: '@within'
+	: 'within'
 	;
 
 AUDIT_PARTS
@@ -1086,7 +1083,7 @@ AUDIT_PARTS
 //	;
 
 CONFIG_COMPONENT_SIG
-	: 'SecComponentSignature'
+	: 'SecComponentSignature' -> pushMode(CONFIG_STRING_VALUE)
 	;
 
 CONFIG_SEC_SERVER_SIG
@@ -1398,10 +1395,6 @@ CONFIG_VALUE_PARALLEL
 	| 'Concurrent'
 	;
 
-CONFIG_VALUE_PATH
-	: [-0-9A-Za-z_/.*]+
-	;
-
 CONFIG_VALUE_PROCESS_PARTIAL
 	: 'ProcessPartial'
 	;
@@ -1466,17 +1459,17 @@ DIRECTIVE_SECRULESCRIPT
 //	: ~ ["|\n]+
 //	;
 
-//FREE_TEXT_QUOTE
+//FREE_TEXT_SINGLE_QUOTE
 //	: (~['] | (~[\\]) )+
 //	;
 
 //ESC : '\\"' | '\\\\' ;
 
-QUOTE_BUT_SCAPED
+SINGLE_QUOTE_BUT_SCAPED
 	: '\\' '\''
 	;
 
-DOUBLE_QUOTE_BUT_SCAPED
+DOUBLE_SINGLE_QUOTE_BUT_SCAPED
 	: '\\' '"'
 	;
 
@@ -1488,7 +1481,7 @@ START_MACRO_VARIABLE
 	: '%{' -> pushMode(MACRO)
 	;
 
-//FREE_TEXT_QUOTE_COMMA
+//FREE_TEXT_SINGLE_QUOTE_COMMA
 //	: ~ [,']+
 //	;
 
@@ -1500,11 +1493,11 @@ START_MACRO_VARIABLE
 //    : ~ [, \t]+
 //	;
 
-//FREE_TEXT_SPACE_COMMA_QUOTE
+//FREE_TEXT_SPACE_COMMA_SINGLE_QUOTE
 //    : ~ [", \t\n\r]+
 //	;
 
-//FREE_TEXT_COMMA_QUOTE
+//FREE_TEXT_COMMA_SINGLE_QUOTE
 //	: ~ [",\n\r]+
 //	;
 
@@ -1513,12 +1506,8 @@ START_MACRO_VARIABLE
 //	;
 
 //FREE_TEXT
-//    : '"' ( DOUBLE_QUOTE_BUT_SCAPED | ~'"' )* '"'
+//    : '"' ( DOUBLE_SINGLE_QUOTE_BUT_SCAPED | ~'"' )* '"'
 //    ;
-
-JSON
-	: 'JSON'
-	;
 
 NATIVE
 	: 'NATIVE'
@@ -1528,20 +1517,16 @@ NEWLINE
 	: [\n\r]+
 	;
 
-EQUALS_PLUS
-	: EQUAL '+'
-	;
-
-EQUALS_MINUS
-	: EQUAL '-'
-	;
-
-QUOTE
+SINGLE_QUOTE
     : '\''
     ;
 
-QUOTATION_MARK
-    : '"' -> skip
+QUOTE
+    : '"'
+    ;
+
+VARIABLE_NAME:
+    LETTER (LETTER | DIGIT | '_' | '.' | '-')*
     ;
 
 IDENT
@@ -1571,38 +1556,66 @@ VAR_FREE_TEXT_SPACE_COMMA
 	;
 
 REGEXP
-    : QUOTE? SLASH (~ [\\] SLASH | SLASH SLASH)* SLASH QUOTE? -> popMode
+    : SINGLE_QUOTE? SLASH (~ [\\] SLASH | SLASH SLASH)* SLASH SINGLE_QUOTE? -> popMode
     ;
 
 DICT_ELEMENT
-	: (~["|,\n \t}=]|(~[\\]'"'))+
+	: (~["|,\n \t}=]|(~[\\]'"'))+ -> popMode
 	;
 
 DICT_ELEMENT_WITH_PIPE
-    : [^ =\t"]+
+    : [^ =\t"]+ -> popMode
 	;
 
 DICT_ELEMENT_NO_PIPE
-    : [^ =|\t"]+
+    : [^ =|\t"]+ -> popMode
 	;
 
 DICT_ELEMENT_NO_MACRO
-    : (~ ["|,%{\n \t}=]| (~["]))+
+    : (~ ["|,%{\n \t}=]| (~["]))+ -> popMode
 	;
 
 DICT_ELEMENT_WITH_EQUALS
-    : (~ ["|,\n \t}] | (~ ["]))+
+    : (~ ["|,\n \t}] | (~ ["]))+ -> popMode
 	;
 
 DICT_ELEMENT_REGEXP
     : SLASH DICT_ELEMENT_NO_PIPE SLASH (SPACE | PIPE)
-    | QUOTE SLASH DICT_ELEMENT_WITH_PIPE SLASH QUOTE PIPE
+    | SINGLE_QUOTE SLASH DICT_ELEMENT_WITH_PIPE SLASH SINGLE_QUOTE PIPE
+    ;
+
+mode OPERATOR_VALUES;
+
+FREE_TEXT_QUOTE_MACRO_EXPANSION
+    : ~([\\"] )+ -> popMode
+    ;
+
+    mode CONFIG_STRING_VALUE;
+
+CONFIG_STRING
+    : ~([\\"])+ -> popMode
     ;
 
 mode MACRO;
 
-FREE_TEXT_QUOTE_MACRO_EXPANSION
-    : (~ ['] | ( ~ [\\] QUOTE ) )+ '%}' -> popMode
+MACRO_EXPANSION
+    : VARIABLE_NAME '}' -> popMode
 	;
 
+mode SETVAR;
 
+COLLECTION_ELEMENT
+    : 'tx.' IDENT -> popMode
+    ;
+
+COLLECTION_WITH_MACRO
+    : 'tx.' IDENT '{%' -> mode(MACRO)
+    ;
+
+EQUALS_PLUS
+	: EQUAL '+'
+	;
+
+EQUALS_MINUS
+	: EQUAL '-'
+	;
