@@ -18,20 +18,24 @@ limitations under the License.
 
 lexer grammar SecLangLexer;
 
+tokens {
+	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE
+}
+
 WS
-   : ([ \t\r\n]+ | '\\' '\n')  -> skip
+   : ([ \t\r\n]+ | '\\' '\n' | '\\')  -> skip 
    ;
 
 COMMENT
-   : '#' .*? '\r'? '\n' -> skip
+   : ('#' .*? '\r'? '\n')+ '\n'?
    ;
 
 SPACE
     : ' '
     ;
 
-PIPE
-    : '|'
+PIPE_DEFAULT
+    : '|' -> type(PIPE)
     ;
 
 PLUS
@@ -54,21 +58,29 @@ ASSIGN
    : ':='
    ;
 
-COMMA
-   : ','
+COMMA_DEFAULT
+   : ',' -> type(COMMA)
    ;
 
 SEMI
    : ';'
    ;
 
-COLON
-   : ':'
+COLON_DEFAULT
+   : ':' -> type(COLON)
    ;
 
-EQUAL
-   : '='
+EQUAL_DEFAULT
+   : '=' -> type(EQUAL)
    ;
+
+EQUALS_PLUS_DEFAULT
+	: EQUAL_DEFAULT '+' -> type(EQUALS_PLUS)
+	;
+
+EQUALS_MINUS_DEFAULT
+	: EQUAL_DEFAULT '-' -> type(EQUALS_MINUS)
+	;
 
 NOT_EQUAL
    : '<>'
@@ -102,15 +114,11 @@ RPAREN
    : ')'
    ;
 
-AT
-   : '@'
-   ;
-
 // MODSEC CONFIG
 ACTION_ACCURACY
 	: 'accuracy'
-	;
-
+	; 
+	
 ACTION_ALLOW
 	: 'allow:' ('REQUEST'|'PHASE') | ('phase:' ('REQUEST|PHASE') | 'allow')
 	;
@@ -148,11 +156,8 @@ ACTION_CTL_AUDIT_LOG_PARTS
 	;
 
 ACTION_CTL_REQUEST_BODY_PROCESSOR
-	: 'requestBodyProcessor'
+	: 'requestBodyProcessor' -> pushMode(BODY_PROCESSOR_MODE)
 	;
-
-ACTION_CTL_BODY_PROCESSOR_TYPE
-    : 'JSON' | 'XML' | 'URLENCODED';
 
 ACTION_CTL_FORCE_REQ_BODY_VAR
 	: 'forceRequestBodyVariable'
@@ -207,7 +212,7 @@ ACTION_ID
 	;
 
 ACTION_INITCOL
-	: 'initcol'
+	: 'initcol' -> pushMode(COMMA_SEPARATED_STRING_MODE)
 	;
 
 ACTION_LOG_DATA
@@ -247,7 +252,7 @@ ACTION_PAUSE
 	;
 
 ACTION_PHASE
-	: 'phase' //'(REQUEST|RESPONSE|LOGGING|[0-9]+)')
+	: 'phase' //'(REQUEST|RESPONSE|LOGGING|[0-9]+)'
 	;
 
 ACTION_PREPEND
@@ -303,7 +308,7 @@ ACTION_SETUID
 	;
 
 ACTION_SETVAR
-	: 'setvar' -> mode(SETVAR)
+	: 'setvar'
 	;
 
 ACTION_SEVERITY
@@ -311,7 +316,7 @@ ACTION_SEVERITY
 	;
 
 ACTION_SEVERITY_VALUE
-	: '(EMERGENCY|ALERT|CRITICAL|ERROR|WARNING|NOTICE|INFO|DEBUG)|[0-9]+'
+	: ('EMERGENCY'|'ALERT'|'CRITICAL'|'ERROR'|'WARNING'|'NOTICE'|'INFO'|'DEBUG')
 	;
 
 ACTION_SKIP_AFTER
@@ -338,588 +343,205 @@ ACTION_XMLNS
 	: 'xmlns'
 	;
 
-ACTION_TRANSFORMATION_BASE_64_DECODE
-	: 't:base64Decode'
+ACTION_TRANSFORMATION
+	: 't'
+	;
+
+TRANSFORMATION_VALUE
+	: 'base64Decode'
+	| 'base64DecodeExt'
+	| 'base64Encode'
+	| 'cmdLine'
+	| 'compressWhitespace'
+	| 'escapeSeqDecode'
+	| 'cssDecode'
+	| 'hexEncode'
+	| 'hexDecode'
+	| 'htmlEntityDecode'
+	| 'jsDecode'
+	| 'length'
+	| 'lowercase'
+	| 'md5'
+	| 'none'
+	| 'normalisePath'|'normalizePath'
+	| 'normalisePathWin'|'normalizePathWin'
+	| 'parityEven7bit'
+	| 'parityOdd7bit'
+	| 'parityZero7bit'
+	| 'removeComments'
+	| 'removeCommentsChar'
+	| 'removeNulls'
+	| 'removeWhitespace'
+	| 'replaceComments'
+	| 'replaceNulls'
+	| 'sha1'
+	| 'sqlHexDecode'
+	| 'trim'
+	| 'trimLeft'
+	| 'trimRight'
+	| 'uppercase'
+	| 'urlEncode'
+	| 'urlDecode'
+	| 'urlDecodeUni'
+	| 'utf8toUnicode'
+	;
+
+COLLECTION_NAME_ENUM:
+	('ARGS'
+	| 'ARGS_GET'
+	| 'ARGS_GET_NAMES'
+	| 'ARGS_NAMES'
+	| 'ARGS_POST_NAMES'
+	| 'ARGS_POST'
+	| 'ENV'
+	| 'FILES'
+	| 'GEO'
+	| 'GLOBAL'
+	| 'IP'
+	| 'MATCHED_VARS_NAMES'
+	| 'MATCHED_VARS'
+	| 'MULTIPART_PART_HEADERS'
+	| 'PERF_RULES'
+	| 'REQUEST_COOKIES_NAMES'
+	| 'REQUEST_COOKIES'
+	| 'REQUEST_HEADERS_NAMES'
+	| 'REQUEST_HEADERS'
+	| 'RESPONSE_HEADERS_NAMES'
+	| 'RESPONSE_HEADERS'
+	| 'RULE'
+	| 'SESSION'
+	| 'TX') -> pushMode (COLLECTION_FOUND)
+	;
+
+VARIABLE_NAME_ENUM:
+    ('ARGS_COMBINED_SIZE'
+	| 'AUTH_TYPE'
+	| 'DURATION'
+	| 'FILES_COMBINED_SIZE'
+	| 'FILES_NAMES'
+	| 'FILES_SIZES'
+	| 'FILES_TMP_CONTENT'
+	| 'FILES_TMPNAMES'
+	| 'FULL_REQUEST'
+	| 'FULL_REQUEST_LENGTH'
+	| 'GEO'
+	| 'HIGHEST_SEVERITY'
+	| 'INBOUND_DATA_ERROR'
+	| 'MATCHED_VAR'
+	| 'MATCHED_VAR_NAME'
+	| 'MODSEC_BUILD'
+	| 'MSC_PCRE_LIMITS_EXCEEDED'
+	| 'MULTIPART_CRLF_LF_LINES'
+	| 'MULTIPART_FILENAME'
+	| 'MULTIPART_NAME'
+	| 'MULTIPART_STRICT_ERROR'
+	| 'MULTIPART_UNMATCHED_BOUNDARY'
+	| 'OUTBOUND_DATA_ERROR'
+	| 'PATH_INFO'
+	| 'PERF_ALL'
+	| 'PERF_COMBINED'
+	| 'PERF_GC'
+	| 'PERF_LOGGING'
+	| 'PERF_PHASE1'
+	| 'PERF_PHASE2'
+	| 'PERF_PHASE3'
+	| 'PERF_PHASE4'
+	| 'PERF_PHASE5'
+	| 'PERF_SREAD'
+	| 'PERF_SWRITE'
+	| 'QUERY_STRING'
+	| 'REMOTE_ADDR'
+	| 'REMOTE_HOST'
+	| 'REMOTE_PORT'
+	| 'REMOTE_USER'
+	| 'REQBODY_ERROR'
+	| 'REQBODY_ERROR_MSG'
+	| 'REQBODY_PROCESSOR'
+	| 'REQUEST_BASENAME'
+	| 'REQUEST_BODY'
+	| 'REQUEST_BODY_LENGTH'
+	| 'REQUEST_FILENAME'
+	| 'REQUEST_LINE'
+	| 'REQUEST_METHOD'
+	| 'REQUEST_PROTOCOL'
+	| 'REQUEST_URI'
+	| 'REQUEST_URI_RAW'
+	| 'RESPONSE_BODY'
+	| 'RESPONSE_CONTENT_LENGTH'
+	| 'RESPONSE_CONTENT_TYPE'
+	| 'RESPONSE_PROTOCOL'
+	| 'RESPONSE_STATUS'
+	| 'RESOURCE'
+	| 'SCRIPT_BASENAME'
+	| 'SCRIPT_FILENAME'
+	| 'SCRIPT_GID'
+	| 'SCRIPT_GROUPNAME'
+	| 'SCRIPT_MODE'
+	| 'SCRIPT_UID'
+	| 'SCRIPT_USERNAME'
+	| 'SDBM_DELETE_ERROR'
+	| 'SERVER_ADDR'
+	| 'SERVER_NAME'
+	| 'SERVER_PORT'
+	| 'SESSIONID'
+	| 'STATUS_LINE'
+	| 'STREAM_INPUT_BODY'
+	| 'STREAM_OUTPUT_BODY'
+	| 'TIME'
+	| 'TIME_DAY'
+	| 'TIME_EPOCH'
+	| 'TIME_HOUR'
+	| 'TIME_MIN'
+	| 'TIME_MON'
+	| 'TIME_SEC'
+	| 'TIME_WDAY'
+	| 'TIME_YEAR'
+	| 'UNIQUE_ID'
+	| 'URLENCODED_ERROR'
+	| 'USER'
+	| 'USERAGENT_IP'
+	| 'USERID'
+	| 'WEBAPPID'
+	| 'WEBSERVER_ERROR_LOG') -> pushMode(VARIABLE_FOUND)
+	;
+
+UNKNOWN_VARIABLES:
+	('MSC_PCRE_ERROR'
+	| 'MULTIPART_BOUNDARY_QUOTED'
+	| 'MULTIPART_BOUNDARY_WHITESPACE'
+	| 'MULTIPART_DATA_AFTER'
+	| 'MULTIPART_DATA_BEFORE'
+	| 'MULTIPART_FILE_LIMIT_EXCEEDED'
+	| 'MULTIPART_HEADER_FOLDING'
+	| 'MULTIPART_INVALID_HEADER_FOLDING'
+	| 'MULTIPART_INVALID_PART'
+	| 'MULTIPART_INVALID_QUOTING'
+	| 'MULTIPART_LF_LINE'
+	| 'MULTIPART_MISSING_SEMICOLON'
+	| 'MULTIPART_SEMICOLON_MISSING'
+	| 'REQBODY_PROCESSOR_ERROR'
+	| 'REQBODY_PROCESSOR_ERROR_MSG'
+	| 'STATUS') -> pushMode(VARIABLE_FOUND)
+	;
+
+RUN_TIME_VAR_XML
+	: 'XML' -> pushMode(COLLECTION_FOUND)
 	;
-
-ACTION_TRANSFORMATION_BASE_64_DECODE_EXT
-	: 't:base64DecodeExt'
-	;
-
-ACTION_TRANSFORMATION_BASE_64_ENCODE
-	: 't:base64Encode'
-	;
-
-ACTION_TRANSFORMATION_CMD_LINE
-	: 't:cmdLine'
-	;
-
-ACTION_TRANSFORMATION_COMPRESS_WHITESPACE
-	: 't:compressWhitespace'
-	;
-
-ACTION_TRANSFORMATION_ESCAPE_SEQ_DECODE
-	: 't:escapeSeqDecode'
-	;
-
-ACTION_TRANSFORMATION_CSS_DECODE
-	: 't:cssDecode'
-	;
-
-ACTION_TRANSFORMATION_HEX_ENCODE
-	: 't:hexEncode'
-	;
-
-ACTION_TRANSFORMATION_HEX_DECODE
-	: 't:hexDecode'
-	;
-
-ACTION_TRANSFORMATION_HTML_ENTITY_DECODE
-	: 't:htmlEntityDecode'
-	;
-
-ACTION_TRANSFORMATION_JS_DECODE
-	: 't:jsDecode'
-	;
-
-ACTION_TRANSFORMATION_LENGTH
-	: 't:length'
-	;
-
-ACTION_TRANSFORMATION_LOWERCASE
-	: 't:lowercase'
-	;
-
-ACTION_TRANSFORMATION_MD5
-	: 't:md5'
-	;
-
-ACTION_TRANSFORMATION_NONE
-	: 't:none'
-	;
-
-ACTION_TRANSFORMATION_NORMALISE_PATH
-	: 't:(normalisePath|normalizePath)'
-	;
-
-ACTION_TRANSFORMATION_NORMALISE_PATH_WIN
-	: 't:(normalisePathWin|normalizePathWin)'
-	;
-
-ACTION_TRANSFORMATION_PARITY_EVEN_7_BIT
-	: 't:parityEven7bit'
-	;
-
-ACTION_TRANSFORMATION_PARITY_ODD_7_BIT
-	: 't:parityOdd7bit'
-	;
-
-ACTION_TRANSFORMATION_PARITY_ZERO_7_BIT
-	: 't:parityZero7bit'
-	;
-
-ACTION_TRANSFORMATION_REMOVE_COMMENTS
-	: 't:removeComments'
-	;
-
-ACTION_TRANSFORMATION_REMOVE_COMMENTS_CHAR
-	: 't:removeCommentsChar'
-	;
-
-ACTION_TRANSFORMATION_REMOVE_NULLS
-	: 't:removeNulls'
-	;
-
-ACTION_TRANSFORMATION_REMOVE_WHITESPACE
-	: 't:removeWhitespace'
-	;
-
-ACTION_TRANSFORMATION_REPLACE_COMMENTS
-	: 't:replaceComments'
-	;
-
-ACTION_TRANSFORMATION_REPLACE_NULLS
-	: 't:replaceNulls'
-	;
-
-ACTION_TRANSFORMATION_SHA1
-	: 't:sha1'
-	;
-
-ACTION_TRANSFORMATION_SQL_HEX_DECODE
-	: 't:sqlHexDecode'
-	;
-
-ACTION_TRANSFORMATION_TRIM
-	: 't:trim'
-	;
-
-ACTION_TRANSFORMATION_TRIM_LEFT
-	: 't:trimLeft'
-	;
-
-ACTION_TRANSFORMATION_TRIM_RIGHT
-	: 't:trimRight'
-	;
-
-ACTION_TRANSFORMATION_UPPERCASE
-	: 't:uppercase'
-	;
-
-ACTION_TRANSFORMATION_URL_ENCODE
-	: 't:urlEncode'
-	;
-
-ACTION_TRANSFORMATION_URL_DECODE
-	: 't:urlDecode'
-	;
-
-ACTION_TRANSFORMATION_URL_DECODE_UNI
-	: 't:urlDecodeUni'
-	;
-
-ACTION_TRANSFORMATION_UTF8_TO_UNICODE
-	: 't:utf8toUnicode'
-	;
-
-VARIABLE_ARGS_COMBINED_SIZE
-	: 'ARGS_COMBINED_SIZE'
-	;
-
-VARIABLE_ARGS_GET_NAMES
-	: 'ARGS_GET_NAMES'
-	;
-
-VARIABLE_ARGS_NAMES
-	: 'ARGS_NAMES'
-	;
-
-VARIABLE_ARGS_POST_NAMES
-	: 'ARGS_POST_NAMES'
-	;
-
-VARIABLE_AUTH_TYPE
-	: 'AUTH_TYPE'
-	;
-
-VARIABLE_FILES_COMBINED_SIZE
-	: 'FILES_COMBINED_SIZE'
-	;
-
-VARIABLE_FILES_TMP_NAMES
-	: 'FILES_TMPNAMES'
-	;
-
-VARIABLE_FULL_REQUEST
-	: 'FULL_REQUEST'
-	;
-
-VARIABLE_FULL_REQUEST_LENGTH
-	: 'FULL_REQUEST_LENGTH'
-	;
-
-VARIABLE_GLOBAL
-	: 'GLOBAL'
-	;
-
-VARIABLE_INBOUND_DATA_ERROR
-	: 'INBOUND_DATA_ERROR'
-	;
-
-VARIABLE_MATCHED_VAR
-	: 'MATCHED_VAR'
-	;
-
-VARIABLE_MATCHED_VAR_NAME
-	: 'MATCHED_VAR_NAME'
-	;
-
-VARIABLE_MSC_PCRE_ERROR
-	: 'MSC_PCRE_ERROR'
-	;
-
-VARIABLE_MSC_PCRE_LIMITS_EXCEEDED
-	: 'MSC_PCRE_LIMITS_EXCEEDED'
-	;
-
-VARIABLE_MULTIPART_BOUNDARY_SINGLE_QUOTED
-	: 'MULTIPART_BOUNDARY_SINGLE_QUOTED'
-	;
-
-VARIABLE_MULTIPART_BOUNDARY_WHITESPACE
-	: 'MULTIPART_BOUNDARY_WHITESPACE'
-	;
-
-VARIABLE_MULTIPART_CRLF_LF_LINES
-	: 'MULTIPART_CRLF_LF_LINES'
-	;
-
-VARIABLE_MULTIPART_DATA_AFTER
-	: 'MULTIPART_DATA_AFTER'
-	;
-
-VARIABLE_MULTIPART_DATA_BEFORE
-	: 'MULTIPART_DATA_BEFORE'
-	;
-
-VARIABLE_MULTIPART_FILE_LIMIT_EXCEEDED
-	: 'MULTIPART_FILE_LIMIT_EXCEEDED'
-	;
-
-VARIABLE_MULTIPART_FILENAME
-	: 'MULTIPART_FILENAME'
-	;
-
-VARIABLE_MULTIPART_HEADER_FOLDING
-	: 'MULTIPART_HEADER_FOLDING'
-	;
-
-VARIABLE_MULTIPART_INVALID_HEADER_FOLDING
-	: 'MULTIPART_INVALID_HEADER_FOLDING'
-	;
-
-VARIABLE_MULTIPART_INVALID_PART
-	: 'MULTIPART_INVALID_PART'
-	;
-
-VARIABLE_MULTIPART_INVALID_QUOTING
-	: 'MULTIPART_INVALID_QUOTING'
-	;
-
-VARIABLE_MULTIPART_LF_LINE
-	: 'MULTIPART_LF_LINE'
-	;
-
-VARIABLE_MULTIPART_MISSING_SEMICOLON
-	: 'MULTIPART_MISSING_SEMICOLON'
-	;
-
-VARIABLE_MULTIPART_SEMICOLON_MISSING
-	: 'MULTIPART_SEMICOLON_MISSING'
-	;
-
-VARIABLE_MULTIPART_NAME
-	: 'MULTIPART_NAME'
-	;
-
-VARIABLE_MULTIPART_STRICT_ERROR
-	: 'MULTIPART_STRICT_ERROR'
-	;
-
-VARIABLE_MULTIPART_UNMATCHED_BOUNDARY
-	: 'MULTIPART_UNMATCHED_BOUNDARY'
-	;
-
-VARIABLE_OUTBOUND_DATA_ERROR
-	: 'OUTBOUND_DATA_ERROR'
-	;
-
-VARIABLE_PATH_INFO
-	: 'PATH_INFO'
-	;
-
-VARIABLE_QUERY_STRING
-	: 'QUERY_STRING'
-	;
-
-VARIABLE_REMOTE_ADDR
-	: 'REMOTE_ADDR'
-	;
-
-VARIABLE_REMOTE_HOST
-	: 'REMOTE_HOST'
-	;
-
-VARIABLE_REMOTE_PORT
-	: 'REMOTE_PORT'
-	;
-
-VARIABLE_REQBODY_ERROR
-	: 'REQBODY_ERROR'
-	;
-
-VARIABLE_REQBODY_ERROR_MSG
-	: 'REQBODY_ERROR_MSG'
-	;
-
-VARIABLE_REQBODY_PROCESSOR_ERROR
-	: 'REQBODY_PROCESSOR_ERROR'
-	;
-
-VARIABLE_REQBODY_PROCESSOR_ERROR_MSG
-	: 'REQBODY_PROCESSOR_ERROR_MSG'
-	;
-
-VARIABLE_REQBODY_PROCESSOR
-	: 'REQBODY_PROCESSOR'
-	;
-
-VARIABLE_REQUEST_BASENAME
-	: 'REQUEST_BASENAME'
-	;
-
-VARIABLE_REQUEST_BODY
-	: 'REQUEST_BODY'
-	;
-
-VARIABLE_REQUEST_BODY_LENGTH
-	: 'REQUEST_BODY_LENGTH'
-	;
-
-VARIABLE_REQUEST_FILE_NAME
-	: 'REQUEST_FILENAME'
-	;
-
-VARIABLE_REQUEST_HEADERS_NAMES
-	: 'REQUEST_HEADERS_NAMES'
-	;
-
-VARIABLE_REQUEST_LINE
-	: 'REQUEST_LINE'
-	;
-
-VARIABLE_REQUEST_METHOD
-	: 'REQUEST_METHOD'
-	;
-
-VARIABLE_REQUEST_PROTOCOL
-	: 'REQUEST_PROTOCOL'
-	;
-
-VARIABLE_REQUEST_URI
-	: 'REQUEST_URI'
-	;
-
-VARIABLE_REQUEST_URI_RAW
-	: 'REQUEST_URI_RAW'
-	;
-
-VARIABLE_RESOURCE
-	: 'RESOURCE'
-	;
-
-VARIABLE_RESPONSE_BODY
-	: 'RESPONSE_BODY'
-	;
-
-VARIABLE_RESPONSE_CONTENT_LENGTH
-	: 'RESPONSE_CONTENT_LENGTH'
-	;
-
-VARIABLE_RESPONSE_CONTENT_TYPE
-	: 'RESPONSE_CONTENT_TYPE'
-	;
-
-VARIABLE_RESPONSE_HEADERS_NAMES
-	: 'RESPONSE_HEADERS_NAMES'
-	;
-
-VARIABLE_RESPONSE_PROTOCOL
-	: 'RESPONSE_PROTOCOL'
-	;
-
-VARIABLE_RESPONSE_STATUS
-	: 'RESPONSE_STATUS'
-	;
-
-VARIABLE_SERVER_ADDR
-	: 'SERVER_ADDR'
-	;
-
-VARIABLE_SERVER_NAME
-	: 'SERVER_NAME'
-	;
-
-VARIABLE_SERVER_PORT
-	: 'SERVER_PORT'
-	;
-
-VARIABLE_SESSION_ID
-	: 'SESSIONID'
-	;
-
-VARIABLE_UNIQUE_ID
-	: 'UNIQUE_ID'
-	;
-
-VARIABLE_URL_ENCODED_ERROR
-	: 'URLENCODED_ERROR'
-	;
-
-VARIABLE_USER_ID
-	: 'USERID'
-	;
-
-VARIABLE_WEBSERVER_ERROR_LOG
-	: 'WEBSERVER_ERROR_LOG'
-	;
-
-VARIABLE_ARGS
-	: 'ARGS'
-	;
-
-VARIABLE_ARGS_POST
-	: 'ARGS_POST'
-	;
-
-VARIABLE_ARGS_GET
-	: 'ARGS_GET'
-	;
-
-VARIABLE_FILES_SIZES
-	: 'FILES_SIZES'
-	;
-
-VARIABLE_FILES_NAMES
-	: 'FILES_NAMES'
-	;
-
-VARIABLE_FILES_TMP_CONTENT
-	: 'FILES_TMP_CONTENT'
-	;
-
-VARIABLE_MATCHED_VARS_NAMES
-	: 'MATCHED_VARS_NAMES'
-	;
-
-VARIABLE_MATCHED_VARS
-	: 'MATCHED_VARS'
-	;
-
-VARIABLE_FILES
-	: 'FILES'
-	;
-
-VARIABLE_REQUEST_COOKIES
-	: 'REQUEST_COOKIES'
-	;
-
-VARIABLE_REQUEST_HEADERS
-	: 'REQUEST_HEADERS'
-	;
-
-VARIABLE_RESPONSE_HEADERS
-	: 'RESPONSE_HEADERS'
-	;
-
-VARIABLE_GEO
-	: 'GEO'
-	;
-
-VARIABLE_REQUEST_COOKIES_NAMES
-	: 'REQUEST_COOKIES_NAMES'
-	;
-
-VARIABLE_MULTIPART_PART_HEADERS
-	: 'MULTIPART_PART_HEADERS'
-	;
-
-VARIABLE_RULE
-	: 'RULE'
-	;
-
-VARIABLE_SESSION
-	: '(SESSION)'
-	;
-
-VARIABLE_IP
-	: '(IP)'
-	;
-
-VARIABLE_USER
-	: '(USER)'
-	;
-
-VARIABLE_STATUS
-	: '(STATUS)'
-	;
-
-VARIABLE_STATUS_LINE
-	: '(STATUS_LINE)'
-	;
-
-VARIABLE_TX
-	: 'TX'
-	;
-
-VARIABLE_WEB_APP_ID
-	: 'WEBAPPID'
-	;
-
-RUN_TIME_VAR_BLD
-	: 'MODSEC_BUILD'
-	;
-
-RUN_TIME_VAR_DUR
-	: 'DURATION'
-	;
-
-RUN_TIME_VAR_ENV
-	: 'ENV'
-	;
-
-RUN_TIME_VAR_HSV
-	: 'HIGHEST_SEVERITY'
-	;
-
-RUN_TIME_VAR_REMOTE_USER
-	: 'REMOTE_USER'
-	;
-
-RUN_TIME_VAR_TIME
-	: 'TIME'
-	;
-
-RUN_TIME_VAR_TIME_DAY
-	: 'TIME_DAY'
-	;
-
-RUN_TIME_VAR_TIME_EPOCH
-	: 'TIME_EPOCH'
-	;
-
-RUN_TIME_VAR_TIME_HOUR
-	: 'TIME_HOUR'
-	;
-
-RUN_TIME_VAR_TIME_MIN
-	: 'TIME_MIN'
-	;
-
-RUN_TIME_VAR_TIME_MON
-	: 'TIME_MON'
-	;
-
-RUN_TIME_VAR_TIME_SEC
-	: 'TIME_SEC'
-	;
-
-RUN_TIME_VAR_TIME_WDAY
-	: 'TIME_WDAY'
-	;
-
-RUN_TIME_VAR_TIME_YEAR
-	: 'TIME_YEAR'
-	;
-
-//RUN_TIME_VAR_XML
-//	: 'XML'
-//	;
 
 VAR_COUNT
 	: '&'
 	;
 
 OPERATOR_BEGINS_WITH
-	: 'beginsWith' -> pushMode(OPERATOR_VALUES)
+	: 'beginsWith' -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_CONTAINS
-	: 'contains'  -> pushMode(OPERATOR_VALUES)
+	: 'contains'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_CONTAINS_WORD
-	: 'containsWord'  -> pushMode(OPERATOR_VALUES)
+	: 'containsWord'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_DETECT_SQLI
@@ -931,19 +553,19 @@ OPERATOR_DETECT_XSS
 	;
 
 OPERATOR_ENDS_WITH
-	: 'endsWith'  -> pushMode(OPERATOR_VALUES)
+	: 'endsWith'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_EQ
-	: 'eq'  -> pushMode(OPERATOR_VALUES)
+	: 'eq'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_FUZZY_HASH
-	: 'fuzzyHash' -> pushMode(OPERATOR_VALUES)
+	: 'fuzzyHash' -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_GE
-	: 'ge'  -> pushMode(OPERATOR_VALUES)
+	: 'ge'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_GEOLOOKUP
@@ -955,59 +577,59 @@ OPERATOR_GSB_LOOKUP
 	;
 
 OPERATOR_GT
-	: 'gt'  -> pushMode(OPERATOR_VALUES)
+	: 'gt'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_INSPECT_FILE
-	: 'inspectFile'  -> pushMode(OPERATOR_VALUES)
+	: 'inspectFile'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_IP_MATCH_FROM_FILE
-	: '(ipMatchF|ipMatchFromFile)'  -> pushMode(OPERATOR_VALUES)
+	: ('ipMatchF'|'ipMatchFromFile')  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_IP_MATCH
-	: '@ipMatch'  -> pushMode(OPERATOR_VALUES)
+	: 'ipMatch'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_LE
-	: 'le'  -> pushMode(OPERATOR_VALUES)
+	: 'le'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_LT
-	: 'lt'  -> pushMode(OPERATOR_VALUES)
+	: 'lt'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_PM_FROM_FILE
-	: '(pmf|pmFromFile)'  -> pushMode(OPERATOR_VALUES)
+	: ('pmf'|'pmFromFile')  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_PM
-	: 'pm'  -> pushMode(OPERATOR_VALUES)
+	: 'pm'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_RBL
-	: 'rbl'  -> pushMode(OPERATOR_VALUES)
+	: 'rbl'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_RSUB
-	: 'rsub'  -> pushMode(OPERATOR_VALUES)
+	: 'rsub'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_RX
-	: 'rx'  -> pushMode(OPERATOR_VALUES)
+	: 'rx'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_RX_GLOBAL
-	: 'rxGlobal'  -> pushMode(OPERATOR_VALUES)
+	: 'rxGlobal'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_STR_EQ
-	: 'streq'  -> pushMode(OPERATOR_VALUES)
+	: 'streq'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_STR_MATCH
-	: 'strmatch'  -> pushMode(OPERATOR_VALUES)
+	: 'strmatch'  -> pushMode(STRING_VALUE)
 	;
 
 OPERATOR_UNCONDITIONAL_MATCH
@@ -1055,27 +677,19 @@ OPERATOR_VERIFY_SVNR
 	;
 
 OPERATOR_WITHIN
-	: 'within'
+	: 'within' -> pushMode(STRING_VALUE)
 	;
 
 AUDIT_PARTS
 	: [ABCDEFGHJKIZ]+
 	;
 
-//COL_FREE_TEXT_SPACE_COMMA
-//	: ([^,"])+
-//	;
-
-//COL_NAME
-//	: [A-Za-z]+
-//	;
-
 CONFIG_COMPONENT_SIG
-	: 'SecComponentSignature' -> pushMode(CONFIG_STRING_VALUE)
+	: 'SecComponentSignature' -> pushMode(STRING_VALUE)
 	;
 
 CONFIG_SEC_SERVER_SIG
-	: 'SecServerSignature'
+	: 'SecServerSignature' -> pushMode(STRING_VALUE)
 	;
 
 CONFIG_SEC_WEB_APP_ID
@@ -1087,7 +701,7 @@ CONFIG_SEC_CACHE_TRANSFORMATIONS
 	;
 
 CONFIG_SEC_CHROOT_DIR
-	: 'SecChrootDir'
+	: 'SecChrootDir' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_CONN_ENGINE
@@ -1123,7 +737,7 @@ CONFIG_SEC_ARGUMENT_SEPARATOR
 	;
 
 CONFIG_DIR_AUDIT_DIR
-	: 'SecAuditLogStorageDir'
+	: 'SecAuditLogStorageDir' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_DIR_AUDIT_DIR_MOD
@@ -1139,11 +753,11 @@ CONFIG_DIR_AUDIT_FILE_MODE
 	;
 
 CONFIG_DIR_AUDIT_LOG2
-	: 'SecAuditLog2'
+	: 'SecAuditLog2' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_DIR_AUDIT_LOG
-	: 'SecAuditLog'
+	: 'SecAuditLog' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_DIR_AUDIT_LOG_FMT
@@ -1163,7 +777,7 @@ CONFIG_DIR_AUDIT_TYPE
 	;
 
 CONFIG_DIR_DEBUG_LOG
-	: 'SecDebugLog'
+	: 'SecDebugLog' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_DIR_DEBUG_LVL
@@ -1171,15 +785,15 @@ CONFIG_DIR_DEBUG_LVL
 	;
 
 CONFIG_DIR_GEO_DB
-	: 'SecGeoLookupDb'
+	: 'SecGeoLookupDb' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_DIR_GSB_DB
-	: 'SecGsbLookupDb'
+	: 'SecGsbLookupDb' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_SEC_GUARDIAN_LOG
-	: 'SecGuardianLog'
+	: 'SecGuardianLog' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_SEC_INTERCEPT_ON_ERROR
@@ -1279,11 +893,11 @@ CONFIG_SEC_DISABLE_BACKEND_COMPRESS
 	;
 
 CONFIG_DIR_SEC_MARKER
-	: 'SecMarker'
+	: 'SecMarker' -> pushMode(STRING_VALUE)
 	;
 
 CONFIG_DIR_UNICODE_MAP_FILE
-	: 'SecUnicodeMapFile'
+	: 'SecUnicodeMapFile' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_INCLUDE
@@ -1307,7 +921,7 @@ CONFIG_SEC_REMOTE_RULES_FAIL_ACTION
 	;
 
 CONFIG_SEC_RULE_REMOVE_BY_ID
-	: 'SecRuleRemoveById'
+	: 'SecRuleRemoveById' | 'SecRuleRemoveByID'
 	;
 
 CONFIG_SEC_RULE_REMOVE_BY_MSG
@@ -1319,11 +933,11 @@ CONFIG_SEC_RULE_REMOVE_BY_TAG
 	;
 
 CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG
-	: 'SecRuleUpdateTargetByTag'
+	: 'SecRuleUpdateTargetByTag' -> pushMode(STRING_VALUE)
 	;
 
 CONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG
-	: 'SecRuleUpdateTargetByMsg'
+	: 'SecRuleUpdateTargetByMsg' -> pushMode(STRING_VALUE)
 	;
 
 CONFIG_SEC_RULE_UPDATE_TARGET_BY_ID
@@ -1343,7 +957,7 @@ CONFIG_UPLOAD_SAVE_TMP_FILES
 	;
 
 CONFIG_UPLOAD_DIR
-	: 'SecUploadDir'
+	: 'SecUploadDir' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_UPLOAD_FILE_LIMIT
@@ -1365,10 +979,6 @@ CONFIG_VALUE_DETC
 CONFIG_VALUE_HTTPS
 	: 'https'
 	;
-
-//CONFIG_VALUE_NUMBER
-//	: [0-9]+
-//	;
 
 CONFIG_VALUE_OFF
 	: 'Off'
@@ -1424,7 +1034,7 @@ CONFIG_SEC_COOKIEV0_SEPARATOR
 	;
 
 CONFIG_DIR_SEC_DATA_DIR
-	: 'SecDataDir'
+	: 'SecDataDir' -> pushMode(FILE_PATH)
 	;
 
 CONFIG_DIR_SEC_STATUS_ENGINE
@@ -1432,7 +1042,7 @@ CONFIG_DIR_SEC_STATUS_ENGINE
 	;
 
 CONFIG_DIR_SEC_TMP_DIR
-	: 'SecTmpDir'
+	: 'SecTmpDir' -> pushMode(FILE_PATH)
 	;
 
 DIRECTIVE
@@ -1440,18 +1050,15 @@ DIRECTIVE
 	;
 
 DIRECTIVE_SECRULESCRIPT
-	: 'SecRuleScript'
+	: 'SecRuleScript' -> pushMode(FILE_PATH)
 	;
 
-//FREE_TEXT_NEW_LINE
-//	: ~ ["|\n]+
-//	;
-
-//FREE_TEXT_SINGLE_QUOTE
-//	: (~['] | (~[\\]) )+
-//	;
-
-//ESC : '\\"' | '\\\\' ;
+OPTION_NAME
+	: 'incremental'
+	| 'maxitems'
+	| 'minlen'
+	| 'maxlen'
+	;
 
 SINGLE_QUOTE_BUT_SCAPED
 	: '\\' '\''
@@ -1465,52 +1072,28 @@ COMMA_BUT_SCAPED
 	: '\\' ','
 	;
 
-START_MACRO_VARIABLE
-	: '%{' -> pushMode(MACRO)
-	;
-
-//FREE_TEXT_SINGLE_QUOTE_COMMA
-//	: ~ [,']+
+//MACRO_VARIABLE
+//	: '%{' VARIABLE_NAME '}'
 //	;
 
-//FREE_TEXT_SPACE
-//    : ~ [ \t]+
+//START_MACRO_VARIABLE
+//	: '%{' -> pushMode(MACRO)
 //	;
-
-//FREE_TEXT_SPACE_COMMA
-//    : ~ [, \t]+
-//	;
-
-//FREE_TEXT_SPACE_COMMA_SINGLE_QUOTE
-//    : ~ [", \t\n\r]+
-//	;
-
-//FREE_TEXT_COMMA_SINGLE_QUOTE
-//	: ~ [",\n\r]+
-//	;
-
-//NEW_LINE_FREE_TEXT
-//    : ~ [", \t\n\r]+
-//	;
-
-//FREE_TEXT
-//    : '"' ( DOUBLE_SINGLE_QUOTE_BUT_SCAPED | ~'"' )* '"'
-//    ;
 
 NATIVE
 	: 'NATIVE'
 	;
 
 NEWLINE
-	: [\n\r]+
+	: '\r' '\n'
 	;
 
-SINGLE_QUOTE
-    : '\''
+SINGLE_QUOTE_DEFAULT
+    : '\'' -> type(SINGLE_QUOTE), pushMode(SINGLE_QUOTE_STRING_MODE)
     ;
 
-QUOTE
-    : '"'
+QUOTE_DEFAULT
+    : '"' -> type(QUOTE)
     ;
 
 VARIABLE_NAME:
@@ -1521,12 +1104,12 @@ IDENT
    : ('A' .. 'Z') ('A' .. 'Z' | DIGIT | '_')*
    ;
 
-STRING_LITERAL
-   : '\'' ('\'\'' | ~ ('\''))* '\''
-   ;
-
 INT
    : DIGIT+
+   ;
+
+INT_RANGE
+   : INT MINUS INT
    ;
 
 DIGIT:
@@ -1537,39 +1120,8 @@ LETTER:
     'a' .. 'z' | 'A' .. 'Z'
     ;
 
-mode VARS;
-
-VAR_FREE_TEXT_SPACE_COMMA
-    : (~ (',' | ' ' | '\t' | '"' ))+ -> popMode
-	;
-
-REGEXP
-    : SINGLE_QUOTE? SLASH (~ [\\] SLASH | SLASH SLASH)* SLASH SINGLE_QUOTE? -> popMode
-    ;
-
-DICT_ELEMENT
-	: (~["|,\n \t}=]|(~[\\]'"'))+ -> popMode
-	;
-
-DICT_ELEMENT_WITH_PIPE
-    : [^ =\t"]+ -> popMode
-	;
-
-DICT_ELEMENT_NO_PIPE
-    : [^ =|\t"]+ -> popMode
-	;
-
-DICT_ELEMENT_NO_MACRO
-    : (~ ["|,%{\n \t}=]| (~["]))+ -> popMode
-	;
-
-DICT_ELEMENT_WITH_EQUALS
-    : (~ ["|,\n \t}] | (~ ["]))+ -> popMode
-	;
-
 DICT_ELEMENT_REGEXP
-    : SLASH DICT_ELEMENT_NO_PIPE SLASH (SPACE | PIPE)
-    | SINGLE_QUOTE SLASH DICT_ELEMENT_WITH_PIPE SLASH SINGLE_QUOTE PIPE
+    : SLASH ~[ |\t\r\n/]+ SLASH?
     ;
 
 mode OPERATOR_VALUES;
@@ -1578,10 +1130,18 @@ FREE_TEXT_QUOTE_MACRO_EXPANSION
     : ~([\\"] )+ -> popMode
     ;
 
-    mode CONFIG_STRING_VALUE;
+mode STRING_VALUE;
 
-CONFIG_STRING
-    : ~([\\"])+ -> popMode
+QUOTE_STRING_MODE
+    : '"' -> type(QUOTE)
+    ;
+
+WS_STRING_MODE
+	: WS -> skip
+	;
+
+STRING
+    : (('\\"') | ~([" ])) (('\\"')|~('"'))* -> popMode
     ;
 
 mode MACRO;
@@ -1592,18 +1152,177 @@ MACRO_EXPANSION
 
 mode SETVAR;
 
+SINGLE_QUOTE_SETVAR
+    : '\'' -> type(SINGLE_QUOTE)
+    ;
+
 COLLECTION_ELEMENT
-    : 'tx.' IDENT -> popMode
+    : ('t'|'T') ('x'|'X') '.' (LETTER) (LETTER | DIGIT | '_' | '-')* -> popMode
     ;
 
 COLLECTION_WITH_MACRO
     : 'tx.' IDENT '{%' -> mode(MACRO)
     ;
 
-EQUALS_PLUS
-	: EQUAL '+'
+VAR_ASSIGNMENT
+	: ~('\''|' ')+ -> popMode
 	;
 
-EQUALS_MINUS
-	: EQUAL '-'
+EQUAL_SETVAR
+	: '=' -> type(EQUAL)
 	;
+
+EQUALS_PLUS_SETVAR
+	: EQUAL_SETVAR '+' -> type(EQUALS_PLUS)
+	;
+
+EQUALS_MINUS_SETVAR
+	: EQUAL_SETVAR '-' -> type(EQUALS_MINUS)
+	;
+
+
+mode COMMA_SEPARATED_STRING_MODE;
+
+COLON_COMMA_STRING
+	: COLON_DEFAULT -> type(COLON)
+	;
+
+
+COMMA_SEPARATED_STRING
+    : ~([:,"])+ -> popMode
+    ;
+
+mode FILE_PATH;
+
+WS_FILE_PATH_MODE
+	: WS -> skip
+	;
+
+CONFIG_VALUE_PATH
+	: ('/' | LETTER | DIGIT | '.' | '_' | '~' | '|' | '\\' | ':' | '-')+ -> popMode
+	;
+
+mode XPATH;
+
+COLON_XPATH
+	: ':' -> type(COLON)
+	;
+
+XPATH_EXPRESSION
+	: ~[ :|\n\t",] ~[ |\n\t,"]* -> popMode
+	;
+
+XPATH_MODE_POP_CHARS
+	: [ \n\t] -> popMode
+	;
+
+mode BODY_PROCESSOR_MODE;
+
+EQUAL_BODY_PROCESSOR
+	: '=' -> type(EQUAL)
+	;
+
+ACTION_CTL_BODY_PROCESSOR_TYPE
+    : ('JSON' | 'URLENCODED' | 'XML') -> popMode
+	;
+
+mode SINGLE_QUOTE_STRING_MODE;
+
+STRING_LITERAL
+   : ('\\\'' | ~ ('\''))+
+   ;
+
+SINGLE_QUOTE_SINGLE_QUOTE_STRING_MODE
+	: '\'' -> type(SINGLE_QUOTE), popMode
+	;
+
+mode COLLECTION_FOUND;
+
+COLON_COLLECTION
+	: ':' -> type(COLON), pushMode(COLLECTION_ELEMENT_MODE)
+	;
+
+SPACE_COL
+	: ' ' -> skip, pushMode(OPERATOR_START_MODE)
+	;
+
+COMMA_COL 
+	: ',' -> type(COMMA), popMode
+	;
+
+QUOTE_COL 
+	: '"' -> type(QUOTE), popMode
+	;
+
+PIPE_COL
+	: '|' -> type(PIPE), popMode
+	;
+
+mode VARIABLE_FOUND;
+
+SPACE_VAR
+	: ' ' -> skip, pushMode(OPERATOR_START_MODE)
+	;
+
+COMMA_VAR 
+	: ',' -> type(COMMA), popMode
+	;
+
+QUOTE_VAR 
+	: '"' -> type(QUOTE), popMode
+	;
+
+PIPE_VAR
+	: '|' -> type(PIPE), popMode
+	;
+
+mode COLLECTION_ELEMENT_MODE;
+
+COLLECTION_ELEMENT_VALUE
+	: ~[ |",\n] ~[ |",\n]*
+	;
+
+SPACE_COL_ELEM
+	: ' ' -> skip, pushMode(OPERATOR_START_MODE)
+	;
+
+NEWLINE_COL_ELEM
+	: '\n' -> skip, pushMode(DEFAULT_MODE)
+	;
+
+COMMA_COL_ELEM
+	: ',' -> type(COMMA), pushMode(DEFAULT_MODE)
+	;
+
+QUOTE_COL_ELEM
+	: '"' -> type(QUOTE), pushMode(DEFAULT_MODE)
+	;
+
+PIPE_COL_ELEM
+	: '|' -> type(PIPE), pushMode(DEFAULT_MODE)
+	;
+
+mode OPERATOR_START_MODE;
+
+SKIP_CHARS
+   : [\\\t\r\n ]+  -> skip 
+   ;
+
+QUOTE_OP 
+	: '"' -> type(QUOTE), pushMode(OPERATOR_WITH_QUOTES)
+	;
+
+OPERATOR_UNQUOTED_STRING
+    : (('\\"') | ~([" ])) (('\\"')|~[" ])* -> pushMode(DEFAULT_MODE)
+    ;
+
+mode OPERATOR_WITH_QUOTES;
+
+AT
+   : '@' -> pushMode(DEFAULT_MODE)
+   ;
+
+OPERATOR_QUOTED_STRING
+    : (('\\"') | ~([" @])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
+    ;
+
