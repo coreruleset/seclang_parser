@@ -1108,10 +1108,6 @@ INT
    : DIGIT+
    ;
 
-INT_RANGE
-   : INT MINUS INT
-   ;
-
 DIGIT:
     '0' .. '9'
     ;
