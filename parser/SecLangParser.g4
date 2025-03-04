@@ -32,6 +32,7 @@ stmt:
     | comment? string_remove_rules values
     | comment? string_remove_rules QUOTE values QUOTE
     | comment? update_target_rules update_target_rules_values update_variables
+    | comment? update_target_rules QUOTE update_target_rules_values QUOTE update_variables
     | comment? update_action_rule id actions
     | comment? engine_config_directive
     | comment;
