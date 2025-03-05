@@ -150,9 +150,9 @@ string_remove_rules:
     ;
 
 update_target_rules:
-    CONFIG_SEC_RULE_UPDATE_TARGET_BY_ID
-    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG
-    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG
+    CONFIG_SEC_RULE_UPDATE_TARGET_BY_ID # update_target_by_id
+    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG # update_target_by_msg
+    | CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG # update_target_by_tag
     ;
 
 update_action_rule:
