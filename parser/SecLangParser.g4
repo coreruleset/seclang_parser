@@ -296,12 +296,20 @@ operator_value:
     | OPERATOR_QUOTED_STRING
     ;
 
+var_not:
+    NOT
+    ;
+
+var_count:
+    VAR_COUNT
+    ;
+
 variables:
-    QUOTE? NOT? VAR_COUNT? var_stmt QUOTE? (PIPE QUOTE? NOT? var_stmt QUOTE?)*
+    QUOTE? var_not? var_count? var_stmt QUOTE? (PIPE QUOTE? var_not? var_stmt QUOTE?)*
     ;
 
 update_variables:
-    QUOTE? NOT? VAR_COUNT? var_stmt QUOTE? (COMMA QUOTE? NOT? var_stmt QUOTE?)*
+    QUOTE? var_not? var_count? var_stmt QUOTE? (COMMA QUOTE? var_not? var_stmt QUOTE?)*
     ;
 
 var_stmt:
