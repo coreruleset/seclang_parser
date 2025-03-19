@@ -44,7 +44,7 @@ func Format() error {
 	if err := sh.RunV("go", "run", fmt.Sprintf("github.com/rinchsan/gosimports/cmd/gosimports@%s", gosImportsVer),
 		"-w",
 		"-local",
-		"github.com/fzipi/seclang_parser",
+		"github.com/coreruleset/seclang_parser",
 		"."); err != nil {
 		return err
 	}
