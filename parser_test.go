@@ -8,13 +8,12 @@ import (
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
+	"github.com/coreruleset/seclang_parser/parser"
 	"github.com/stretchr/testify/require"
-
-	"github.com/coreruleset/seclang_parser/parsing"
 )
 
 type TreeShapeListener struct {
-	*parsing.BaseSecLangParserListener
+	*parser.BaseSecLangParserListener
 	results ParserResult
 }
 
@@ -43,7 +42,7 @@ func (c *CustomErrorListener) SyntaxError(recognizer antlr.Recognizer, offending
 
 func (t *TreeShapeListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
 	// if you need to debug, enable this one below
-	//fmt.Println(ctx.GetText())
+	// fmt.Println(ctx.GetText())
 }
 
 var crsTestFiles = []string{
@@ -309,7 +308,7 @@ func TestSecLang(t *testing.T) {
 			t.Errorf("Error reading file %s", file)
 			continue
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
@@ -317,7 +316,7 @@ func TestSecLang(t *testing.T) {
 
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 
@@ -346,7 +345,7 @@ func TestSeclangOutput(t *testing.T) {
 			t.Errorf("Error reading file %s", file)
 			continue
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
@@ -354,7 +353,7 @@ func TestSeclangOutput(t *testing.T) {
 
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 
@@ -385,7 +384,7 @@ func TestCRSLang(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error reading file %s", file)
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
@@ -393,7 +392,7 @@ func TestCRSLang(t *testing.T) {
 
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 		p.BuildParseTrees = true
@@ -420,7 +419,7 @@ func TestPlugins(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error reading file %s", file)
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
@@ -428,7 +427,7 @@ func TestPlugins(t *testing.T) {
 
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 		p.BuildParseTrees = true
