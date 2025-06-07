@@ -3,7 +3,7 @@ package main
 import (
 	"strconv"
 
-	"github.com/coreruleset/seclang_parser/parsing"
+	"github.com/coreruleset/seclang_parser/parser"
 )
 
 type ParserResult struct {
@@ -14,11 +14,11 @@ type ParserResult struct {
 	rangeEndEvents   []int
 }
 
-func (l *TreeShapeListener) EnterInt_range(ctx *parsing.Int_rangeContext) {
+func (l *TreeShapeListener) EnterInt_range(ctx *parser.Int_rangeContext) {
 	l.results.rangeEvents = append(l.results.rangeEvents, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterRange_start(ctx *parsing.Range_startContext) {
+func (l *TreeShapeListener) EnterRange_start(ctx *parser.Range_startContext) {
 	i, err := strconv.Atoi(ctx.GetText())
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func (l *TreeShapeListener) EnterRange_start(ctx *parsing.Range_startContext) {
 	l.results.rangeStartEvents = append(l.results.rangeStartEvents, i)
 }
 
-func (l *TreeShapeListener) EnterRange_end(ctx *parsing.Range_endContext) {
+func (l *TreeShapeListener) EnterRange_end(ctx *parser.Range_endContext) {
 	i, err := strconv.Atoi(ctx.GetText())
 	if err != nil {
 		panic(err)
@@ -34,26 +34,26 @@ func (l *TreeShapeListener) EnterRange_end(ctx *parsing.Range_endContext) {
 	l.results.rangeEndEvents = append(l.results.rangeEndEvents, i)
 }
 
-func (l *TreeShapeListener) EnterRemove_rule_by_id(ctx *parsing.Remove_rule_by_idContext) {
+func (l *TreeShapeListener) EnterRemove_rule_by_id(ctx *parser.Remove_rule_by_idContext) {
 	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterRemove_rule_by_id_int(ctx *parsing.Remove_rule_by_id_intContext) {
+func (l *TreeShapeListener) EnterRemove_rule_by_id_int(ctx *parser.Remove_rule_by_id_intContext) {
 	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterRemove_rule_by_id_int_range(ctx *parsing.Remove_rule_by_id_int_rangeContext) {
+func (l *TreeShapeListener) EnterRemove_rule_by_id_int_range(ctx *parser.Remove_rule_by_id_int_rangeContext) {
 	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterRemove_rule_by_msg(ctx *parsing.Remove_rule_by_msgContext) {
+func (l *TreeShapeListener) EnterRemove_rule_by_msg(ctx *parser.Remove_rule_by_msgContext) {
 	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterRemove_rule_by_tag(ctx *parsing.Remove_rule_by_tagContext) {
+func (l *TreeShapeListener) EnterRemove_rule_by_tag(ctx *parser.Remove_rule_by_tagContext) {
 	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterValues(ctx *parsing.ValuesContext) {
+func (l *TreeShapeListener) EnterValues(ctx *parser.ValuesContext) {
 	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
 }
