@@ -28,8 +28,9 @@ stmt:
     comment? rules_directive variables operator actions?
     | comment? rule_script_directive file_path actions?
     | comment? rule_script_directive QUOTE file_path QUOTE actions?
-    | comment? remove_rules values+
-    | comment? remove_rules QUOTE values QUOTE
+    | comment? remove_rule_by_id remove_rule_by_id_values+
+    | comment? string_remove_rules values
+    | comment? string_remove_rules QUOTE values QUOTE
     | comment? update_target_rules update_target_rules_values update_variables
     | comment? update_action_rule id actions
     | comment? engine_config_directive
@@ -121,10 +122,30 @@ file_path:
     CONFIG_VALUE_PATH
     ;
 
-remove_rules:
+remove_rule_by_id:
     CONFIG_SEC_RULE_REMOVE_BY_ID
-    | CONFIG_SEC_RULE_REMOVE_BY_MSG
-    | CONFIG_SEC_RULE_REMOVE_BY_TAG
+    ;
+
+remove_rule_by_id_values:
+    INT # remove_rule_by_id_int
+    | int_range # remove_rule_by_id_int_range
+    ;
+
+int_range:
+    range_start MINUS range_end
+    ;
+
+range_start:
+    INT
+    ;
+
+range_end:
+    INT
+    ;
+
+string_remove_rules:
+    CONFIG_SEC_RULE_REMOVE_BY_MSG # remove_rule_by_msg
+    | CONFIG_SEC_RULE_REMOVE_BY_TAG # remove_rule_by_tag
     ;
 
 update_target_rules:
@@ -184,7 +205,7 @@ stmt_audit_log:
 
 values:
     INT
-    | INT_RANGE
+    | int_range
     | CONFIG_VALUE_ON
     | CONFIG_VALUE_OFF
     | CONFIG_VALUE_SERIAL
@@ -216,7 +237,7 @@ action_ctl_target_value:
 
 update_target_rules_values:
     INT
-    | INT_RANGE
+    | int_range
     | STRING
     ;
 
@@ -269,7 +290,7 @@ operator_name:
 operator_value:
     variable_enum
     | STRING
-    | (INT | INT_RANGE) (COMMA (INT | INT_RANGE))*
+    | (INT | int_range) (COMMA (INT | int_range))*
     | OPERATOR_UNQUOTED_STRING
     | OPERATOR_QUOTED_STRING
     ;
