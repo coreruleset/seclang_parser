@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/coreruleset/seclang_parser/parser"
 )
 
@@ -12,6 +14,39 @@ type ParserResult struct {
 	rangeEvents      []string
 	rangeStartEvents []int
 	rangeEndEvents   []int
+}
+
+type TreeShapeListener struct {
+	*parser.BaseSecLangParserListener
+	results ParserResult
+}
+
+func NewTreeShapeListener() *TreeShapeListener {
+	return new(TreeShapeListener)
+}
+
+type CustomErrorListener struct {
+	*antlr.DefaultErrorListener
+	Errors []error
+}
+
+func NewCustomErrorListener() *CustomErrorListener {
+	return &CustomErrorListener{antlr.NewDefaultErrorListener(), make([]error, 0)}
+}
+
+func (c *CustomErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
+	var err error
+	if offendingSymbol == nil {
+		err = fmt.Errorf("Recognition error at line %d, column %d: %s", line, column, msg)
+	} else {
+		err = fmt.Errorf("Syntax error at line %d, column %d: %v", line, column, offendingSymbol)
+	}
+	c.Errors = append(c.Errors, err)
+}
+
+func (t *TreeShapeListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
+	// if you need to debug, enable this one below
+	// fmt.Println(ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterInt_range(ctx *parser.Int_rangeContext) {

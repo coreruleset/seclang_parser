@@ -4,46 +4,12 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/coreruleset/seclang_parser/parser"
 	"github.com/stretchr/testify/require"
 )
-
-type TreeShapeListener struct {
-	*parser.BaseSecLangParserListener
-	results ParserResult
-}
-
-func NewTreeShapeListener() *TreeShapeListener {
-	return new(TreeShapeListener)
-}
-
-type CustomErrorListener struct {
-	*antlr.DefaultErrorListener
-	Errors []error
-}
-
-func NewCustomErrorListener() *CustomErrorListener {
-	return &CustomErrorListener{antlr.NewDefaultErrorListener(), make([]error, 0)}
-}
-
-func (c *CustomErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSymbol interface{}, line, column int, msg string, e antlr.RecognitionException) {
-	var err error
-	if offendingSymbol == nil {
-		err = fmt.Errorf("Recognition error at line %d, column %d: %s", line, column, msg)
-	} else {
-		err = fmt.Errorf("Syntax error at line %d, column %d: %v", line, column, offendingSymbol)
-	}
-	c.Errors = append(c.Errors, err)
-}
-
-func (t *TreeShapeListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
-	// if you need to debug, enable this one below
-	// fmt.Println(ctx.GetText())
-}
 
 var crsTestFiles = []string{
 	"testdata/crs/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf",
