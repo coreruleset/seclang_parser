@@ -302,7 +302,6 @@ var checkOutputTests = map[string]struct {
 		0,
 		"",
 		ParserResult{
-			comments:       []string{"# Test comment\r\n", "# SecRuleUpdateTargetById 12345 \"!ARGS:foo\"\r\n"},
 			variables:      []string{"REQUEST_FILENAME", "REQUEST_URI", "REQUEST_FILENAME", "REQUEST_URI"},
 			collections:    []string{"ARGS", "REQUEST_COOKIES", "ARGS"},
 			collectionArgs: []string{"email", "/^appl1_.*/", "email"},

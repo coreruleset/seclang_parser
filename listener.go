@@ -7,7 +7,6 @@ import (
 )
 
 type ParserResult struct {
-	comments         []string
 	variables        []string
 	collections      []string
 	collectionArgs   []string
@@ -60,10 +59,6 @@ func (l *TreeShapeListener) EnterRemove_rule_by_tag(ctx *parser.Remove_rule_by_t
 
 func (l *TreeShapeListener) EnterValues(ctx *parser.ValuesContext) {
 	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
-}
-
-func (l *TreeShapeListener) EnterComment(ctx *parser.CommentContext) {
-	l.results.comments = append(l.results.comments, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterUpdate_target_by_id(ctx *parser.Update_target_by_idContext) {
