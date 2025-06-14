@@ -8,13 +8,13 @@ import (
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
+	"github.com/coreruleset/seclang_parser/parser"
 	"github.com/stretchr/testify/require"
-
-	"github.com/coreruleset/seclang_parser/parsing"
 )
 
 type TreeShapeListener struct {
-	*parsing.BaseSecLangParserListener
+	*parser.BaseSecLangParserListener
+	results ParserResult
 }
 
 func NewTreeShapeListener() *TreeShapeListener {
@@ -42,7 +42,7 @@ func (c *CustomErrorListener) SyntaxError(recognizer antlr.Recognizer, offending
 
 func (t *TreeShapeListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
 	// if you need to debug, enable this one below
-	//fmt.Println(ctx.GetText())
+	// fmt.Println(ctx.GetText())
 }
 
 var crsTestFiles = []string{
@@ -282,6 +282,24 @@ var genericTests = map[string]struct {
 	},
 }
 
+var checkOutputTests = map[string]struct {
+	errorCount     int
+	comment        string
+	expectedResult ParserResult
+}{
+	"testdata/test_39_remove_rules.conf": {
+		0,
+		"",
+		ParserResult{
+			directiveList:    []string{"SecRuleRemoveByID", "SecRuleRemoveByMsg", "SecRuleRemoveByTag"},
+			directiveValues:  []string{"1", "2", "9000-9010", "FAIL", "attack-dos"},
+			rangeEvents:      []string{"9000-9010"},
+			rangeStartEvents: []int{9000},
+			rangeEndEvents:   []int{9010},
+		},
+	},
+}
+
 func TestSecLang(t *testing.T) {
 	for file, data := range genericTests {
 		t.Logf("Testing file %s", file)
@@ -290,16 +308,15 @@ func TestSecLang(t *testing.T) {
 			t.Errorf("Error reading file %s", file)
 			continue
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
 		lexer.AddErrorListener(lexerErrors)
 
-		
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 
@@ -308,15 +325,55 @@ func TestSecLang(t *testing.T) {
 
 		antlr.ParseTreeWalkerDefault.Walk(NewTreeShapeListener(), tree)
 
-		if len(lexerErrors.Errors) > 0 && data.errorCount != (len(lexerErrors.Errors) + len(parserErrors.Errors)) {
+		if len(lexerErrors.Errors) > 0 && data.errorCount != (len(lexerErrors.Errors)+len(parserErrors.Errors)) {
 			t.Logf("Lexer %d errors found\n", len(lexerErrors.Errors))
 			t.Logf("First error: %v\n", lexerErrors.Errors[0])
 		}
-		if len(parserErrors.Errors) > 0 && data.errorCount != (len(lexerErrors.Errors) + len(parserErrors.Errors)) {
+		if len(parserErrors.Errors) > 0 && data.errorCount != (len(lexerErrors.Errors)+len(parserErrors.Errors)) {
 			t.Logf("Parser %d errors found\n", len(parserErrors.Errors))
 			t.Logf("First error: %v\n", parserErrors.Errors[0])
 		}
 		require.Equalf(t, data.errorCount, (len(lexerErrors.Errors) + len(parserErrors.Errors)), "Error count mismatch for file %s -> we want: %s\n", file, data.comment)
+	}
+}
+
+func TestSeclangOutput(t *testing.T) {
+	for file, data := range checkOutputTests {
+		t.Logf("Testing file %s", file)
+		input, err := antlr.NewFileStream(file)
+		if err != nil {
+			t.Errorf("Error reading file %s", file)
+			continue
+		}
+		lexer := parser.NewSecLangLexer(input)
+
+		lexerErrors := NewCustomErrorListener()
+		lexer.RemoveErrorListeners()
+		lexer.AddErrorListener(lexerErrors)
+
+		parserErrors := NewCustomErrorListener()
+		stream := antlr.NewCommonTokenStream(lexer, 0)
+		p := parser.NewSecLangParser(stream)
+		p.RemoveErrorListeners()
+		p.AddErrorListener(parserErrors)
+
+		p.BuildParseTrees = true
+		tree := p.Configuration()
+
+		listener := NewTreeShapeListener()
+
+		antlr.ParseTreeWalkerDefault.Walk(listener, tree)
+
+		if len(lexerErrors.Errors) > 0 && data.errorCount != (len(lexerErrors.Errors)+len(parserErrors.Errors)) {
+			t.Logf("Lexer %d errors found\n", len(lexerErrors.Errors))
+			t.Logf("First error: %v\n", lexerErrors.Errors[0])
+		}
+		if len(parserErrors.Errors) > 0 && data.errorCount != (len(lexerErrors.Errors)+len(parserErrors.Errors)) {
+			t.Logf("Parser %d errors found\n", len(parserErrors.Errors))
+			t.Logf("First error: %v\n", parserErrors.Errors[0])
+		}
+		require.Equalf(t, data.errorCount, (len(lexerErrors.Errors) + len(parserErrors.Errors)), "Error count mismatch for file %s -> we want: %s\n", file, data.comment)
+		require.Equalf(t, data.expectedResult, listener.results, "Expected result mismatch for file %s -> we want: %v\n", file, data.expectedResult)
 	}
 }
 
@@ -327,7 +384,7 @@ func TestCRSLang(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error reading file %s", file)
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
@@ -335,7 +392,7 @@ func TestCRSLang(t *testing.T) {
 
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 		p.BuildParseTrees = true
@@ -347,14 +404,13 @@ func TestCRSLang(t *testing.T) {
 			t.Logf("Lexer %d errors found\n", len(lexerErrors.Errors))
 			t.Logf("First error: %v\n", lexerErrors.Errors[0])
 		}
-		if len(parserErrors.Errors) > 0  {
+		if len(parserErrors.Errors) > 0 {
 			t.Logf("Parser %d errors found\n", len(parserErrors.Errors))
 			t.Logf("First error: %v\n", parserErrors.Errors[0])
 		}
 		require.Equalf(t, 0, (len(lexerErrors.Errors) + len(parserErrors.Errors)), "Error count mismatch for file %s -> we want no errors\n", file)
 	}
 }
-
 
 func TestPlugins(t *testing.T) {
 	for _, file := range pluginsTestFiles {
@@ -363,7 +419,7 @@ func TestPlugins(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error reading file %s", file)
 		}
-		lexer := parsing.NewSecLangLexer(input)
+		lexer := parser.NewSecLangLexer(input)
 
 		lexerErrors := NewCustomErrorListener()
 		lexer.RemoveErrorListeners()
@@ -371,7 +427,7 @@ func TestPlugins(t *testing.T) {
 
 		parserErrors := NewCustomErrorListener()
 		stream := antlr.NewCommonTokenStream(lexer, 0)
-		p := parsing.NewSecLangParser(stream)
+		p := parser.NewSecLangParser(stream)
 		p.RemoveErrorListeners()
 		p.AddErrorListener(parserErrors)
 		p.BuildParseTrees = true
