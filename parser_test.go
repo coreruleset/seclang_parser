@@ -303,11 +303,11 @@ var checkOutputTests = map[string]struct {
 		"",
 		ParserResult{
 			variables:      []string{"REQUEST_FILENAME", "REQUEST_URI", "REQUEST_FILENAME", "REQUEST_URI"},
-			collections:    []string{"ARGS", "REQUEST_COOKIES", "ARGS"},
-			collectionArgs: []string{"email", "/^appl1_.*/", "email"},
-			directiveList: []string{"SecRuleUpdateTargetById", "SecRuleUpdateTargetById", "SecRuleUpdateTargetById",
+			collections:    []string{"ARGS", "ARGS", "REQUEST_COOKIES", "ARGS"},
+			collectionArgs: []string{"foo", "email", "/^appl1_.*/", "email"},
+			directiveList: []string{"SecRuleUpdateTargetById", "SecRuleUpdateTargetById", "SecRuleUpdateTargetById", "SecRuleUpdateTargetById",
 				"SecRuleUpdateTargetByTag", "SecRuleUpdateTargetByMsg"},
-			directiveValues: []string{"958895", "981172", "958895", "WASCTC/WASC-31", "System Command Injection"},
+			directiveValues: []string{"12345", "958895", "981172", "958895", "WASCTC/WASC-31", "System Command Injection"},
 		},
 	},
 }
