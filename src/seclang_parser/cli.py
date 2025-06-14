@@ -1,3 +1,5 @@
+"""Command-line interface for the CRS parser."""
+
 import argparse
 from .parser import parse_file
 
@@ -16,15 +18,18 @@ def parse_args():
     return cmdline.parse_args()
 
 def cli(args: list[str] = None):
+    """ Receives a list of files to parse """
     for file in args.files:
-        with open(file, "r") as f:
+        with open(file, "r", encoding="utf-8") as f:
             parse_file(f.read())
+
+    return True
 
 
 def run():
     """Runs the example parser"""
     args = parse_args()
-    cli(args)
+    return cli(args)
 
 
 if __name__ == "__main__":

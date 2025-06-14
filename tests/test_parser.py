@@ -2,9 +2,9 @@ import sys
 
 from antlr4 import *
 
-from parser.SecLangLexer import SecLangLexer
-from parser.SecLangParser import SecLangParser
-from parser.SecLangParserListener import SecLangParserListener
+from seclang_parser.SecLangLexer import SecLangLexer
+from seclang_parser.SecLangParser import SecLangParser
+from seclang_parser.SecLangParserListener import SecLangParserListener
 
 class SecLangListener(SecLangParserListener):
     def enterStmt(self, ctx):
@@ -15,3 +15,7 @@ class SecLangListener(SecLangParserListener):
 
     def enterComment(self, ctx: SecLangParser.CommentContext):
         print("Entering comment:", ctx.getText())
+
+
+def test_listener():
+    assert True
