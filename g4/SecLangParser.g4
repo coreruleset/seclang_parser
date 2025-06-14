@@ -33,8 +33,8 @@ stmt:
     | comment? string_remove_rules QUOTE values QUOTE
     | comment? update_target_rules update_target_rules_values update_variables
     | comment? update_target_rules QUOTE update_target_rules_values QUOTE update_variables
-    | comment? update_target_rules update_target_rules_values update_variables PIPE remplaced_target
-    | comment? update_target_rules QUOTE update_target_rules_values QUOTE update_variables PIPE remplaced_target
+    | comment? update_target_rules update_target_rules_values update_variables PIPE new_target
+    | comment? update_target_rules QUOTE update_target_rules_values QUOTE update_variables PIPE new_target
     | comment? update_action_rule id actions
     | comment? engine_config_directive
     | comment;
@@ -306,7 +306,7 @@ update_variables:
     QUOTE? NOT? VAR_COUNT? var_stmt QUOTE? (COMMA QUOTE? NOT? var_stmt QUOTE?)*
     ;
 
-remplaced_target:
+new_target:
     var_stmt
     ;
 
