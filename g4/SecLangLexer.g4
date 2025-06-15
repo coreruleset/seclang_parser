@@ -1286,10 +1286,14 @@ PIPE_VAR
 	: '|' -> type(PIPE), popMode
 	;
 
+NEWLINE_VAR
+	: '\r'? '\n' -> skip, popMode
+	;
+
 mode COLLECTION_ELEMENT_MODE;
 
 COLLECTION_ELEMENT_VALUE
-	: ~[ |",\n] ~[ |",\n]*
+	: ~[ |",\n\r] ~[ |",\n\r]*
 	;
 
 SPACE_COL_ELEM
@@ -1297,7 +1301,7 @@ SPACE_COL_ELEM
 	;
 
 NEWLINE_COL_ELEM
-	: '\n' -> skip, pushMode(DEFAULT_MODE)
+	: '\r'? '\n' -> skip, pushMode(DEFAULT_MODE)
 	;
 
 COMMA_COL_ELEM
