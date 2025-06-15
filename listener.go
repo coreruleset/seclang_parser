@@ -9,14 +9,18 @@ import (
 )
 
 type ParserResult struct {
-	variables        []string
-	collections      []string
-	collectionArgs   []string
-	directiveList    []string
-	directiveValues  []string
-	rangeEvents      []string
-	rangeStartEvents []int
-	rangeEndEvents   []int
+	variables             []string
+	negatedVarCount       int
+	collectionLengthCount int
+	collections           []string
+	collectionArgs        []string
+	operatorList          []string
+	operatorValueList     []string
+	directiveList         []string
+	directiveValues       []string
+	rangeEvents           []string
+	rangeStartEvents      []int
+	rangeEndEvents        []int
 }
 
 type TreeShapeListener struct {
@@ -122,4 +126,24 @@ func (l *TreeShapeListener) EnterCollection_enum(ctx *parser.Collection_enumCont
 
 func (l *TreeShapeListener) EnterCollection_value(ctx *parser.Collection_valueContext) {
 	l.results.collectionArgs = append(l.results.collectionArgs, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterVar_not(ctx *parser.Var_notContext) {
+	l.results.negatedVarCount++
+}
+
+func (l *TreeShapeListener) EnterVar_count(ctx *parser.Var_countContext) {
+	l.results.collectionLengthCount++
+}
+
+func (l *TreeShapeListener) EnterRules_directive(ctx *parser.Rules_directiveContext) {
+	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterOperator_name(ctx *parser.Operator_nameContext) {
+	l.results.operatorList = append(l.results.operatorList, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterOperator_value(ctx *parser.Operator_valueContext) {
+	l.results.operatorValueList = append(l.results.operatorValueList, ctx.GetText())
 }
