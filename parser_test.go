@@ -294,7 +294,19 @@ var checkOutputTests = map[string]struct {
 			rangeStartEvents:      []int{42, 65, 97},
 			rangeEndEvents:        []int{59, 90, 122},
 		},
-	}, "testdata/test_41_negated_operator.conf": {
+	},
+	"testdata/test_41_negated_operator_0.conf": {
+		0,
+		"",
+		ParserResult{
+			collections:          []string{"ARGS", "ARGS_NAMES"},
+			operatorList:         []string{"rx"},
+			operatorValueList:    []string{"foo"},
+			negatedOperatorCount: 0,
+			directiveList:        []string{"SecRule"},
+		},
+	},
+	"testdata/test_41_negated_operator_1.conf": {
 		0,
 		"",
 		ParserResult{
@@ -303,6 +315,19 @@ var checkOutputTests = map[string]struct {
 			operatorValueList:    []string{"foo"},
 			negatedOperatorCount: 1,
 			directiveList:        []string{"SecRule"},
+		},
+	},
+	"testdata/test_41_negated_operator_n.conf": {
+		0,
+		"",
+		ParserResult{
+			variables:            []string{"REQBODY_PROCESSOR", "REQBODY_PROCESSOR"},
+			collections:          []string{"TX", "TX"},
+			collectionArgs:       []string{"enforce_bodyproc_urlencoded", "sampling_rnd100"},
+			operatorList:         []string{"rx", "eq", "rx", "lt"},
+			operatorValueList:    []string{"(?:URLENCODED|MULTIPART|XML|JSON)", "1", "(?:URLENCODED|MULTIPART|XML|JSON)", "%{tx.sampling_percentage}"},
+			negatedOperatorCount: 3,
+			directiveList:        []string{"SecRule", "SecRule", "SecRule", "SecRule"},
 		},
 	},
 }
