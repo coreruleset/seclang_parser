@@ -294,6 +294,16 @@ var checkOutputTests = map[string]struct {
 			rangeStartEvents:      []int{42, 65, 97},
 			rangeEndEvents:        []int{59, 90, 122},
 		},
+	}, "testdata/test_41_negated_operator.conf": {
+		0,
+		"",
+		ParserResult{
+			collections:          []string{"ARGS", "ARGS_NAMES"},
+			operatorList:         []string{"rx"},
+			operatorValueList:    []string{"foo"},
+			negatedOperatorCount: 1,
+			directiveList:        []string{"SecRule"},
+		},
 	},
 }
 

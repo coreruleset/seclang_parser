@@ -16,6 +16,7 @@ type ParserResult struct {
 	collectionArgs        []string
 	operatorList          []string
 	operatorValueList     []string
+	negatedOperatorCount  int
 	directiveList         []string
 	directiveValues       []string
 	rangeEvents           []string
@@ -146,4 +147,8 @@ func (l *TreeShapeListener) EnterOperator_name(ctx *parser.Operator_nameContext)
 
 func (l *TreeShapeListener) EnterOperator_value(ctx *parser.Operator_valueContext) {
 	l.results.operatorValueList = append(l.results.operatorValueList, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterOperator_not(ctx *parser.Operator_notContext) {
+	l.results.negatedOperatorCount++
 }
