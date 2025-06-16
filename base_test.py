@@ -1,3 +1,6 @@
+# Copyright 2025 Felipe Zipitria
+# SPDX-License-Identifier: Apache-2.0
+
 import sys
 from antlr4 import *
 from parsing.SecLangLexer import SecLangLexer

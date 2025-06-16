@@ -1287,7 +1287,7 @@ PIPE_VAR
 	;
 
 NEWLINE_VAR
-	: '\r\n' -> skip, popMode
+	: '\r'? '\n' -> skip, popMode
 	;
 
 mode COLLECTION_ELEMENT_MODE;
@@ -1301,7 +1301,7 @@ SPACE_COL_ELEM
 	;
 
 NEWLINE_COL_ELEM
-	: '\r\n' -> skip, pushMode(DEFAULT_MODE)
+	: '\r'? '\n' -> skip, pushMode(DEFAULT_MODE)
 	;
 
 COMMA_COL_ELEM
