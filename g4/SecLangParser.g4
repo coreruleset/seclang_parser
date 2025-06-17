@@ -244,8 +244,12 @@ update_target_rules_values:
     | STRING
     ;
 
+operator_not:
+    NOT
+    ;
+
 operator:
-    QUOTE NOT? AT operator_name operator_value? QUOTE
+    QUOTE operator_not? AT operator_name operator_value? QUOTE
     | QUOTE operator_value QUOTE
     | operator_value
     ;

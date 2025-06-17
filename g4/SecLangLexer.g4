@@ -19,7 +19,7 @@ limitations under the License.
 lexer grammar SecLangLexer;
 
 tokens {
-	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE, CONFIG_VALUE_PATH
+	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE, CONFIG_VALUE_PATH, NOT
 }
 
 WS
@@ -86,8 +86,8 @@ NOT_EQUAL
    : '<>'
    ;
 
-NOT
-    : '!'
+NOT_DEFAULT
+    : '!' -> type(NOT)
     ;
 
 LT
@@ -1318,6 +1318,10 @@ PIPE_COL_ELEM
 
 mode OPERATOR_START_MODE;
 
+NOT_OPERATOR
+	: '!' -> type(NOT)
+	;
+
 SKIP_CHARS
    : [\\\t\r\n ]+  -> skip 
    ;
@@ -1332,11 +1336,15 @@ OPERATOR_UNQUOTED_STRING
 
 mode OPERATOR_WITH_QUOTES;
 
+NOT_OPERATOR_WITH_QUOTES
+   : '!' -> type(NOT)
+   ;
+
 AT
    : '@' -> pushMode(DEFAULT_MODE)
    ;
 
 OPERATOR_QUOTED_STRING
-    : (('\\"') | ~([" @])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
+    : (('\\"') | ~([" @!])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
     ;
 
