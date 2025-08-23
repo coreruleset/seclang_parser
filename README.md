@@ -2,8 +2,6 @@
 
 This repo contains the ANTLR files for a SecLang parser.
 
-It is still a Proof of Concept, not usable, and incomplete version.
-
 ## Why a new parser?
 
 There has been efforts towards having parsers in different languages. Using ANTLR would allow us to have a common parser and generate parsing engines for different languages easily. 
@@ -28,7 +26,7 @@ go generate ./...
 go test ./...
 ```
 
-Or for python 3:
+Or for python:
 ```bash
 cd parser
 ./generate.sh
