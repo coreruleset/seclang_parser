@@ -58,7 +58,7 @@ func Format() error {
 		"--section",
 		"blank",
 		"--section",
-		"prefix(github.com/fzipi/seclang_parser)",
+		"prefix(github.com/coreruleset/seclang_parser)",
 		"--custom-order",
 		"--skip-generated",
 		".")
