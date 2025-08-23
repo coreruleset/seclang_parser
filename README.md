@@ -27,12 +27,14 @@ go test ./...
 ```
 
 Or for python:
+
+- Get [uv](https://github.com/astral-sh/uv) first
 ```bash
 cd parser
 ./generate.sh
 cd ..
-poetry install
-poetry run python ./base_test.py
+uv sync --all-extras --dev
+uv run pytest -vs
 ```
 
 ## Authors
