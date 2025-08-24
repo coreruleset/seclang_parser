@@ -49,9 +49,7 @@ jobs:
 
       - name: "Generate parser files"
         run: |
-          pushd g4
           ./generate.sh
-          popd
 
       - name: Install dependencies
         run: |
@@ -60,4 +58,3 @@ jobs:
       - name: "Run unit tests"
         run: |
           uv run pytest -vs
-

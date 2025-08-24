@@ -3,4 +3,4 @@
 
 package g4
 
-//go:generate ./generate.sh
+//go:generate ../generate.sh

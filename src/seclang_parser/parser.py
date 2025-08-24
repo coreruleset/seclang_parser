@@ -41,5 +41,3 @@ class SecLangParserListenerImpl(SecLangParserListener):
 
     def enterId(self, ctx:SecLangParser.IdContext):
         self.ids.append(ctx.getText())
-
-
