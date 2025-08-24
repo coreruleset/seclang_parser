@@ -7,8 +7,9 @@ import (
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
-	"github.com/coreruleset/seclang_parser/parser"
 	"github.com/stretchr/testify/require"
+
+	"github.com/coreruleset/seclang_parser/parser"
 )
 
 var crsTestFiles = []string{

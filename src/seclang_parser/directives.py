@@ -1,3 +1,6 @@
+# Copyright 2025 OWASP CRS Project
+# SPDX-License-Identifier: Apache-2.0
+
 from .actions import SeclangActions
 from .metadata import SecRuleMetadata
 from .operators import Operator

@@ -1,3 +1,6 @@
+# Copyright 2025 OWASP CRS Project
+# SPDX-License-Identifier: Apache-2.0
+
 class Operator:
     def __init__(self, name='', value=''):
         self.name = name
