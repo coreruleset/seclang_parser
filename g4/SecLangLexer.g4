@@ -23,7 +23,7 @@ tokens {
 }
 
 WS
-   : ([ \t\r\n]+ | '\\' '\n' | '\\')  -> skip 
+   : ([ \t\r\n]+ | '\\' '\n' | '\\')  -> skip
    ;
 
 COMMENT
@@ -117,8 +117,8 @@ RPAREN
 // MODSEC CONFIG
 ACTION_ACCURACY
 	: 'accuracy'
-	; 
-	
+	;
+
 ACTION_ALLOW
 	: 'allow:' ('REQUEST'|'PHASE') | ('phase:' ('REQUEST|PHASE') | 'allow')
 	;
@@ -1256,11 +1256,11 @@ SPACE_COL
 	: ' ' -> skip, pushMode(OPERATOR_START_MODE)
 	;
 
-COMMA_COL 
+COMMA_COL
 	: ',' -> type(COMMA), popMode
 	;
 
-QUOTE_COL 
+QUOTE_COL
 	: '"' -> type(QUOTE), popMode
 	;
 
@@ -1274,11 +1274,11 @@ SPACE_VAR
 	: ' ' -> skip, pushMode(OPERATOR_START_MODE)
 	;
 
-COMMA_VAR 
+COMMA_VAR
 	: ',' -> type(COMMA), popMode
 	;
 
-QUOTE_VAR 
+QUOTE_VAR
 	: '"' -> type(QUOTE), popMode
 	;
 
@@ -1323,10 +1323,10 @@ NOT_OPERATOR
 	;
 
 SKIP_CHARS
-   : [\\\t\r\n ]+  -> skip 
+   : [\\\t\r\n ]+  -> skip
    ;
 
-QUOTE_OP 
+QUOTE_OP
 	: '"' -> type(QUOTE), pushMode(OPERATOR_WITH_QUOTES)
 	;
 
@@ -1347,4 +1347,3 @@ AT
 OPERATOR_QUOTED_STRING
     : (('\\"') | ~([" @!])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
     ;
-
