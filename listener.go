@@ -1,3 +1,6 @@
+// Copyright 2025 OWASP CRS Project
+// SPDX-License-Identifier: Apache-2.0
+
 package main
 
 import (
@@ -5,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/antlr4-go/antlr/v4"
+
 	"github.com/coreruleset/seclang_parser/parser"
 )
 
