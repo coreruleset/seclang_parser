@@ -108,7 +108,7 @@ func Coverage() error {
 }
 
 func Generate() error {
-	return sh.RunV("go", "generate", "./...")
+	return sh.RunV("./generate.sh")
 }
 
 // Doc runs godoc, access at http://localhost:6060
