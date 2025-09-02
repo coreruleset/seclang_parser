@@ -1,6 +1,3 @@
-# Copyright 2025 OWASP CRS Project
-# SPDX-License-Identifier: Apache-2.0
-
 # Generated from SecLangParser.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *

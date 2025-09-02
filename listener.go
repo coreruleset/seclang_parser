@@ -26,6 +26,7 @@ type ParserResult struct {
 	rangeEvents           []string
 	rangeStartEvents      []int
 	rangeEndEvents        []int
+	comments              []string
 }
 
 type TreeShapeListener struct {
@@ -155,4 +156,13 @@ func (l *TreeShapeListener) EnterOperator_value(ctx *parser.Operator_valueContex
 
 func (l *TreeShapeListener) EnterOperator_not(ctx *parser.Operator_notContext) {
 	l.results.negatedOperatorCount++
+}
+
+func (l *TreeShapeListener) EnterComment(ctx *parser.CommentContext) {
+	commentText := ctx.GetText()
+	// Remove the "#" from the beginning of the comment
+	if len(commentText) > 0 && commentText[0] == '#' {
+		commentText = commentText[1:]
+	}
+	l.results.comments = append(l.results.comments, commentText)
 }

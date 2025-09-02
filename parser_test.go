@@ -247,6 +247,10 @@ var genericTests = map[string]struct {
 		0,
 		"",
 	},
+	"testdata/test_40_comments.conf": {
+		0,
+		"Test comment processing with Pineapple Pizza",
+	},
 }
 
 var checkOutputTests = map[string]struct {
@@ -265,6 +269,28 @@ var checkOutputTests = map[string]struct {
 			rangeEndEvents:   []int{9010},
 		},
 	},
+	"testdata/test_40_comments.conf": {
+		0,
+		"Test comment processing with Pineapple Pizza",
+		ParserResult{
+			comments: []string{
+				" This is a comment about Pineapple Pizza\n",
+				" Another comment mentioning Pineapple Pizza\n",
+				" Pineapple Pizza is controversial\n",
+				" Comment with multiple lines\n",
+				" Line 1: Pineapple Pizza\n",
+				" Line 2: Some people love it\n",
+				" Line 3: Others hate it\n",
+				" Comment with special characters: Pineapple Pizza!@#$%^&*()\n",
+				" Comment with numbers: Pineapple Pizza 12345\n",
+				" Comment with quotes: \"Pineapple Pizza\"\n",
+				" Empty comment above\n",
+				" Comment with tabs:\tPineapple Pizza\twith\ttabs\n",
+				" Comment with spaces:    Pineapple Pizza    with    spaces\n",
+				" Comment ending with Pineapple Pizza\n",
+			},
+		},
+	},
 	"testdata/test_38_update_rules.conf": {
 		0,
 		"",
@@ -276,6 +302,7 @@ var checkOutputTests = map[string]struct {
 			directiveList: []string{"SecRuleUpdateTargetById", "SecRuleUpdateTargetById", "SecRuleUpdateTargetById", "SecRuleUpdateTargetById",
 				"SecRuleUpdateTargetByTag", "SecRuleUpdateTargetByMsg"},
 			directiveValues: []string{"12345", "958895", "981172", "958895", "WASCTC/WASC-31", "System Command Injection"},
+			comments:        []string{" Test comment\n"},
 		},
 	},
 	"testdata/test_40_var_operators.conf": {
@@ -294,6 +321,7 @@ var checkOutputTests = map[string]struct {
 			rangeEvents:           []string{"42-59", "65-90", "97-122"},
 			rangeStartEvents:      []int{42, 65, 97},
 			rangeEndEvents:        []int{59, 90, 122},
+			comments:              []string{"\n", " -=[ Default setup values ]=-\n", "\n", " The CRS checks the tx.crs_setup_version variable to ensure that the setup\n", " file is included at the correct time. This detects situations where\n", " necessary settings are not defined, for instance if the file\n", " inclusion order is incorrect, or if the user has forgotten to\n", " include the crs-setup.conf file.\n", "\n", " If you are upgrading from an earlier version of the CRS and you are\n", " getting this error, please make a new copy of the setup template\n", " crs-setup.conf.example to crs-setup.conf, and re-apply your policy\n", " changes. There have been many changes in settings syntax from CRS2\n", " to CRS3, so an old setup file may cause unwanted behavior.\n", "\n", " If you are not planning to use the crs-setup.conf template, you must\n", " manually set the tx.crs_setup_version variable before including\n", " the CRS rules/* files.\n", "\n", " The variable is a numerical representation of the CRS version number.\n", " E.g., v3.0.0 is represented as 300.\n", "\n"},
 		},
 	},
 	"testdata/test_41_negated_operator_0.conf": {
@@ -329,6 +357,7 @@ var checkOutputTests = map[string]struct {
 			operatorValueList:    []string{"(?:URLENCODED|MULTIPART|XML|JSON)", "1", "(?:URLENCODED|MULTIPART|XML|JSON)", "%{tx.sampling_percentage}"},
 			negatedOperatorCount: 3,
 			directiveList:        []string{"SecRule", "SecRule", "SecRule", "SecRule"},
+			comments:             []string{" Force body variable\n", " Force body processor URLENCODED\n"},
 		},
 	},
 }
