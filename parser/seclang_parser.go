@@ -1,5 +1,3 @@
-// Code generated from SecLangParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
-
 package parser // SecLangParser
 import (
 	"fmt"
@@ -4085,40 +4083,6 @@ func (s *Update_target_rulesContext) ToStringTree(ruleNames []string, recog antl
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-type Update_target_by_tagContext struct {
-	Update_target_rulesContext
-}
-
-func NewUpdate_target_by_tagContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Update_target_by_tagContext {
-	var p = new(Update_target_by_tagContext)
-
-	InitEmptyUpdate_target_rulesContext(&p.Update_target_rulesContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Update_target_rulesContext))
-
-	return p
-}
-
-func (s *Update_target_by_tagContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *Update_target_by_tagContext) CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG() antlr.TerminalNode {
-	return s.GetToken(SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG, 0)
-}
-
-func (s *Update_target_by_tagContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterUpdate_target_by_tag(s)
-	}
-}
-
-func (s *Update_target_by_tagContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitUpdate_target_by_tag(s)
-	}
-}
-
 type Update_target_by_idContext struct {
 	Update_target_rulesContext
 }
@@ -4184,6 +4148,40 @@ func (s *Update_target_by_msgContext) EnterRule(listener antlr.ParseTreeListener
 func (s *Update_target_by_msgContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SecLangParserListener); ok {
 		listenerT.ExitUpdate_target_by_msg(s)
+	}
+}
+
+type Update_target_by_tagContext struct {
+	Update_target_rulesContext
+}
+
+func NewUpdate_target_by_tagContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *Update_target_by_tagContext {
+	var p = new(Update_target_by_tagContext)
+
+	InitEmptyUpdate_target_rulesContext(&p.Update_target_rulesContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Update_target_rulesContext))
+
+	return p
+}
+
+func (s *Update_target_by_tagContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Update_target_by_tagContext) CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG() antlr.TerminalNode {
+	return s.GetToken(SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG, 0)
+}
+
+func (s *Update_target_by_tagContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterUpdate_target_by_tag(s)
+	}
+}
+
+func (s *Update_target_by_tagContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitUpdate_target_by_tag(s)
 	}
 }
 
@@ -9924,176 +9922,6 @@ func (s *Metadata_action_with_paramsContext) ToStringTree(ruleNames []string, re
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-type ACTION_MATURITYContext struct {
-	Metadata_action_with_paramsContext
-}
-
-func NewACTION_MATURITYContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_MATURITYContext {
-	var p = new(ACTION_MATURITYContext)
-
-	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
-
-	return p
-}
-
-func (s *ACTION_MATURITYContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *ACTION_MATURITYContext) ACTION_MATURITY() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_MATURITY, 0)
-}
-
-func (s *ACTION_MATURITYContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterACTION_MATURITY(s)
-	}
-}
-
-func (s *ACTION_MATURITYContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitACTION_MATURITY(s)
-	}
-}
-
-type ACTION_REVContext struct {
-	Metadata_action_with_paramsContext
-}
-
-func NewACTION_REVContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_REVContext {
-	var p = new(ACTION_REVContext)
-
-	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
-
-	return p
-}
-
-func (s *ACTION_REVContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *ACTION_REVContext) ACTION_REV() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_REV, 0)
-}
-
-func (s *ACTION_REVContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterACTION_REV(s)
-	}
-}
-
-func (s *ACTION_REVContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitACTION_REV(s)
-	}
-}
-
-type ACTION_VERContext struct {
-	Metadata_action_with_paramsContext
-}
-
-func NewACTION_VERContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_VERContext {
-	var p = new(ACTION_VERContext)
-
-	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
-
-	return p
-}
-
-func (s *ACTION_VERContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *ACTION_VERContext) ACTION_VER() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_VER, 0)
-}
-
-func (s *ACTION_VERContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterACTION_VER(s)
-	}
-}
-
-func (s *ACTION_VERContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitACTION_VER(s)
-	}
-}
-
-type ACTION_SEVERITYContext struct {
-	Metadata_action_with_paramsContext
-}
-
-func NewACTION_SEVERITYContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_SEVERITYContext {
-	var p = new(ACTION_SEVERITYContext)
-
-	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
-
-	return p
-}
-
-func (s *ACTION_SEVERITYContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *ACTION_SEVERITYContext) ACTION_SEVERITY() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_SEVERITY, 0)
-}
-
-func (s *ACTION_SEVERITYContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterACTION_SEVERITY(s)
-	}
-}
-
-func (s *ACTION_SEVERITYContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitACTION_SEVERITY(s)
-	}
-}
-
-type ACTION_MSGContext struct {
-	Metadata_action_with_paramsContext
-}
-
-func NewACTION_MSGContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_MSGContext {
-	var p = new(ACTION_MSGContext)
-
-	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
-	p.parser = parser
-	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
-
-	return p
-}
-
-func (s *ACTION_MSGContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *ACTION_MSGContext) ACTION_MSG() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_MSG, 0)
-}
-
-func (s *ACTION_MSGContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterACTION_MSG(s)
-	}
-}
-
-func (s *ACTION_MSGContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitACTION_MSG(s)
-	}
-}
-
 type ACTION_PHASEContext struct {
 	Metadata_action_with_paramsContext
 }
@@ -10162,6 +9990,142 @@ func (s *ACTION_IDContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
+type ACTION_MATURITYContext struct {
+	Metadata_action_with_paramsContext
+}
+
+func NewACTION_MATURITYContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_MATURITYContext {
+	var p = new(ACTION_MATURITYContext)
+
+	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
+
+	return p
+}
+
+func (s *ACTION_MATURITYContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ACTION_MATURITYContext) ACTION_MATURITY() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_MATURITY, 0)
+}
+
+func (s *ACTION_MATURITYContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterACTION_MATURITY(s)
+	}
+}
+
+func (s *ACTION_MATURITYContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitACTION_MATURITY(s)
+	}
+}
+
+type ACTION_MSGContext struct {
+	Metadata_action_with_paramsContext
+}
+
+func NewACTION_MSGContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_MSGContext {
+	var p = new(ACTION_MSGContext)
+
+	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
+
+	return p
+}
+
+func (s *ACTION_MSGContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ACTION_MSGContext) ACTION_MSG() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_MSG, 0)
+}
+
+func (s *ACTION_MSGContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterACTION_MSG(s)
+	}
+}
+
+func (s *ACTION_MSGContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitACTION_MSG(s)
+	}
+}
+
+type ACTION_REVContext struct {
+	Metadata_action_with_paramsContext
+}
+
+func NewACTION_REVContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_REVContext {
+	var p = new(ACTION_REVContext)
+
+	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
+
+	return p
+}
+
+func (s *ACTION_REVContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ACTION_REVContext) ACTION_REV() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_REV, 0)
+}
+
+func (s *ACTION_REVContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterACTION_REV(s)
+	}
+}
+
+func (s *ACTION_REVContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitACTION_REV(s)
+	}
+}
+
+type ACTION_SEVERITYContext struct {
+	Metadata_action_with_paramsContext
+}
+
+func NewACTION_SEVERITYContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_SEVERITYContext {
+	var p = new(ACTION_SEVERITYContext)
+
+	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
+
+	return p
+}
+
+func (s *ACTION_SEVERITYContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ACTION_SEVERITYContext) ACTION_SEVERITY() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_SEVERITY, 0)
+}
+
+func (s *ACTION_SEVERITYContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterACTION_SEVERITY(s)
+	}
+}
+
+func (s *ACTION_SEVERITYContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitACTION_SEVERITY(s)
+	}
+}
+
 type ACTION_TAGContext struct {
 	Metadata_action_with_paramsContext
 }
@@ -10193,6 +10157,40 @@ func (s *ACTION_TAGContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *ACTION_TAGContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SecLangParserListener); ok {
 		listenerT.ExitACTION_TAG(s)
+	}
+}
+
+type ACTION_VERContext struct {
+	Metadata_action_with_paramsContext
+}
+
+func NewACTION_VERContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_VERContext {
+	var p = new(ACTION_VERContext)
+
+	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
+
+	return p
+}
+
+func (s *ACTION_VERContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ACTION_VERContext) ACTION_VER() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_VER, 0)
+}
+
+func (s *ACTION_VERContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterACTION_VER(s)
+	}
+}
+
+func (s *ACTION_VERContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitACTION_VER(s)
 	}
 }
 

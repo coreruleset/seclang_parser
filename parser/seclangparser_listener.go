@@ -1,5 +1,3 @@
-// Code generated from SecLangParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
-
 package parser // SecLangParser
 import "github.com/antlr4-go/antlr/v4"
 

@@ -1,7 +1,3 @@
-# Copyright 2025 OWASP CRS Project
-# SPDX-License-Identifier: Apache-2.0
-
-# Generated from SecLangParser.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -2215,24 +2211,6 @@ class SecLangParser ( Parser ):
 
 
 
-    class Update_target_by_tagContext(Update_target_rulesContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Update_target_rulesContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG(self):
-            return self.getToken(SecLangParser.CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterUpdate_target_by_tag" ):
-                listener.enterUpdate_target_by_tag(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitUpdate_target_by_tag" ):
-                listener.exitUpdate_target_by_tag(self)
-
-
     class Update_target_by_idContext(Update_target_rulesContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Update_target_rulesContext
@@ -2267,6 +2245,24 @@ class SecLangParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitUpdate_target_by_msg" ):
                 listener.exitUpdate_target_by_msg(self)
+
+
+    class Update_target_by_tagContext(Update_target_rulesContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Update_target_rulesContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG(self):
+            return self.getToken(SecLangParser.CONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterUpdate_target_by_tag" ):
+                listener.enterUpdate_target_by_tag(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitUpdate_target_by_tag" ):
+                listener.exitUpdate_target_by_tag(self)
 
 
 
@@ -4792,96 +4788,6 @@ class SecLangParser ( Parser ):
 
 
 
-    class ACTION_MATURITYContext(Metadata_action_with_paramsContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def ACTION_MATURITY(self):
-            return self.getToken(SecLangParser.ACTION_MATURITY, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterACTION_MATURITY" ):
-                listener.enterACTION_MATURITY(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitACTION_MATURITY" ):
-                listener.exitACTION_MATURITY(self)
-
-
-    class ACTION_REVContext(Metadata_action_with_paramsContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def ACTION_REV(self):
-            return self.getToken(SecLangParser.ACTION_REV, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterACTION_REV" ):
-                listener.enterACTION_REV(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitACTION_REV" ):
-                listener.exitACTION_REV(self)
-
-
-    class ACTION_VERContext(Metadata_action_with_paramsContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def ACTION_VER(self):
-            return self.getToken(SecLangParser.ACTION_VER, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterACTION_VER" ):
-                listener.enterACTION_VER(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitACTION_VER" ):
-                listener.exitACTION_VER(self)
-
-
-    class ACTION_SEVERITYContext(Metadata_action_with_paramsContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def ACTION_SEVERITY(self):
-            return self.getToken(SecLangParser.ACTION_SEVERITY, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterACTION_SEVERITY" ):
-                listener.enterACTION_SEVERITY(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitACTION_SEVERITY" ):
-                listener.exitACTION_SEVERITY(self)
-
-
-    class ACTION_MSGContext(Metadata_action_with_paramsContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def ACTION_MSG(self):
-            return self.getToken(SecLangParser.ACTION_MSG, 0)
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterACTION_MSG" ):
-                listener.enterACTION_MSG(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitACTION_MSG" ):
-                listener.exitACTION_MSG(self)
-
-
     class ACTION_PHASEContext(Metadata_action_with_paramsContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
@@ -4918,6 +4824,78 @@ class SecLangParser ( Parser ):
                 listener.exitACTION_ID(self)
 
 
+    class ACTION_MATURITYContext(Metadata_action_with_paramsContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ACTION_MATURITY(self):
+            return self.getToken(SecLangParser.ACTION_MATURITY, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterACTION_MATURITY" ):
+                listener.enterACTION_MATURITY(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitACTION_MATURITY" ):
+                listener.exitACTION_MATURITY(self)
+
+
+    class ACTION_MSGContext(Metadata_action_with_paramsContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ACTION_MSG(self):
+            return self.getToken(SecLangParser.ACTION_MSG, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterACTION_MSG" ):
+                listener.enterACTION_MSG(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitACTION_MSG" ):
+                listener.exitACTION_MSG(self)
+
+
+    class ACTION_REVContext(Metadata_action_with_paramsContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ACTION_REV(self):
+            return self.getToken(SecLangParser.ACTION_REV, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterACTION_REV" ):
+                listener.enterACTION_REV(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitACTION_REV" ):
+                listener.exitACTION_REV(self)
+
+
+    class ACTION_SEVERITYContext(Metadata_action_with_paramsContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ACTION_SEVERITY(self):
+            return self.getToken(SecLangParser.ACTION_SEVERITY, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterACTION_SEVERITY" ):
+                listener.enterACTION_SEVERITY(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitACTION_SEVERITY" ):
+                listener.exitACTION_SEVERITY(self)
+
+
     class ACTION_TAGContext(Metadata_action_with_paramsContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
@@ -4934,6 +4912,24 @@ class SecLangParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitACTION_TAG" ):
                 listener.exitACTION_TAG(self)
+
+
+    class ACTION_VERContext(Metadata_action_with_paramsContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a SecLangParser.Metadata_action_with_paramsContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ACTION_VER(self):
+            return self.getToken(SecLangParser.ACTION_VER, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterACTION_VER" ):
+                listener.enterACTION_VER(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitACTION_VER" ):
+                listener.exitACTION_VER(self)
 
 
 
