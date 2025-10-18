@@ -26,6 +26,9 @@ type ParserResult struct {
 	rangeEvents           []string
 	rangeStartEvents      []int
 	rangeEndEvents        []int
+	setvarCollections     []string
+	setvarNames           []string
+	setvarOperations      []string
 }
 
 type TreeShapeListener struct {
@@ -155,4 +158,20 @@ func (l *TreeShapeListener) EnterOperator_value(ctx *parser.Operator_valueContex
 
 func (l *TreeShapeListener) EnterOperator_not(ctx *parser.Operator_notContext) {
 	l.results.negatedOperatorCount++
+}
+
+func (l *TreeShapeListener) EnterCol_name(ctx *parser.Col_nameContext) {
+	l.results.setvarCollections = append(l.results.setvarCollections, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterSetvar_stmt(ctx *parser.Setvar_stmtContext) {
+	l.results.setvarNames = append(l.results.setvarNames, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterAssignment(ctx *parser.AssignmentContext) {
+	l.results.setvarOperations = append(l.results.setvarOperations, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterVar_assignment(ctx *parser.Var_assignmentContext) {
+	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
 }
