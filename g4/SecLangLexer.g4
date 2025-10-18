@@ -308,7 +308,7 @@ ACTION_SETUID
 	;
 
 ACTION_SETVAR
-	: 'setvar'
+	: 'setvar' -> pushMode(SETVAR)
 	;
 
 ACTION_SEVERITY
@@ -1143,46 +1143,86 @@ STRING
 mode MACRO;
 
 MACRO_EXPANSION
-    : VARIABLE_NAME '}' -> popMode
+    : (LETTER | DIGIT) (LETTER | DIGIT | '_' | '-' | '.')* '}' -> popMode
 	;
 
 mode SETVAR;
+
+COLON_SETVAR
+   : ':' -> type(COLON)
+   ;
 
 SINGLE_QUOTE_SETVAR
     : '\'' -> type(SINGLE_QUOTE)
     ;
 
+COLLECTION_NAME_SETVAR
+	: ('ip'
+	| 'IP'
+	| 'global'
+	| 'GLOBAL'
+	| 'resource'
+	| 'RESOURCE'
+	| 'session'
+	| 'SESSION'
+	| 'user'
+	| 'USER'
+	| 'tx'
+	| 'TX')
+	;
+
+DOT
+	: '.'
+	;
+
 COLLECTION_ELEMENT
-    : ('t'|'T') ('x'|'X') '.' (LETTER) (LETTER | DIGIT | '_' | '-')* -> popMode
+    : (LETTER | DIGIT) (LETTER | DIGIT | '_' | '-')*
     ;
 
 COLLECTION_WITH_MACRO
-    : 'tx.' IDENT '{%' -> mode(MACRO)
+    : '%{' -> pushMode(MACRO)
     ;
 
-VAR_ASSIGNMENT
-	: ~('\''|' ')+ -> popMode
-	;
-
 EQUAL_SETVAR
-	: '=' -> type(EQUAL)
+	: '=' -> type(EQUAL), pushMode(SETVAR_ASSIGNMENT)
 	;
 
 EQUALS_PLUS_SETVAR
-	: EQUAL_SETVAR '+' -> type(EQUALS_PLUS)
+	: EQUAL_SETVAR '+' -> type(EQUALS_PLUS), pushMode(SETVAR_ASSIGNMENT)
 	;
 
 EQUALS_MINUS_SETVAR
-	: EQUAL_SETVAR '-' -> type(EQUALS_MINUS)
+	: EQUAL_SETVAR '-' -> type(EQUALS_MINUS), pushMode(SETVAR_ASSIGNMENT)
 	;
 
+
+mode SETVAR_ASSIGNMENT;
+
+VAR_ASSIGNMENT
+	: ('\\\''|~('\''|','|'"'))+
+	;
+
+SINGLE_QUOTE_SETVAR_ASSIGNMENT
+    : '\'' -> type(SINGLE_QUOTE), pushMode(DEFAULT_MODE)
+    ;
+
+QUOTE_SETVAR_ASSIGNMENT
+    : '"' -> type(QUOTE), pushMode(DEFAULT_MODE)
+    ;
+
+COMMA_SETVAR_ASSIGNMENT
+    : ',' -> type(COMMA), pushMode(DEFAULT_MODE)
+    ;
+
+SPACE_SETVAR_ASSIGNMENT
+    : WS -> skip
+    ;
 
 mode COMMA_SEPARATED_STRING_MODE;
 
 COLON_COMMA_STRING
 	: COLON_DEFAULT -> type(COLON)
 	;
-
 
 COMMA_SEPARATED_STRING
     : ~([:,"])+ -> popMode

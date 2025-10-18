@@ -474,6 +474,12 @@ func (s *BaseSecLangParserListener) EnterSetvar_action(ctx *Setvar_actionContext
 // ExitSetvar_action is called when production setvar_action is exited.
 func (s *BaseSecLangParserListener) ExitSetvar_action(ctx *Setvar_actionContext) {}
 
+// EnterCol_name is called when production col_name is entered.
+func (s *BaseSecLangParserListener) EnterCol_name(ctx *Col_nameContext) {}
+
+// ExitCol_name is called when production col_name is exited.
+func (s *BaseSecLangParserListener) ExitCol_name(ctx *Col_nameContext) {}
+
 // EnterSetvar_stmt is called when production setvar_stmt is entered.
 func (s *BaseSecLangParserListener) EnterSetvar_stmt(ctx *Setvar_stmtContext) {}
 
@@ -485,3 +491,9 @@ func (s *BaseSecLangParserListener) EnterAssignment(ctx *AssignmentContext) {}
 
 // ExitAssignment is called when production assignment is exited.
 func (s *BaseSecLangParserListener) ExitAssignment(ctx *AssignmentContext) {}
+
+// EnterVar_assignment is called when production var_assignment is entered.
+func (s *BaseSecLangParserListener) EnterVar_assignment(ctx *Var_assignmentContext) {}
+
+// ExitVar_assignment is called when production var_assignment is exited.
+func (s *BaseSecLangParserListener) ExitVar_assignment(ctx *Var_assignmentContext) {}

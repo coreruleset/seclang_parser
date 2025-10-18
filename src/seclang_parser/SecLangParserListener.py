@@ -1,6 +1,3 @@
-# Copyright 2025 OWASP CRS Project
-# SPDX-License-Identifier: Apache-2.0
-
 # Generated from SecLangParser.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
@@ -650,6 +647,15 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#col_name.
+    def enterCol_name(self, ctx:SecLangParser.Col_nameContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#col_name.
+    def exitCol_name(self, ctx:SecLangParser.Col_nameContext):
+        pass
+
+
     # Enter a parse tree produced by SecLangParser#setvar_stmt.
     def enterSetvar_stmt(self, ctx:SecLangParser.Setvar_stmtContext):
         pass
@@ -665,6 +671,15 @@ class SecLangParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SecLangParser#assignment.
     def exitAssignment(self, ctx:SecLangParser.AssignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by SecLangParser#var_assignment.
+    def enterVar_assignment(self, ctx:SecLangParser.Var_assignmentContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#var_assignment.
+    def exitVar_assignment(self, ctx:SecLangParser.Var_assignmentContext):
         pass
 
 

@@ -331,6 +331,21 @@ var checkOutputTests = map[string]struct {
 			directiveList:        []string{"SecRule", "SecRule", "SecRule", "SecRule"},
 		},
 	},
+	"testdata/test_42_setvar.conf": {
+		0,
+		"",
+		ParserResult{
+			collections:          []string{"ARGS", "ARGS_NAMES", "REQUEST_HEADERS_NAMES", "REQUEST_HEADERS_NAMES"},
+			operatorList:         []string{"rx", "rx", "rx"},
+			operatorValueList:    []string{"foo", "^.*$", "^.*$"},
+			negatedOperatorCount: 0,
+			directiveList:        []string{"SecRule", "SecRule", "SecRule"},
+			setvarCollections:    []string{"tx", "tx", "tx", "tx", "tx", "tx"},
+			setvarNames:          []string{"var1", "var2", "var2", "var2", "header_name_920450_%{tx.0}", "inbound_anomaly_score_pl1"},
+			setvarOperations:     []string{"=", "=", "=+", "=-", "=", "=+"},
+			directiveValues:      []string{"bar", "0", "2", "1", "/%{tx.0}/", "%{tx.critical_anomaly_score}"},
+		},
+	},
 }
 
 func TestSecLang(t *testing.T) {
