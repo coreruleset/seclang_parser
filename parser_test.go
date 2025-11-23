@@ -342,8 +342,21 @@ var checkOutputTests = map[string]struct {
 			directiveList:        []string{"SecRule", "SecRule", "SecRule"},
 			setvarCollections:    []string{"tx", "tx", "tx", "tx", "tx", "tx"},
 			setvarNames:          []string{"var1", "var2", "var2", "var2", "header_name_920450_%{tx.0}", "inbound_anomaly_score_pl1"},
-			setvarOperations:     []string{"=", "=", "=+", "=-", "=", "=+"},
+			assignmentOperations: []string{"=", "=", "=+", "=-", "=", "=+"},
 			directiveValues:      []string{"bar", "0", "2", "1", "/%{tx.0}/", "%{tx.critical_anomaly_score}"},
+		},
+	},
+	"testdata/test_43_colon.conf": {
+		0,
+		"",
+		ParserResult{
+			collections:     []string{"TX", "TX"},
+			operatorList:    []string{"unconditionalMatch"},
+			directiveList:   []string{"SecRule"},
+			collectionArgs:  []string{"paramcounter_ARGS_NAMES:folders.folders", "paramcounter_ARGS_NAMES:folders.folders"},
+			directiveValues: []string{"ruleRemoveTargetById", "921180"},
+			// directiveValues:      []string{"ruleRemoveTargetById", "921180;TX:paramcounter_ARGS_NAMES:folders.folders", "921180"},
+			assignmentOperations: []string{"="},
 		},
 	},
 }
