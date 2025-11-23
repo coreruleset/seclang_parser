@@ -13,6 +13,7 @@ from seclang_parser.SecLangParser import SecLangParser
 class ParserResult:
     """Stores results from parsing for test validation."""
 
+    comments: list[str] = field(default_factory=list)
     variables: list[str] = field(default_factory=list)
     negated_var_count: int = 0
     collection_length_count: int = 0
@@ -125,3 +126,10 @@ class TreeShapeListener(SecLangParserListener):
 
     def enterCtl_id(self, ctx: SecLangParser.Ctl_idContext):
         self.results.directive_values.append(ctx.getText())
+
+    def enterComment(self, ctx: SecLangParser.CommentContext):
+        # ctx.COMMENT() can be None if there is only a HASH without comment text
+        if ctx.COMMENT() is not None:
+            self.results.comments.append(ctx.COMMENT().getText())
+        else:
+            self.results.comments.append("")
