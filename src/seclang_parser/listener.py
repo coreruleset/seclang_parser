@@ -64,7 +64,7 @@ class TreeShapeListener(SecLangParserListener):
     def enterRemove_rule_by_tag(self, ctx: SecLangParser.Remove_rule_by_tagContext):
         self.results.directive_list.append(ctx.getText())
 
-    def enterValues(self, ctx: SecLangParser.ValuesContext):
+    def enterString_remove_rules_values(self, ctx: SecLangParser.String_remove_rules_valuesContext):
         self.results.directive_values.append(ctx.getText())
 
     def enterUpdate_target_by_id(self, ctx: SecLangParser.Update_target_by_idContext):
@@ -118,4 +118,10 @@ class TreeShapeListener(SecLangParserListener):
         self.results.setvar_operations.append(ctx.getText())
 
     def enterVar_assignment(self, ctx: SecLangParser.Var_assignmentContext):
+        self.results.directive_values.append(ctx.getText())
+
+    def enterCtl_action(self, ctx: SecLangParser.Ctl_actionContext):
+        self.results.directive_values.append(ctx.getText())
+
+    def enterCtl_id(self, ctx: SecLangParser.Ctl_idContext):
         self.results.directive_values.append(ctx.getText())
