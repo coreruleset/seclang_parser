@@ -43,3 +43,18 @@ class ParserErrorListener(RaisingErrorListener):
             for _ in range(start, stop + 1):
                 output += "^"
         return output
+
+
+class CustomErrorListener(ErrorListener):
+    """Error listener that collects errors without raising exceptions (for testing)."""
+
+    def __init__(self):
+        super().__init__()
+        self.errors = []
+
+    def syntaxError(self, recognizer, offending_symbol, line, column, msg, e):
+        if offending_symbol is None:
+            error = f"Recognition error at line {line}, column {column}: {msg}"
+        else:
+            error = f"Syntax error at line {line}, column {column}: {offending_symbol}"
+        self.errors.append(error)
