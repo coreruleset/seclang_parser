@@ -225,7 +225,6 @@ values:
     | CONFIG_VALUE_PATH
     | STRING
     | VARIABLE_NAME
-    | VAR_ASSIGNMENT
     | COMMA_SEPARATED_STRING
     | ACTION_CTL_BODY_PROCESSOR_TYPE
     | AUDIT_PARTS
@@ -434,6 +433,7 @@ flow_action_with_params:
 
 action_value:
     action_value_types
+    | SINGLE_QUOTE action_value_types SINGLE_QUOTE
     | SINGLE_QUOTE string_literal SINGLE_QUOTE
     ;
 
@@ -474,17 +474,23 @@ collection_value:
     ;
 
 setvar_action:
-    setvar_stmt assignment values
+    col_name DOT setvar_stmt assignment var_assignment
+    ;
+
+col_name:
+    COLLECTION_NAME_SETVAR
     ;
 
 setvar_stmt:
-    COLLECTION_ELEMENT
-    | COLLECTION_WITH_MACRO
-    | VARIABLE_NAME
+    (COLLECTION_ELEMENT | COLLECTION_WITH_MACRO MACRO_EXPANSION) +
     ;
 
 assignment:
     EQUAL
     | EQUALS_PLUS
     | EQUALS_MINUS
+    ;
+
+var_assignment:
+    VAR_ASSIGNMENT
     ;

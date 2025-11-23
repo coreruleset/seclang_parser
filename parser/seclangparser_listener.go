@@ -220,11 +220,17 @@ type SecLangParserListener interface {
 	// EnterSetvar_action is called when entering the setvar_action production.
 	EnterSetvar_action(c *Setvar_actionContext)
 
+	// EnterCol_name is called when entering the col_name production.
+	EnterCol_name(c *Col_nameContext)
+
 	// EnterSetvar_stmt is called when entering the setvar_stmt production.
 	EnterSetvar_stmt(c *Setvar_stmtContext)
 
 	// EnterAssignment is called when entering the assignment production.
 	EnterAssignment(c *AssignmentContext)
+
+	// EnterVar_assignment is called when entering the var_assignment production.
+	EnterVar_assignment(c *Var_assignmentContext)
 
 	// ExitConfiguration is called when exiting the configuration production.
 	ExitConfiguration(c *ConfigurationContext)
@@ -439,9 +445,15 @@ type SecLangParserListener interface {
 	// ExitSetvar_action is called when exiting the setvar_action production.
 	ExitSetvar_action(c *Setvar_actionContext)
 
+	// ExitCol_name is called when exiting the col_name production.
+	ExitCol_name(c *Col_nameContext)
+
 	// ExitSetvar_stmt is called when exiting the setvar_stmt production.
 	ExitSetvar_stmt(c *Setvar_stmtContext)
 
 	// ExitAssignment is called when exiting the assignment production.
 	ExitAssignment(c *AssignmentContext)
+
+	// ExitVar_assignment is called when exiting the var_assignment production.
+	ExitVar_assignment(c *Var_assignmentContext)
 }
