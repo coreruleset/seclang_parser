@@ -136,6 +136,14 @@ func (s *BaseSecLangParserListener) EnterRemove_rule_by_tag(ctx *Remove_rule_by_
 // ExitRemove_rule_by_tag is called when production remove_rule_by_tag is exited.
 func (s *BaseSecLangParserListener) ExitRemove_rule_by_tag(ctx *Remove_rule_by_tagContext) {}
 
+// EnterString_remove_rules_values is called when production string_remove_rules_values is entered.
+func (s *BaseSecLangParserListener) EnterString_remove_rules_values(ctx *String_remove_rules_valuesContext) {
+}
+
+// ExitString_remove_rules_values is called when production string_remove_rules_values is exited.
+func (s *BaseSecLangParserListener) ExitString_remove_rules_values(ctx *String_remove_rules_valuesContext) {
+}
+
 // EnterUpdate_target_by_id is called when production update_target_by_id is entered.
 func (s *BaseSecLangParserListener) EnterUpdate_target_by_id(ctx *Update_target_by_idContext) {}
 
@@ -497,3 +505,9 @@ func (s *BaseSecLangParserListener) EnterVar_assignment(ctx *Var_assignmentConte
 
 // ExitVar_assignment is called when production var_assignment is exited.
 func (s *BaseSecLangParserListener) ExitVar_assignment(ctx *Var_assignmentContext) {}
+
+// EnterCtl_id is called when production ctl_id is entered.
+func (s *BaseSecLangParserListener) EnterCtl_id(ctx *Ctl_idContext) {}
+
+// ExitCtl_id is called when production ctl_id is exited.
+func (s *BaseSecLangParserListener) ExitCtl_id(ctx *Ctl_idContext) {}

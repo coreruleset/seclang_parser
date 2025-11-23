@@ -29,8 +29,8 @@ stmt:
     | comment? rule_script_directive file_path actions?
     | comment? rule_script_directive QUOTE file_path QUOTE actions?
     | comment? remove_rule_by_id remove_rule_by_id_values+
-    | comment? string_remove_rules values
-    | comment? string_remove_rules QUOTE values QUOTE
+    | comment? string_remove_rules string_remove_rules_values
+    | comment? string_remove_rules QUOTE string_remove_rules_values QUOTE
     | comment? update_target_rules update_target_rules_values update_variables
     | comment? update_target_rules QUOTE update_target_rules_values QUOTE update_variables
     | comment? update_target_rules update_target_rules_values update_variables PIPE new_target
@@ -151,6 +151,12 @@ string_remove_rules:
     | CONFIG_SEC_RULE_REMOVE_BY_TAG # remove_rule_by_tag
     ;
 
+string_remove_rules_values:
+    STRING
+    | VARIABLE_NAME
+    | COMMA_SEPARATED_STRING
+    ;
+
 update_target_rules:
     CONFIG_SEC_RULE_UPDATE_TARGET_BY_ID # update_target_by_id
     | CONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG # update_target_by_msg
@@ -232,9 +238,8 @@ values:
     ;
 
 action_ctl_target_value:
-    (INT | IDENT | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI variable_enum
-    | (INT | IDENT | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI collection_enum (COLON collection_value)?
-
+    (ctl_id | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI variable_enum
+    | (ctl_id | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI collection_enum (COLON collection_value)?
     ;
 
 update_target_rules_values:
@@ -493,4 +498,9 @@ assignment:
 
 var_assignment:
     VAR_ASSIGNMENT
+    ;
+
+ctl_id:
+    INT
+    | IDENT
     ;
