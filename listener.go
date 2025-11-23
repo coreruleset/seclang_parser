@@ -13,6 +13,7 @@ import (
 )
 
 type ParserResult struct {
+	Comments              []string `yaml:"comments"`
 	Variables             []string `yaml:"variables"`
 	NegatedVarCount       int      `yaml:"negated_var_count"`
 	CollectionLengthCount int      `yaml:"collection_length_count"`
@@ -182,6 +183,15 @@ func (l *TreeShapeListener) EnterCtl_action(ctx *parser.Ctl_actionContext) {
 
 func (l *TreeShapeListener) EnterCtl_id(ctx *parser.Ctl_idContext) {
 	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterComment(ctx *parser.CommentContext) {
+	// ctx.COMMENT() can be nil if there is only a HASH without comment text
+	if ctx.COMMENT() != nil {
+		l.results.Comments = append(l.results.Comments, ctx.COMMENT().GetText())
+	} else {
+		l.results.Comments = append(l.results.Comments, "")
+	}
 }
 
 func (l *TreeShapeListener) EnterTransformation_action_value(ctx *parser.Transformation_action_valueContext) {

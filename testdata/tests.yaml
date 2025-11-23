@@ -212,6 +212,8 @@ check_output_tests:
     error_count: 0
     comment: ""
     expected_result:
+      comments:
+        - " Test comment"
       variables:
         - REQUEST_FILENAME
         - REQUEST_URI
@@ -248,6 +250,29 @@ check_output_tests:
     error_count: 0
     comment: ""
     expected_result:
+      comments:
+        - ""
+        - " -=[ Default setup values ]=-"
+        - ""
+        - " The CRS checks the tx.crs_setup_version variable to ensure that the setup"
+        - " file is included at the correct time. This detects situations where"
+        - " necessary settings are not defined, for instance if the file"
+        - " inclusion order is incorrect, or if the user has forgotten to"
+        - " include the crs-setup.conf file."
+        - ""
+        - " If you are upgrading from an earlier version of the CRS and you are"
+        - " getting this error, please make a new copy of the setup template"
+        - " crs-setup.conf.example to crs-setup.conf, and re-apply your policy"
+        - " changes. There have been many changes in settings syntax from CRS2"
+        - " to CRS3, so an old setup file may cause unwanted behavior."
+        - ""
+        - " If you are not planning to use the crs-setup.conf template, you must"
+        - " manually set the tx.crs_setup_version variable before including"
+        - " the CRS rules/* files."
+        - ""
+        - " The variable is a numerical representation of the CRS version number."
+        - " E.g., v3.0.0 is represented as 300."
+        - ""
       variables:
         - REQUEST_URI
       negated_var_count: 2
@@ -315,6 +340,9 @@ check_output_tests:
     error_count: 0
     comment: ""
     expected_result:
+      comments:
+        - " Force body variable"
+        - " Force body processor URLENCODED"
       variables:
         - REQBODY_PROCESSOR
         - REQBODY_PROCESSOR

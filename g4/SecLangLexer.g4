@@ -23,16 +23,12 @@ tokens {
 }
 
 WS
-   : ([ \t\r\n]+ | '\\' '\n' | '\\')  -> skip
+   : ([ \t\r\n\\]+)  -> skip
    ;
 
-COMMENT
-   : ('#' .*? '\r'? '\n')+ '\n'?
+HASH
+   : '#' -> pushMode(COMMENT_MODE)
    ;
-
-SPACE
-    : ' '
-    ;
 
 PIPE_DEFAULT
     : '|' -> type(PIPE)
@@ -1387,3 +1383,14 @@ AT
 OPERATOR_QUOTED_STRING
     : (('\\"') | ~([" @!])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
     ;
+
+
+mode COMMENT_MODE;
+
+COMMENT
+   : (~[\r\n] | '\\' '\r'? '\n')+
+   ;
+
+NEWLINE_COMMENT
+   : '\r'? '\n' -> skip,popMode
+   ;
