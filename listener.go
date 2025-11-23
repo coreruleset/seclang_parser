@@ -28,7 +28,7 @@ type ParserResult struct {
 	rangeEndEvents        []int
 	setvarCollections     []string
 	setvarNames           []string
-	setvarOperations      []string
+	assignmentOperations  []string
 }
 
 type TreeShapeListener struct {
@@ -104,7 +104,7 @@ func (l *TreeShapeListener) EnterRemove_rule_by_tag(ctx *parser.Remove_rule_by_t
 	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
 }
 
-func (l *TreeShapeListener) EnterValues(ctx *parser.ValuesContext) {
+func (l *TreeShapeListener) EnterString_remove_rules_values(ctx *parser.String_remove_rules_valuesContext) {
 	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
 }
 
@@ -169,9 +169,17 @@ func (l *TreeShapeListener) EnterSetvar_stmt(ctx *parser.Setvar_stmtContext) {
 }
 
 func (l *TreeShapeListener) EnterAssignment(ctx *parser.AssignmentContext) {
-	l.results.setvarOperations = append(l.results.setvarOperations, ctx.GetText())
+	l.results.assignmentOperations = append(l.results.assignmentOperations, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterVar_assignment(ctx *parser.Var_assignmentContext) {
+	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterCtl_action(ctx *parser.Ctl_actionContext) {
+	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterCtl_id(ctx *parser.Ctl_idContext) {
 	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
 }

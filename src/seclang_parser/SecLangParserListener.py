@@ -170,6 +170,15 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#string_remove_rules_values.
+    def enterString_remove_rules_values(self, ctx:SecLangParser.String_remove_rules_valuesContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#string_remove_rules_values.
+    def exitString_remove_rules_values(self, ctx:SecLangParser.String_remove_rules_valuesContext):
+        pass
+
+
     # Enter a parse tree produced by SecLangParser#update_target_by_id.
     def enterUpdate_target_by_id(self, ctx:SecLangParser.Update_target_by_idContext):
         pass
@@ -680,6 +689,15 @@ class SecLangParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SecLangParser#var_assignment.
     def exitVar_assignment(self, ctx:SecLangParser.Var_assignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by SecLangParser#ctl_id.
+    def enterCtl_id(self, ctx:SecLangParser.Ctl_idContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#ctl_id.
+    def exitCtl_id(self, ctx:SecLangParser.Ctl_idContext):
         pass
 
 

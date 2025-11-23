@@ -358,6 +358,18 @@ CHECK_OUTPUT_TESTS = {
             directive_values=["bar", "0", "2", "1", "/%{tx.0}/", "%{tx.critical_anomaly_score}"],
         ),
     },
+    "testdata/test_43_colon.conf": {
+        "error_count": 0,
+        "comment": "",
+        "expected_result": ParserResult(
+            collections=["TX", "TX"],
+            operator_list=["unconditionalMatch"],
+            directive_list=["SecRule"],
+            collection_args=["paramcounter_ARGS_NAMES:folders.folders", "paramcounter_ARGS_NAMES:folders.folders"],
+            directive_values=["ruleRemoveTargetById", "921180"],
+            setvar_operations=["="],
+        ),
+    },
 }
 
 

@@ -61,6 +61,9 @@ type SecLangParserListener interface {
 	// EnterRemove_rule_by_tag is called when entering the remove_rule_by_tag production.
 	EnterRemove_rule_by_tag(c *Remove_rule_by_tagContext)
 
+	// EnterString_remove_rules_values is called when entering the string_remove_rules_values production.
+	EnterString_remove_rules_values(c *String_remove_rules_valuesContext)
+
 	// EnterUpdate_target_by_id is called when entering the update_target_by_id production.
 	EnterUpdate_target_by_id(c *Update_target_by_idContext)
 
@@ -232,6 +235,9 @@ type SecLangParserListener interface {
 	// EnterVar_assignment is called when entering the var_assignment production.
 	EnterVar_assignment(c *Var_assignmentContext)
 
+	// EnterCtl_id is called when entering the ctl_id production.
+	EnterCtl_id(c *Ctl_idContext)
+
 	// ExitConfiguration is called when exiting the configuration production.
 	ExitConfiguration(c *ConfigurationContext)
 
@@ -285,6 +291,9 @@ type SecLangParserListener interface {
 
 	// ExitRemove_rule_by_tag is called when exiting the remove_rule_by_tag production.
 	ExitRemove_rule_by_tag(c *Remove_rule_by_tagContext)
+
+	// ExitString_remove_rules_values is called when exiting the string_remove_rules_values production.
+	ExitString_remove_rules_values(c *String_remove_rules_valuesContext)
 
 	// ExitUpdate_target_by_id is called when exiting the update_target_by_id production.
 	ExitUpdate_target_by_id(c *Update_target_by_idContext)
@@ -456,4 +465,7 @@ type SecLangParserListener interface {
 
 	// ExitVar_assignment is called when exiting the var_assignment production.
 	ExitVar_assignment(c *Var_assignmentContext)
+
+	// ExitCtl_id is called when exiting the ctl_id production.
+	ExitCtl_id(c *Ctl_idContext)
 }
