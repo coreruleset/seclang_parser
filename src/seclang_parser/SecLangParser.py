@@ -53,8 +53,8 @@ def serializedATN():
         9,36,1,37,1,37,1,38,1,38,1,38,1,38,3,38,507,8,38,3,38,509,8,38,1,
         39,1,39,1,40,1,40,1,41,1,41,1,41,1,41,5,41,519,8,41,10,41,12,41,
         522,9,41,1,41,1,41,1,42,1,42,1,42,3,42,529,8,42,1,42,3,42,532,8,
-        42,1,42,1,42,1,42,1,42,1,42,1,42,1,42,3,42,541,8,42,1,43,1,43,1,
-        43,1,43,1,43,1,43,3,43,549,8,43,1,44,1,44,1,45,1,45,1,46,1,46,1,
+        42,1,42,1,42,1,42,1,42,1,42,1,42,1,42,1,42,1,42,1,42,3,42,544,8,
+        42,1,43,1,43,1,43,3,43,549,8,43,1,44,1,44,1,45,1,45,1,46,1,46,1,
         47,1,47,1,47,1,47,1,47,3,47,562,8,47,1,48,1,48,1,48,1,48,1,48,1,
         48,1,48,1,48,3,48,572,8,48,1,49,1,49,1,50,1,50,1,51,1,51,1,52,1,
         52,1,53,1,53,1,53,1,53,1,53,1,53,1,53,1,53,1,53,3,53,591,8,53,1,
@@ -80,7 +80,7 @@ def serializedATN():
         56,394,1,0,0,0,58,396,1,0,0,0,60,414,1,0,0,0,62,416,1,0,0,0,64,436,
         1,0,0,0,66,438,1,0,0,0,68,440,1,0,0,0,70,443,1,0,0,0,72,472,1,0,
         0,0,74,500,1,0,0,0,76,508,1,0,0,0,78,510,1,0,0,0,80,512,1,0,0,0,
-        82,514,1,0,0,0,84,540,1,0,0,0,86,548,1,0,0,0,88,550,1,0,0,0,90,552,
+        82,514,1,0,0,0,84,543,1,0,0,0,86,548,1,0,0,0,88,550,1,0,0,0,90,552,
         1,0,0,0,92,554,1,0,0,0,94,561,1,0,0,0,96,571,1,0,0,0,98,573,1,0,
         0,0,100,575,1,0,0,0,102,577,1,0,0,0,104,579,1,0,0,0,106,590,1,0,
         0,0,108,603,1,0,0,0,110,605,1,0,0,0,112,607,1,0,0,0,114,609,1,0,
@@ -215,14 +215,14 @@ def serializedATN():
         5,1,0,0,524,83,1,0,0,0,525,526,3,94,47,0,526,528,5,4,0,0,527,529,
         5,10,0,0,528,527,1,0,0,0,528,529,1,0,0,0,529,531,1,0,0,0,530,532,
         5,3,0,0,531,530,1,0,0,0,531,532,1,0,0,0,532,533,1,0,0,0,533,534,
-        3,106,53,0,534,541,1,0,0,0,535,536,3,94,47,0,536,537,5,4,0,0,537,
-        538,3,106,53,0,538,541,1,0,0,0,539,541,3,86,43,0,540,525,1,0,0,0,
-        540,535,1,0,0,0,540,539,1,0,0,0,541,85,1,0,0,0,542,549,3,88,44,0,
-        543,549,3,90,45,0,544,549,3,92,46,0,545,546,5,84,0,0,546,547,5,4,
-        0,0,547,549,3,114,57,0,548,542,1,0,0,0,548,543,1,0,0,0,548,544,1,
-        0,0,0,548,545,1,0,0,0,549,87,1,0,0,0,550,551,7,6,0,0,551,89,1,0,
-        0,0,552,553,7,7,0,0,553,91,1,0,0,0,554,555,5,33,0,0,555,93,1,0,0,
-        0,556,562,3,96,48,0,557,562,3,98,49,0,558,562,3,100,50,0,559,562,
+        3,106,53,0,534,544,1,0,0,0,535,536,3,94,47,0,536,537,5,4,0,0,537,
+        538,3,106,53,0,538,544,1,0,0,0,539,540,5,84,0,0,540,541,5,4,0,0,
+        541,544,3,114,57,0,542,544,3,86,43,0,543,525,1,0,0,0,543,535,1,0,
+        0,0,543,539,1,0,0,0,543,542,1,0,0,0,544,85,1,0,0,0,545,549,3,88,
+        44,0,546,549,3,90,45,0,547,549,3,92,46,0,548,545,1,0,0,0,548,546,
+        1,0,0,0,548,547,1,0,0,0,549,87,1,0,0,0,550,551,7,6,0,0,551,89,1,
+        0,0,0,552,553,7,7,0,0,553,91,1,0,0,0,554,555,5,33,0,0,555,93,1,0,
+        0,0,556,562,3,96,48,0,557,562,3,98,49,0,558,562,3,100,50,0,559,562,
         3,104,52,0,560,562,3,102,51,0,561,556,1,0,0,0,561,557,1,0,0,0,561,
         558,1,0,0,0,561,559,1,0,0,0,561,560,1,0,0,0,562,95,1,0,0,0,563,572,
         5,61,0,0,564,572,5,50,0,0,565,572,5,54,0,0,566,572,5,55,0,0,567,
@@ -252,7 +252,7 @@ def serializedATN():
         129,1,0,0,0,68,133,139,145,148,153,156,163,166,172,175,181,189,196,
         205,214,225,232,236,270,276,290,302,309,323,336,363,371,381,387,
         389,394,400,405,414,422,427,431,436,443,446,449,453,457,460,464,
-        468,472,475,478,482,486,489,493,497,506,508,520,528,531,540,548,
+        468,472,475,478,482,486,489,493,497,506,508,520,528,531,543,548,
         561,571,590,603,614,627,629
     ]
 
@@ -4403,6 +4403,13 @@ class SecLangParser ( Parser ):
         def EQUAL(self):
             return self.getToken(SecLangParser.EQUAL, 0)
 
+        def ACTION_TRANSFORMATION(self):
+            return self.getToken(SecLangParser.ACTION_TRANSFORMATION, 0)
+
+        def transformation_action_value(self):
+            return self.getTypedRuleContext(SecLangParser.Transformation_action_valueContext,0)
+
+
         def action_only(self):
             return self.getTypedRuleContext(SecLangParser.Action_onlyContext,0)
 
@@ -4427,7 +4434,7 @@ class SecLangParser ( Parser ):
         self.enterRule(localctx, 84, self.RULE_action)
         self._la = 0 # Token type
         try:
-            self.state = 540
+            self.state = 543
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,59,self._ctx)
             if la_ == 1:
@@ -4469,6 +4476,16 @@ class SecLangParser ( Parser ):
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 539
+                self.match(SecLangParser.ACTION_TRANSFORMATION)
+                self.state = 540
+                self.match(SecLangParser.COLON)
+                self.state = 541
+                self.transformation_action_value()
+                pass
+
+            elif la_ == 4:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 542
                 self.action_only()
                 pass
 
@@ -4501,16 +4518,6 @@ class SecLangParser ( Parser ):
             return self.getTypedRuleContext(SecLangParser.Flow_action_onlyContext,0)
 
 
-        def ACTION_TRANSFORMATION(self):
-            return self.getToken(SecLangParser.ACTION_TRANSFORMATION, 0)
-
-        def COLON(self):
-            return self.getToken(SecLangParser.COLON, 0)
-
-        def transformation_action_value(self):
-            return self.getTypedRuleContext(SecLangParser.Transformation_action_valueContext,0)
-
-
         def getRuleIndex(self):
             return SecLangParser.RULE_action_only
 
@@ -4535,27 +4542,18 @@ class SecLangParser ( Parser ):
             token = self._input.LA(1)
             if token in [28, 31, 45, 47, 59, 60]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 542
+                self.state = 545
                 self.disruptive_action_only()
                 pass
             elif token in [30, 32, 53, 56, 57, 58, 68]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 543
+                self.state = 546
                 self.non_disruptive_action_only()
                 pass
             elif token in [33]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 544
-                self.flow_action_only()
-                pass
-            elif token in [84]:
-                self.enterOuterAlt(localctx, 4)
-                self.state = 545
-                self.match(SecLangParser.ACTION_TRANSFORMATION)
-                self.state = 546
-                self.match(SecLangParser.COLON)
                 self.state = 547
-                self.transformation_action_value()
+                self.flow_action_only()
                 pass
             else:
                 raise NoViableAltException(self)

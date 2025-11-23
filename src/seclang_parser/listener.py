@@ -125,3 +125,6 @@ class TreeShapeListener(SecLangParserListener):
 
     def enterCtl_id(self, ctx: SecLangParser.Ctl_idContext):
         self.results.directive_values.append(ctx.getText())
+
+    def enterTransformation_action_value(self, ctx: SecLangParser.Transformation_action_valueContext):
+        self.results.directive_values.append(ctx.getText())
