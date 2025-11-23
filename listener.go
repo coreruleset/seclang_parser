@@ -13,22 +13,23 @@ import (
 )
 
 type ParserResult struct {
-	Variables            []string `yaml:"variables"`
-	NegatedVarCount      int      `yaml:"negated_var_count"`
-	CollectionLengthCount int     `yaml:"collection_length_count"`
-	Collections          []string `yaml:"collections"`
-	CollectionArgs       []string `yaml:"collection_args"`
-	OperatorList         []string `yaml:"operator_list"`
-	OperatorValueList    []string `yaml:"operator_value_list"`
-	NegatedOperatorCount int      `yaml:"negated_operator_count"`
-	DirectiveList        []string `yaml:"directive_list"`
-	DirectiveValues      []string `yaml:"directive_values"`
-	RangeEvents          []string `yaml:"range_events"`
-	RangeStartEvents     []int    `yaml:"range_start_events"`
-	RangeEndEvents       []int    `yaml:"range_end_events"`
-	SetvarCollections    []string `yaml:"setvar_collections"`
-	SetvarNames          []string `yaml:"setvar_names"`
-	SetvarOperations     []string `yaml:"setvar_operations"`
+	Comments              []string `yaml:"comments"`
+	Variables             []string `yaml:"variables"`
+	NegatedVarCount       int      `yaml:"negated_var_count"`
+	CollectionLengthCount int      `yaml:"collection_length_count"`
+	Collections           []string `yaml:"collections"`
+	CollectionArgs        []string `yaml:"collection_args"`
+	OperatorList          []string `yaml:"operator_list"`
+	OperatorValueList     []string `yaml:"operator_value_list"`
+	NegatedOperatorCount  int      `yaml:"negated_operator_count"`
+	DirectiveList         []string `yaml:"directive_list"`
+	DirectiveValues       []string `yaml:"directive_values"`
+	RangeEvents           []string `yaml:"range_events"`
+	RangeStartEvents      []int    `yaml:"range_start_events"`
+	RangeEndEvents        []int    `yaml:"range_end_events"`
+	SetvarCollections     []string `yaml:"setvar_collections"`
+	SetvarNames           []string `yaml:"setvar_names"`
+	SetvarOperations      []string `yaml:"setvar_operations"`
 }
 
 type TreeShapeListener struct {
@@ -182,4 +183,13 @@ func (l *TreeShapeListener) EnterCtl_action(ctx *parser.Ctl_actionContext) {
 
 func (l *TreeShapeListener) EnterCtl_id(ctx *parser.Ctl_idContext) {
 	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterComment(ctx *parser.CommentContext) {
+	// ctx.COMMENT() can be nil if there is only a HASH without comment text
+	if ctx.COMMENT() != nil {
+		l.results.Comments = append(l.results.Comments, ctx.COMMENT().GetText())
+	} else {
+		l.results.Comments = append(l.results.Comments, "")
+	}
 }
