@@ -238,6 +238,8 @@ check_output_tests:
         - SecRuleUpdateTargetByTag
         - SecRuleUpdateTargetByMsg
       directive_values:
+        - "none"
+        - "compressWhitespace"
         - "12345"
         - "958895"
         - "981172"
@@ -366,6 +368,8 @@ check_output_tests:
         - SecRule
         - SecRule
         - SecRule
+      directive_values:
+        - "none"
   testdata/test_42_setvar.conf:
     error_count: 0
     comment: ""

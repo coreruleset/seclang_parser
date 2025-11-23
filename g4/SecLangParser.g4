@@ -349,6 +349,7 @@ actions:
 action:
     action_with_params COLON NOT? EQUAL? action_value
     | action_with_params COLON action_value
+    | ACTION_TRANSFORMATION COLON transformation_action_value
     | action_only
     ;
 
@@ -356,7 +357,6 @@ action_only:
     disruptive_action_only
     | non_disruptive_action_only
     | flow_action_only
-    | ACTION_TRANSFORMATION COLON transformation_action_value
     ;
 
 disruptive_action_only:

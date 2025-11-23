@@ -193,3 +193,7 @@ func (l *TreeShapeListener) EnterComment(ctx *parser.CommentContext) {
 		l.results.Comments = append(l.results.Comments, "")
 	}
 }
+
+func (l *TreeShapeListener) EnterTransformation_action_value(ctx *parser.Transformation_action_valueContext) {
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
+}

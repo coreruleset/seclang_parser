@@ -238,32 +238,32 @@ func seclangparserParserInit() {
 		3, 38, 549, 8, 38, 3, 38, 551, 8, 38, 1, 39, 1, 39, 1, 40, 1, 40, 1, 41,
 		1, 41, 1, 41, 1, 41, 5, 41, 561, 8, 41, 10, 41, 12, 41, 564, 9, 41, 1,
 		41, 1, 41, 1, 42, 1, 42, 1, 42, 3, 42, 571, 8, 42, 1, 42, 3, 42, 574, 8,
-		42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 3, 42, 583, 8, 42,
-		1, 43, 1, 43, 1, 43, 1, 43, 1, 43, 1, 43, 3, 43, 591, 8, 43, 1, 44, 1,
-		44, 1, 45, 1, 45, 1, 46, 1, 46, 1, 47, 1, 47, 1, 47, 1, 47, 1, 47, 3, 47,
-		604, 8, 47, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 3,
-		48, 614, 8, 48, 1, 49, 1, 49, 1, 50, 1, 50, 1, 51, 1, 51, 1, 52, 1, 52,
-		1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 3, 53, 633,
-		8, 53, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1,
-		54, 1, 54, 3, 54, 646, 8, 54, 1, 55, 1, 55, 1, 56, 1, 56, 1, 57, 1, 57,
-		1, 58, 1, 58, 1, 58, 3, 58, 657, 8, 58, 1, 59, 1, 59, 1, 59, 1, 59, 1,
-		59, 1, 59, 1, 60, 1, 60, 1, 61, 1, 61, 1, 61, 4, 61, 670, 8, 61, 11, 61,
-		12, 61, 671, 1, 62, 1, 62, 1, 63, 1, 63, 1, 64, 1, 64, 1, 64, 0, 0, 65,
-		0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36,
-		38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72,
-		74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106,
-		108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 0, 15, 8, 0, 132,
-		140, 151, 168, 170, 176, 179, 179, 181, 181, 183, 184, 186, 186, 210, 217,
-		3, 0, 226, 226, 234, 234, 242, 242, 3, 0, 141, 150, 194, 198, 228, 228,
-		1, 0, 90, 126, 1, 0, 86, 87, 2, 0, 85, 85, 88, 88, 5, 0, 27, 27, 30, 30,
-		44, 44, 46, 46, 58, 59, 5, 0, 29, 29, 31, 31, 52, 52, 55, 57, 67, 67, 1,
-		0, 62, 63, 8, 0, 28, 28, 33, 33, 45, 45, 47, 48, 50, 51, 61, 61, 65, 66,
-		68, 74, 2, 0, 79, 79, 82, 82, 1, 0, 77, 78, 1, 0, 34, 43, 2, 0, 3, 3, 5,
-		6, 1, 0, 227, 228, 750, 0, 133, 1, 0, 0, 0, 2, 276, 1, 0, 0, 0, 4, 278,
-		1, 0, 0, 0, 6, 282, 1, 0, 0, 0, 8, 312, 1, 0, 0, 0, 10, 318, 1, 0, 0, 0,
-		12, 320, 1, 0, 0, 0, 14, 322, 1, 0, 0, 0, 16, 324, 1, 0, 0, 0, 18, 326,
-		1, 0, 0, 0, 20, 328, 1, 0, 0, 0, 22, 332, 1, 0, 0, 0, 24, 334, 1, 0, 0,
-		0, 26, 338, 1, 0, 0, 0, 28, 340, 1, 0, 0, 0, 30, 344, 1, 0, 0, 0, 32, 346,
+		42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42, 1, 42,
+		3, 42, 586, 8, 42, 1, 43, 1, 43, 1, 43, 3, 43, 591, 8, 43, 1, 44, 1, 44,
+		1, 45, 1, 45, 1, 46, 1, 46, 1, 47, 1, 47, 1, 47, 1, 47, 1, 47, 3, 47, 604,
+		8, 47, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 1, 48, 3, 48, 614,
+		8, 48, 1, 49, 1, 49, 1, 50, 1, 50, 1, 51, 1, 51, 1, 52, 1, 52, 1, 53, 1,
+		53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 1, 53, 3, 53, 633, 8, 53,
+		1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1, 54, 1,
+		54, 3, 54, 646, 8, 54, 1, 55, 1, 55, 1, 56, 1, 56, 1, 57, 1, 57, 1, 58,
+		1, 58, 1, 58, 3, 58, 657, 8, 58, 1, 59, 1, 59, 1, 59, 1, 59, 1, 59, 1,
+		59, 1, 60, 1, 60, 1, 61, 1, 61, 1, 61, 4, 61, 670, 8, 61, 11, 61, 12, 61,
+		671, 1, 62, 1, 62, 1, 63, 1, 63, 1, 64, 1, 64, 1, 64, 0, 0, 65, 0, 2, 4,
+		6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
+		44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78,
+		80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112,
+		114, 116, 118, 120, 122, 124, 126, 128, 0, 15, 8, 0, 132, 140, 151, 168,
+		170, 176, 179, 179, 181, 181, 183, 184, 186, 186, 210, 217, 3, 0, 226,
+		226, 234, 234, 242, 242, 3, 0, 141, 150, 194, 198, 228, 228, 1, 0, 90,
+		126, 1, 0, 86, 87, 2, 0, 85, 85, 88, 88, 5, 0, 27, 27, 30, 30, 44, 44,
+		46, 46, 58, 59, 5, 0, 29, 29, 31, 31, 52, 52, 55, 57, 67, 67, 1, 0, 62,
+		63, 8, 0, 28, 28, 33, 33, 45, 45, 47, 48, 50, 51, 61, 61, 65, 66, 68, 74,
+		2, 0, 79, 79, 82, 82, 1, 0, 77, 78, 1, 0, 34, 43, 2, 0, 3, 3, 5, 6, 1,
+		0, 227, 228, 750, 0, 133, 1, 0, 0, 0, 2, 276, 1, 0, 0, 0, 4, 278, 1, 0,
+		0, 0, 6, 282, 1, 0, 0, 0, 8, 312, 1, 0, 0, 0, 10, 318, 1, 0, 0, 0, 12,
+		320, 1, 0, 0, 0, 14, 322, 1, 0, 0, 0, 16, 324, 1, 0, 0, 0, 18, 326, 1,
+		0, 0, 0, 20, 328, 1, 0, 0, 0, 22, 332, 1, 0, 0, 0, 24, 334, 1, 0, 0, 0,
+		26, 338, 1, 0, 0, 0, 28, 340, 1, 0, 0, 0, 30, 344, 1, 0, 0, 0, 32, 346,
 		1, 0, 0, 0, 34, 351, 1, 0, 0, 0, 36, 353, 1, 0, 0, 0, 38, 355, 1, 0, 0,
 		0, 40, 357, 1, 0, 0, 0, 42, 359, 1, 0, 0, 0, 44, 370, 1, 0, 0, 0, 46, 374,
 		1, 0, 0, 0, 48, 378, 1, 0, 0, 0, 50, 380, 1, 0, 0, 0, 52, 405, 1, 0, 0,
@@ -271,7 +271,7 @@ func seclangparserParserInit() {
 		1, 0, 0, 0, 62, 458, 1, 0, 0, 0, 64, 478, 1, 0, 0, 0, 66, 480, 1, 0, 0,
 		0, 68, 482, 1, 0, 0, 0, 70, 485, 1, 0, 0, 0, 72, 514, 1, 0, 0, 0, 74, 542,
 		1, 0, 0, 0, 76, 550, 1, 0, 0, 0, 78, 552, 1, 0, 0, 0, 80, 554, 1, 0, 0,
-		0, 82, 556, 1, 0, 0, 0, 84, 582, 1, 0, 0, 0, 86, 590, 1, 0, 0, 0, 88, 592,
+		0, 82, 556, 1, 0, 0, 0, 84, 585, 1, 0, 0, 0, 86, 590, 1, 0, 0, 0, 88, 592,
 		1, 0, 0, 0, 90, 594, 1, 0, 0, 0, 92, 596, 1, 0, 0, 0, 94, 603, 1, 0, 0,
 		0, 96, 613, 1, 0, 0, 0, 98, 615, 1, 0, 0, 0, 100, 617, 1, 0, 0, 0, 102,
 		619, 1, 0, 0, 0, 104, 621, 1, 0, 0, 0, 106, 632, 1, 0, 0, 0, 108, 645,
@@ -450,13 +450,13 @@ func seclangparserParserInit() {
 		5, 4, 0, 0, 569, 571, 5, 10, 0, 0, 570, 569, 1, 0, 0, 0, 570, 571, 1, 0,
 		0, 0, 571, 573, 1, 0, 0, 0, 572, 574, 5, 3, 0, 0, 573, 572, 1, 0, 0, 0,
 		573, 574, 1, 0, 0, 0, 574, 575, 1, 0, 0, 0, 575, 576, 3, 106, 53, 0, 576,
-		583, 1, 0, 0, 0, 577, 578, 3, 94, 47, 0, 578, 579, 5, 4, 0, 0, 579, 580,
-		3, 106, 53, 0, 580, 583, 1, 0, 0, 0, 581, 583, 3, 86, 43, 0, 582, 567,
-		1, 0, 0, 0, 582, 577, 1, 0, 0, 0, 582, 581, 1, 0, 0, 0, 583, 85, 1, 0,
-		0, 0, 584, 591, 3, 88, 44, 0, 585, 591, 3, 90, 45, 0, 586, 591, 3, 92,
-		46, 0, 587, 588, 5, 83, 0, 0, 588, 589, 5, 4, 0, 0, 589, 591, 3, 114, 57,
-		0, 590, 584, 1, 0, 0, 0, 590, 585, 1, 0, 0, 0, 590, 586, 1, 0, 0, 0, 590,
-		587, 1, 0, 0, 0, 591, 87, 1, 0, 0, 0, 592, 593, 7, 6, 0, 0, 593, 89, 1,
+		586, 1, 0, 0, 0, 577, 578, 3, 94, 47, 0, 578, 579, 5, 4, 0, 0, 579, 580,
+		3, 106, 53, 0, 580, 586, 1, 0, 0, 0, 581, 582, 5, 83, 0, 0, 582, 583, 5,
+		4, 0, 0, 583, 586, 3, 114, 57, 0, 584, 586, 3, 86, 43, 0, 585, 567, 1,
+		0, 0, 0, 585, 577, 1, 0, 0, 0, 585, 581, 1, 0, 0, 0, 585, 584, 1, 0, 0,
+		0, 586, 85, 1, 0, 0, 0, 587, 591, 3, 88, 44, 0, 588, 591, 3, 90, 45, 0,
+		589, 591, 3, 92, 46, 0, 590, 587, 1, 0, 0, 0, 590, 588, 1, 0, 0, 0, 590,
+		589, 1, 0, 0, 0, 591, 87, 1, 0, 0, 0, 592, 593, 7, 6, 0, 0, 593, 89, 1,
 		0, 0, 0, 594, 595, 7, 7, 0, 0, 595, 91, 1, 0, 0, 0, 596, 597, 5, 32, 0,
 		0, 597, 93, 1, 0, 0, 0, 598, 604, 3, 96, 48, 0, 599, 604, 3, 98, 49, 0,
 		600, 604, 3, 100, 50, 0, 601, 604, 3, 104, 52, 0, 602, 604, 3, 102, 51,
@@ -495,7 +495,7 @@ func seclangparserParserInit() {
 		189, 198, 209, 219, 231, 243, 257, 267, 274, 276, 280, 312, 318, 332, 344,
 		351, 365, 378, 405, 413, 423, 429, 431, 436, 442, 447, 456, 464, 469, 473,
 		478, 485, 488, 491, 495, 499, 502, 506, 510, 514, 517, 520, 524, 528, 531,
-		535, 539, 548, 550, 562, 570, 573, 582, 590, 603, 613, 632, 645, 656, 669,
+		535, 539, 548, 550, 562, 570, 573, 585, 590, 603, 613, 632, 645, 656, 669,
 		671,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
@@ -9118,6 +9118,8 @@ type IActionContext interface {
 	Action_value() IAction_valueContext
 	NOT() antlr.TerminalNode
 	EQUAL() antlr.TerminalNode
+	ACTION_TRANSFORMATION() antlr.TerminalNode
+	Transformation_action_value() ITransformation_action_valueContext
 	Action_only() IAction_onlyContext
 
 	// IsActionContext differentiates from other interfaces.
@@ -9200,6 +9202,26 @@ func (s *ActionContext) EQUAL() antlr.TerminalNode {
 	return s.GetToken(SecLangParserEQUAL, 0)
 }
 
+func (s *ActionContext) ACTION_TRANSFORMATION() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_TRANSFORMATION, 0)
+}
+
+func (s *ActionContext) Transformation_action_value() ITransformation_action_valueContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITransformation_action_valueContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITransformation_action_valueContext)
+}
+
 func (s *ActionContext) Action_only() IAction_onlyContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
@@ -9241,7 +9263,7 @@ func (p *SecLangParser) Action_() (localctx IActionContext) {
 	p.EnterRule(localctx, 84, SecLangParserRULE_action)
 	var _la int
 
-	p.SetState(582)
+	p.SetState(585)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -9326,6 +9348,29 @@ func (p *SecLangParser) Action_() (localctx IActionContext) {
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(581)
+			p.Match(SecLangParserACTION_TRANSFORMATION)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(582)
+			p.Match(SecLangParserCOLON)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(583)
+			p.Transformation_action_value()
+		}
+
+	case 4:
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(584)
 			p.Action_only()
 		}
 
@@ -9357,9 +9402,6 @@ type IAction_onlyContext interface {
 	Disruptive_action_only() IDisruptive_action_onlyContext
 	Non_disruptive_action_only() INon_disruptive_action_onlyContext
 	Flow_action_only() IFlow_action_onlyContext
-	ACTION_TRANSFORMATION() antlr.TerminalNode
-	COLON() antlr.TerminalNode
-	Transformation_action_value() ITransformation_action_valueContext
 
 	// IsAction_onlyContext differentiates from other interfaces.
 	IsAction_onlyContext()
@@ -9445,30 +9487,6 @@ func (s *Action_onlyContext) Flow_action_only() IFlow_action_onlyContext {
 	return t.(IFlow_action_onlyContext)
 }
 
-func (s *Action_onlyContext) ACTION_TRANSFORMATION() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_TRANSFORMATION, 0)
-}
-
-func (s *Action_onlyContext) COLON() antlr.TerminalNode {
-	return s.GetToken(SecLangParserCOLON, 0)
-}
-
-func (s *Action_onlyContext) Transformation_action_value() ITransformation_action_valueContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ITransformation_action_valueContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITransformation_action_valueContext)
-}
-
 func (s *Action_onlyContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -9502,45 +9520,22 @@ func (p *SecLangParser) Action_only() (localctx IAction_onlyContext) {
 	case SecLangParserACTION_ALLOW, SecLangParserACTION_BLOCK, SecLangParserACTION_DENY, SecLangParserACTION_DROP, SecLangParserACTION_PASS, SecLangParserACTION_PAUSE:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(584)
+			p.SetState(587)
 			p.Disruptive_action_only()
 		}
 
 	case SecLangParserACTION_AUDIT_LOG, SecLangParserACTION_CAPTURE, SecLangParserACTION_LOG, SecLangParserACTION_MULTI_MATCH, SecLangParserACTION_NO_AUDIT_LOG, SecLangParserACTION_NO_LOG, SecLangParserACTION_SANITISE_MATCHED:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(585)
+			p.SetState(588)
 			p.Non_disruptive_action_only()
 		}
 
 	case SecLangParserACTION_CHAIN:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(586)
-			p.Flow_action_only()
-		}
-
-	case SecLangParserACTION_TRANSFORMATION:
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(587)
-			p.Match(SecLangParserACTION_TRANSFORMATION)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-		{
-			p.SetState(588)
-			p.Match(SecLangParserCOLON)
-			if p.HasError() {
-				// Recognition error - abort rule
-				goto errorExit
-			}
-		}
-		{
 			p.SetState(589)
-			p.Transformation_action_value()
+			p.Flow_action_only()
 		}
 
 	default:
