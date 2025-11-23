@@ -13,22 +13,22 @@ import (
 )
 
 type ParserResult struct {
-	variables             []string
-	negatedVarCount       int
-	collectionLengthCount int
-	collections           []string
-	collectionArgs        []string
-	operatorList          []string
-	operatorValueList     []string
-	negatedOperatorCount  int
-	directiveList         []string
-	directiveValues       []string
-	rangeEvents           []string
-	rangeStartEvents      []int
-	rangeEndEvents        []int
-	setvarCollections     []string
-	setvarNames           []string
-	assignmentOperations  []string
+	Variables            []string `yaml:"variables"`
+	NegatedVarCount      int      `yaml:"negated_var_count"`
+	CollectionLengthCount int     `yaml:"collection_length_count"`
+	Collections          []string `yaml:"collections"`
+	CollectionArgs       []string `yaml:"collection_args"`
+	OperatorList         []string `yaml:"operator_list"`
+	OperatorValueList    []string `yaml:"operator_value_list"`
+	NegatedOperatorCount int      `yaml:"negated_operator_count"`
+	DirectiveList        []string `yaml:"directive_list"`
+	DirectiveValues      []string `yaml:"directive_values"`
+	RangeEvents          []string `yaml:"range_events"`
+	RangeStartEvents     []int    `yaml:"range_start_events"`
+	RangeEndEvents       []int    `yaml:"range_end_events"`
+	SetvarCollections    []string `yaml:"setvar_collections"`
+	SetvarNames          []string `yaml:"setvar_names"`
+	SetvarOperations     []string `yaml:"setvar_operations"`
 }
 
 type TreeShapeListener struct {
@@ -65,7 +65,7 @@ func (t *TreeShapeListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
 }
 
 func (l *TreeShapeListener) EnterInt_range(ctx *parser.Int_rangeContext) {
-	l.results.rangeEvents = append(l.results.rangeEvents, ctx.GetText())
+	l.results.RangeEvents = append(l.results.RangeEvents, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterRange_start(ctx *parser.Range_startContext) {
@@ -73,7 +73,7 @@ func (l *TreeShapeListener) EnterRange_start(ctx *parser.Range_startContext) {
 	if err != nil {
 		panic(err)
 	}
-	l.results.rangeStartEvents = append(l.results.rangeStartEvents, i)
+	l.results.RangeStartEvents = append(l.results.RangeStartEvents, i)
 }
 
 func (l *TreeShapeListener) EnterRange_end(ctx *parser.Range_endContext) {
@@ -81,105 +81,105 @@ func (l *TreeShapeListener) EnterRange_end(ctx *parser.Range_endContext) {
 	if err != nil {
 		panic(err)
 	}
-	l.results.rangeEndEvents = append(l.results.rangeEndEvents, i)
+	l.results.RangeEndEvents = append(l.results.RangeEndEvents, i)
 }
 
 func (l *TreeShapeListener) EnterRemove_rule_by_id(ctx *parser.Remove_rule_by_idContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterRemove_rule_by_id_int(ctx *parser.Remove_rule_by_id_intContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterRemove_rule_by_id_int_range(ctx *parser.Remove_rule_by_id_int_rangeContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterRemove_rule_by_msg(ctx *parser.Remove_rule_by_msgContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterRemove_rule_by_tag(ctx *parser.Remove_rule_by_tagContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterString_remove_rules_values(ctx *parser.String_remove_rules_valuesContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterUpdate_target_by_id(ctx *parser.Update_target_by_idContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterUpdate_target_by_msg(ctx *parser.Update_target_by_msgContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterUpdate_target_by_tag(ctx *parser.Update_target_by_tagContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterUpdate_target_rules_values(ctx *parser.Update_target_rules_valuesContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterVariable_enum(ctx *parser.Variable_enumContext) {
-	l.results.variables = append(l.results.variables, ctx.GetText())
+	l.results.Variables = append(l.results.Variables, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterCollection_enum(ctx *parser.Collection_enumContext) {
-	l.results.collections = append(l.results.collections, ctx.GetText())
+	l.results.Collections = append(l.results.Collections, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterCollection_value(ctx *parser.Collection_valueContext) {
-	l.results.collectionArgs = append(l.results.collectionArgs, ctx.GetText())
+	l.results.CollectionArgs = append(l.results.CollectionArgs, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterVar_not(ctx *parser.Var_notContext) {
-	l.results.negatedVarCount++
+	l.results.NegatedVarCount++
 }
 
 func (l *TreeShapeListener) EnterVar_count(ctx *parser.Var_countContext) {
-	l.results.collectionLengthCount++
+	l.results.CollectionLengthCount++
 }
 
 func (l *TreeShapeListener) EnterRules_directive(ctx *parser.Rules_directiveContext) {
-	l.results.directiveList = append(l.results.directiveList, ctx.GetText())
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterOperator_name(ctx *parser.Operator_nameContext) {
-	l.results.operatorList = append(l.results.operatorList, ctx.GetText())
+	l.results.OperatorList = append(l.results.OperatorList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterOperator_value(ctx *parser.Operator_valueContext) {
-	l.results.operatorValueList = append(l.results.operatorValueList, ctx.GetText())
+	l.results.OperatorValueList = append(l.results.OperatorValueList, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterOperator_not(ctx *parser.Operator_notContext) {
-	l.results.negatedOperatorCount++
+	l.results.NegatedOperatorCount++
 }
 
 func (l *TreeShapeListener) EnterCol_name(ctx *parser.Col_nameContext) {
-	l.results.setvarCollections = append(l.results.setvarCollections, ctx.GetText())
+	l.results.SetvarCollections = append(l.results.SetvarCollections, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterSetvar_stmt(ctx *parser.Setvar_stmtContext) {
-	l.results.setvarNames = append(l.results.setvarNames, ctx.GetText())
+	l.results.SetvarNames = append(l.results.SetvarNames, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterAssignment(ctx *parser.AssignmentContext) {
-	l.results.assignmentOperations = append(l.results.assignmentOperations, ctx.GetText())
+	l.results.SetvarOperations = append(l.results.SetvarOperations, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterVar_assignment(ctx *parser.Var_assignmentContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterCtl_action(ctx *parser.Ctl_actionContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
 
 func (l *TreeShapeListener) EnterCtl_id(ctx *parser.Ctl_idContext) {
-	l.results.directiveValues = append(l.results.directiveValues, ctx.GetText())
+	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
 }
