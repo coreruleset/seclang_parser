@@ -511,3 +511,15 @@ func (s *BaseSecLangParserListener) EnterCtl_id(ctx *Ctl_idContext) {}
 
 // ExitCtl_id is called when production ctl_id is exited.
 func (s *BaseSecLangParserListener) ExitCtl_id(ctx *Ctl_idContext) {}
+
+// EnterNewline_indent is called when production newline_indent is entered.
+func (s *BaseSecLangParserListener) EnterNewline_indent(ctx *Newline_indentContext) {}
+
+// ExitNewline_indent is called when production newline_indent is exited.
+func (s *BaseSecLangParserListener) ExitNewline_indent(ctx *Newline_indentContext) {}
+
+// EnterInline_indent is called when production inline_indent is entered.
+func (s *BaseSecLangParserListener) EnterInline_indent(ctx *Inline_indentContext) {}
+
+// ExitInline_indent is called when production inline_indent is exited.
+func (s *BaseSecLangParserListener) ExitInline_indent(ctx *Inline_indentContext) {}

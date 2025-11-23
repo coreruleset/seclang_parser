@@ -25,9 +25,9 @@ configuration
      ;
 
 stmt:
-    comment? rules_directive variables operator actions?
-    | comment? rule_script_directive file_path actions?
-    | comment? rule_script_directive QUOTE file_path QUOTE actions?
+    comment? newline_indent? inline_indent* rules_directive variables operator actions?
+    | comment? newline_indent? inline_indent* rule_script_directive file_path actions?
+    | comment? newline_indent? inline_indent*rule_script_directive QUOTE file_path QUOTE actions?
     | comment? remove_rule_by_id remove_rule_by_id_values+
     | comment? string_remove_rules string_remove_rules_values
     | comment? string_remove_rules QUOTE string_remove_rules_values QUOTE
@@ -36,7 +36,7 @@ stmt:
     | comment? update_target_rules update_target_rules_values update_variables PIPE new_target
     | comment? update_target_rules QUOTE update_target_rules_values QUOTE update_variables PIPE new_target
     | comment? update_action_rule id actions
-    | comment? engine_config_directive
+    | comment? newline_indent? inline_indent* engine_config_directive
     | comment;
 
 comment:
@@ -50,7 +50,7 @@ rules_directive:
 engine_config_directive:
     stmt_audit_log values
     | stmt_audit_log QUOTE values QUOTE
-    | engine_config_action_directive actions
+    | newline_indent? inline_indent* engine_config_action_directive actions
     | string_engine_config_directive QUOTE values QUOTE
     | sec_marker_directive QUOTE values QUOTE
     | engine_config_directive_with_param values
@@ -343,7 +343,7 @@ collection_enum:
     ;
 
 actions:
-    QUOTE action (COMMA action)* QUOTE
+    newline_indent? inline_indent* QUOTE action newline_indent? inline_indent* (COMMA newline_indent? inline_indent* action)* QUOTE
     ;
 
 action:
@@ -503,4 +503,12 @@ var_assignment:
 ctl_id:
     INT
     | IDENT
+    ;
+
+newline_indent:
+    NEW_LINE_INDENT_BLOCK
+    ;
+
+inline_indent:
+    INLINE_INDENT_BLOCK
     ;

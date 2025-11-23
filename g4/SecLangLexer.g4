@@ -19,11 +19,19 @@ limitations under the License.
 lexer grammar SecLangLexer;
 
 tokens {
-	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE, CONFIG_VALUE_PATH, NOT
+	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE, CONFIG_VALUE_PATH, NOT, NEW_LINE_INDENT_BLOCK, INLINE_INDENT_BLOCK
 }
 
+NEW_LINE_INDENT_BLOCK_DEFAULT
+	: '\\'? '\n    ' -> type(NEW_LINE_INDENT_BLOCK)
+	;
+
+INLINE_INDENT_BLOCK_DEFAULT
+	: '    ' -> type(INLINE_INDENT_BLOCK)
+	;
+
 WS
-   : ([ \t\r\n]+ | '\\' '\n' | '\\')  -> skip
+   : ([ \t\r\n] | '\\')  -> skip
    ;
 
 COMMENT

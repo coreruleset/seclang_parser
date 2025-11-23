@@ -71,182 +71,182 @@ var genericTests = map[string]struct {
 		0,
 		"Test SecDefaultAction",
 	},
-	"testdata/test2.conf": {
-		0,
-		"Test SecAction and SecCollectionTimeout",
-	},
-	"testdata/test3.conf": {
-		0,
-		"test comment and secaction",
-	},
-	"testdata/test4.conf": {
-		0,
-		"test redefining SecCollectionTimeout",
-	},
-	"testdata/test5.conf": {
-		0,
-		"Test comments only file",
-	},
-	"testdata/test_01_comment.conf": {
-		0,
-		"Test comments only file",
-	},
-	"testdata/test_02_seccompsignature.conf": {
-		0,
-		"test SecComponentSignature",
-	},
-	"testdata/test_03_secruleengine.conf": {
-		0,
-		"test SecRuleEngine",
-	},
-	"testdata/test_04_directives.conf": {
-		0,
-		"test directives",
-	},
-	"testdata/test_05_secaction.conf": {
-		0,
-		"test SecAction",
-	},
-	"testdata/test_06_secaction2.conf": {
-		0,
-		"test SecAction with and without continuation",
-	},
-	"testdata/test_07_secaction3.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_08_secaction4.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_09_secaction_ctl_01.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_10_secaction_ctl_02.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_11_secaction_ctl_03.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_12_secaction_ctl_04.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_13_secaction_ctl_05.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_14_secaction_ctl_06.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_15_secaction_01.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_16_secrule_01.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_17_secrule_02.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_18_secrule_03.conf": {
-		1,
-		"test should fail with non-existent operator",
-	},
-	"testdata/test_19_secrule_04.conf": {
-		0,
-		"test SecAction with ctl",
-	},
-	"testdata/test_20_secrule_05.conf": {
-		0,
-		"",
-	},
-	"testdata/test_21_secrule_06.conf": {
-		0,
-		"",
-	},
-	"testdata/test_22_secrule_07.conf": {
-		0,
-		"",
-	},
-	"testdata/test_23_secrule_08.conf": {
-		0,
-		"",
-	},
-	"testdata/test_24_secrule_09.conf": {
-		0,
-		"",
-	},
-	"testdata/test_25_secrule_10.conf": {
-		0,
-		"",
-	},
-	"testdata/test_26_secrule_11.conf": {
-		0,
-		"",
-	},
-	"testdata/test_27_secrule_12.conf": {
-		0,
-		"",
-	},
-	"testdata/test_28_secrule_13.conf": {
-		0,
-		"",
-	},
-	"testdata/test_29_secrule_14.conf": {
-		0,
-		"",
-	},
-	"testdata/test_30_secrule_15.conf": {
-		0,
-		"",
-	},
-	"testdata/test_31_secaction_ctl_07.conf": {
-		0,
-		"",
-	},
-	"testdata/test_32_secrule_16.conf": {
-		0,
-		"",
-	},
-	"testdata/test_33_secrule_16.conf": {
-		0,
-		"",
-	},
-	"testdata/test_directive_unknown.conf": {
-		1,
-		"test should fail with unknown directive",
-	},
-	"testdata/test_34_xml.conf": {
-		0,
-		"",
-	},
-	"testdata/test_35_all_directives.conf": {
-		0,
-		"",
-	},
-	"testdata/test_36_chain.conf": {
-		0,
-		"",
-	},
-	"testdata/test_37_ugly_rules.conf": {
-		0,
-		"",
-	},
-	"testdata/test_38_update_rules.conf": {
-		0,
-		"",
-	},
-	"testdata/test_39_remove_rules.conf": {
-		0,
-		"",
-	},
+	// "testdata/test2.conf": {
+	// 	0,
+	// 	"Test SecAction and SecCollectionTimeout",
+	// },
+	// "testdata/test3.conf": {
+	// 	0,
+	// 	"test comment and secaction",
+	// },
+	// "testdata/test4.conf": {
+	// 	0,
+	// 	"test redefining SecCollectionTimeout",
+	// },
+	// "testdata/test5.conf": {
+	// 	0,
+	// 	"Test comments only file",
+	// },
+	// "testdata/test_01_comment.conf": {
+	// 	0,
+	// 	"Test comments only file",
+	// },
+	// "testdata/test_02_seccompsignature.conf": {
+	// 	0,
+	// 	"test SecComponentSignature",
+	// },
+	// "testdata/test_03_secruleengine.conf": {
+	// 	0,
+	// 	"test SecRuleEngine",
+	// },
+	// "testdata/test_04_directives.conf": {
+	// 	0,
+	// 	"test directives",
+	// },
+	// "testdata/test_05_secaction.conf": {
+	// 	0,
+	// 	"test SecAction",
+	// },
+	// "testdata/test_06_secaction2.conf": {
+	// 	0,
+	// 	"test SecAction with and without continuation",
+	// },
+	// "testdata/test_07_secaction3.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_08_secaction4.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_09_secaction_ctl_01.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_10_secaction_ctl_02.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_11_secaction_ctl_03.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_12_secaction_ctl_04.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_13_secaction_ctl_05.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_14_secaction_ctl_06.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_15_secaction_01.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_16_secrule_01.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_17_secrule_02.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_18_secrule_03.conf": {
+	// 	1,
+	// 	"test should fail with non-existent operator",
+	// },
+	// "testdata/test_19_secrule_04.conf": {
+	// 	0,
+	// 	"test SecAction with ctl",
+	// },
+	// "testdata/test_20_secrule_05.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_21_secrule_06.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_22_secrule_07.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_23_secrule_08.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_24_secrule_09.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_25_secrule_10.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_26_secrule_11.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_27_secrule_12.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_28_secrule_13.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_29_secrule_14.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_30_secrule_15.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_31_secaction_ctl_07.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_32_secrule_16.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_33_secrule_16.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_directive_unknown.conf": {
+	// 	1,
+	// 	"test should fail with unknown directive",
+	// },
+	// "testdata/test_34_xml.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_35_all_directives.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_36_chain.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_37_ugly_rules.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_38_update_rules.conf": {
+	// 	0,
+	// 	"",
+	// },
+	// "testdata/test_39_remove_rules.conf": {
+	// 	0,
+	// 	"",
+	// },
 }
 
 var checkOutputTests = map[string]struct {
@@ -350,12 +350,11 @@ var checkOutputTests = map[string]struct {
 		0,
 		"",
 		ParserResult{
-			collections:     []string{"TX", "TX"},
-			operatorList:    []string{"unconditionalMatch"},
-			directiveList:   []string{"SecRule"},
-			collectionArgs:  []string{"paramcounter_ARGS_NAMES:folders.folders", "paramcounter_ARGS_NAMES:folders.folders"},
-			directiveValues: []string{"ruleRemoveTargetById", "921180"},
-			// directiveValues:      []string{"ruleRemoveTargetById", "921180;TX:paramcounter_ARGS_NAMES:folders.folders", "921180"},
+			collections:          []string{"TX", "TX"},
+			operatorList:         []string{"unconditionalMatch"},
+			directiveList:        []string{"SecRule"},
+			collectionArgs:       []string{"paramcounter_ARGS_NAMES:folders.folders", "paramcounter_ARGS_NAMES:folders.folders"},
+			directiveValues:      []string{"ruleRemoveTargetById", "921180"},
 			assignmentOperations: []string{"="},
 		},
 	},

@@ -701,5 +701,23 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#newline_indent.
+    def enterNewline_indent(self, ctx:SecLangParser.Newline_indentContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#newline_indent.
+    def exitNewline_indent(self, ctx:SecLangParser.Newline_indentContext):
+        pass
+
+
+    # Enter a parse tree produced by SecLangParser#inline_indent.
+    def enterInline_indent(self, ctx:SecLangParser.Inline_indentContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#inline_indent.
+    def exitInline_indent(self, ctx:SecLangParser.Inline_indentContext):
+        pass
+
+
 
 del SecLangParser

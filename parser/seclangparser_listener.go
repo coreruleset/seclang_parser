@@ -238,6 +238,12 @@ type SecLangParserListener interface {
 	// EnterCtl_id is called when entering the ctl_id production.
 	EnterCtl_id(c *Ctl_idContext)
 
+	// EnterNewline_indent is called when entering the newline_indent production.
+	EnterNewline_indent(c *Newline_indentContext)
+
+	// EnterInline_indent is called when entering the inline_indent production.
+	EnterInline_indent(c *Inline_indentContext)
+
 	// ExitConfiguration is called when exiting the configuration production.
 	ExitConfiguration(c *ConfigurationContext)
 
@@ -468,4 +474,10 @@ type SecLangParserListener interface {
 
 	// ExitCtl_id is called when exiting the ctl_id production.
 	ExitCtl_id(c *Ctl_idContext)
+
+	// ExitNewline_indent is called when exiting the newline_indent production.
+	ExitNewline_indent(c *Newline_indentContext)
+
+	// ExitInline_indent is called when exiting the inline_indent production.
+	ExitInline_indent(c *Inline_indentContext)
 }
