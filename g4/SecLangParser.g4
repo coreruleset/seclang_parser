@@ -25,7 +25,7 @@ configuration
      ;
 
 stmt:
-    comment* rules_directive variables operator actions?
+    comment* engine_config_rule_directive variables operator actions?
     | comment* rule_script_directive file_path actions?
     | comment* rule_script_directive QUOTE file_path QUOTE actions?
     | comment* remove_rule_by_id remove_rule_by_id_values+
@@ -43,8 +43,8 @@ comment:
     HASH COMMENT?
     ;
 
-rules_directive:
-    CONFIG_DIRECTIVE_SEC_RULE
+engine_config_rule_directive:
+    CONFIG_DIR_SEC_RULE
     ;
 
 engine_config_directive:

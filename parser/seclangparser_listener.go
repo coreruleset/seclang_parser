@@ -16,8 +16,8 @@ type SecLangParserListener interface {
 	// EnterComment is called when entering the comment production.
 	EnterComment(c *CommentContext)
 
-	// EnterRules_directive is called when entering the rules_directive production.
-	EnterRules_directive(c *Rules_directiveContext)
+	// EnterEngine_config_rule_directive is called when entering the engine_config_rule_directive production.
+	EnterEngine_config_rule_directive(c *Engine_config_rule_directiveContext)
 
 	// EnterEngine_config_directive is called when entering the engine_config_directive production.
 	EnterEngine_config_directive(c *Engine_config_directiveContext)
@@ -247,8 +247,8 @@ type SecLangParserListener interface {
 	// ExitComment is called when exiting the comment production.
 	ExitComment(c *CommentContext)
 
-	// ExitRules_directive is called when exiting the rules_directive production.
-	ExitRules_directive(c *Rules_directiveContext)
+	// ExitEngine_config_rule_directive is called when exiting the engine_config_rule_directive production.
+	ExitEngine_config_rule_directive(c *Engine_config_rule_directiveContext)
 
 	// ExitEngine_config_directive is called when exiting the engine_config_directive production.
 	ExitEngine_config_directive(c *Engine_config_directiveContext)
