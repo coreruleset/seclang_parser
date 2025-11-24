@@ -1041,7 +1041,7 @@ CONFIG_DIR_SEC_TMP_DIR
 	: 'SecTmpDir' -> pushMode(FILE_PATH)
 	;
 
-DIRECTIVE
+CONFIG_DIRECTIVE_SEC_RULE
 	: 'SecRule'
 	;
 

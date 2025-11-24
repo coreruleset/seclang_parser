@@ -436,12 +436,12 @@ class SecLangParser ( Parser ):
                       "CONFIG_DIR_RESPONSE_BODY_MP", "CONFIG_DIR_RESPONSE_BODY_MP_CLEAR", 
                       "CONFIG_DIR_SEC_COOKIE_FORMAT", "CONFIG_SEC_COOKIEV0_SEPARATOR", 
                       "CONFIG_DIR_SEC_DATA_DIR", "CONFIG_DIR_SEC_STATUS_ENGINE", 
-                      "CONFIG_DIR_SEC_TMP_DIR", "DIRECTIVE", "DIRECTIVE_SECRULESCRIPT", 
-                      "OPTION_NAME", "SINGLE_QUOTE_BUT_SCAPED", "DOUBLE_SINGLE_QUOTE_BUT_SCAPED", 
-                      "COMMA_BUT_SCAPED", "NATIVE", "NEWLINE", "VARIABLE_NAME", 
-                      "IDENT", "INT", "DIGIT", "LETTER", "DICT_ELEMENT_REGEXP", 
-                      "FREE_TEXT_QUOTE_MACRO_EXPANSION", "WS_STRING_MODE", 
-                      "STRING", "MACRO_EXPANSION", "COLLECTION_NAME_SETVAR", 
+                      "CONFIG_DIR_SEC_TMP_DIR", "CONFIG_DIRECTIVE_SEC_RULE", 
+                      "DIRECTIVE_SECRULESCRIPT", "OPTION_NAME", "SINGLE_QUOTE_BUT_SCAPED", 
+                      "DOUBLE_SINGLE_QUOTE_BUT_SCAPED", "COMMA_BUT_SCAPED", 
+                      "NATIVE", "NEWLINE", "VARIABLE_NAME", "IDENT", "INT", 
+                      "DIGIT", "LETTER", "DICT_ELEMENT_REGEXP", "FREE_TEXT_QUOTE_MACRO_EXPANSION", 
+                      "WS_STRING_MODE", "STRING", "MACRO_EXPANSION", "COLLECTION_NAME_SETVAR", 
                       "DOT", "COLLECTION_ELEMENT", "COLLECTION_WITH_MACRO", 
                       "VAR_ASSIGNMENT", "SPACE_SETVAR_ASSIGNMENT", "COMMA_SEPARATED_STRING", 
                       "WS_FILE_PATH_MODE", "XPATH_EXPRESSION", "XPATH_MODE_POP_CHARS", 
@@ -759,7 +759,7 @@ class SecLangParser ( Parser ):
     CONFIG_DIR_SEC_DATA_DIR=215
     CONFIG_DIR_SEC_STATUS_ENGINE=216
     CONFIG_DIR_SEC_TMP_DIR=217
-    DIRECTIVE=218
+    CONFIG_DIRECTIVE_SEC_RULE=218
     DIRECTIVE_SECRULESCRIPT=219
     OPTION_NAME=220
     SINGLE_QUOTE_BUT_SCAPED=221
@@ -1368,8 +1368,8 @@ class SecLangParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def DIRECTIVE(self):
-            return self.getToken(SecLangParser.DIRECTIVE, 0)
+        def CONFIG_DIRECTIVE_SEC_RULE(self):
+            return self.getToken(SecLangParser.CONFIG_DIRECTIVE_SEC_RULE, 0)
 
         def getRuleIndex(self):
             return SecLangParser.RULE_rules_directive
@@ -1392,7 +1392,7 @@ class SecLangParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 282
-            self.match(SecLangParser.DIRECTIVE)
+            self.match(SecLangParser.CONFIG_DIRECTIVE_SEC_RULE)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

@@ -44,7 +44,7 @@ comment:
     ;
 
 rules_directive:
-    DIRECTIVE
+    CONFIG_DIRECTIVE_SEC_RULE
     ;
 
 engine_config_directive:
