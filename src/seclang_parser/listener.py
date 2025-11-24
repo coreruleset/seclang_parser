@@ -97,7 +97,7 @@ class TreeShapeListener(SecLangParserListener):
     def enterVar_count(self, ctx: SecLangParser.Var_countContext):
         self.results.collection_length_count += 1
 
-    def enterRules_directive(self, ctx: SecLangParser.Rules_directiveContext):
+    def enterEngine_config_rule_directive(self, ctx: SecLangParser.Engine_config_rule_directiveContext):
         self.results.directive_list.append(ctx.getText())
 
     def enterOperator_name(self, ctx: SecLangParser.Operator_nameContext):

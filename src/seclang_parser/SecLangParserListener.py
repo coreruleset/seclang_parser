@@ -35,12 +35,12 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SecLangParser#rules_directive.
-    def enterRules_directive(self, ctx:SecLangParser.Rules_directiveContext):
+    # Enter a parse tree produced by SecLangParser#engine_config_rule_directive.
+    def enterEngine_config_rule_directive(self, ctx:SecLangParser.Engine_config_rule_directiveContext):
         pass
 
-    # Exit a parse tree produced by SecLangParser#rules_directive.
-    def exitRules_directive(self, ctx:SecLangParser.Rules_directiveContext):
+    # Exit a parse tree produced by SecLangParser#engine_config_rule_directive.
+    def exitEngine_config_rule_directive(self, ctx:SecLangParser.Engine_config_rule_directiveContext):
         pass
 
 

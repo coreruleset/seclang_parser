@@ -145,7 +145,7 @@ func (l *TreeShapeListener) EnterVar_count(ctx *parser.Var_countContext) {
 	l.results.CollectionLengthCount++
 }
 
-func (l *TreeShapeListener) EnterRules_directive(ctx *parser.Rules_directiveContext) {
+func (l *TreeShapeListener) EnterEngine_config_rule_directive(ctx *parser.Engine_config_rule_directiveContext) {
 	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 

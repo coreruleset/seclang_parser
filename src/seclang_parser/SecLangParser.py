@@ -436,7 +436,7 @@ class SecLangParser ( Parser ):
                       "CONFIG_DIR_RESPONSE_BODY_MP", "CONFIG_DIR_RESPONSE_BODY_MP_CLEAR", 
                       "CONFIG_DIR_SEC_COOKIE_FORMAT", "CONFIG_SEC_COOKIEV0_SEPARATOR", 
                       "CONFIG_DIR_SEC_DATA_DIR", "CONFIG_DIR_SEC_STATUS_ENGINE", 
-                      "CONFIG_DIR_SEC_TMP_DIR", "DIRECTIVE", "DIRECTIVE_SECRULESCRIPT", 
+                      "CONFIG_DIR_SEC_TMP_DIR", "CONFIG_DIR_SEC_RULE", "DIRECTIVE_SECRULESCRIPT", 
                       "OPTION_NAME", "SINGLE_QUOTE_BUT_SCAPED", "DOUBLE_SINGLE_QUOTE_BUT_SCAPED", 
                       "COMMA_BUT_SCAPED", "NATIVE", "NEWLINE", "VARIABLE_NAME", 
                       "IDENT", "INT", "DIGIT", "LETTER", "DICT_ELEMENT_REGEXP", 
@@ -456,7 +456,7 @@ class SecLangParser ( Parser ):
     RULE_configuration = 0
     RULE_stmt = 1
     RULE_comment = 2
-    RULE_rules_directive = 3
+    RULE_engine_config_rule_directive = 3
     RULE_engine_config_directive = 4
     RULE_string_engine_config_directive = 5
     RULE_sec_marker_directive = 6
@@ -519,7 +519,7 @@ class SecLangParser ( Parser ):
     RULE_var_assignment = 63
     RULE_ctl_id = 64
 
-    ruleNames =  [ "configuration", "stmt", "comment", "rules_directive", 
+    ruleNames =  [ "configuration", "stmt", "comment", "engine_config_rule_directive", 
                    "engine_config_directive", "string_engine_config_directive", 
                    "sec_marker_directive", "engine_config_directive_with_param", 
                    "rule_script_directive", "file_path", "remove_rule_by_id", 
@@ -759,7 +759,7 @@ class SecLangParser ( Parser ):
     CONFIG_DIR_SEC_DATA_DIR=215
     CONFIG_DIR_SEC_STATUS_ENGINE=216
     CONFIG_DIR_SEC_TMP_DIR=217
-    DIRECTIVE=218
+    CONFIG_DIR_SEC_RULE=218
     DIRECTIVE_SECRULESCRIPT=219
     OPTION_NAME=220
     SINGLE_QUOTE_BUT_SCAPED=221
@@ -884,8 +884,8 @@ class SecLangParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def rules_directive(self):
-            return self.getTypedRuleContext(SecLangParser.Rules_directiveContext,0)
+        def engine_config_rule_directive(self):
+            return self.getTypedRuleContext(SecLangParser.Engine_config_rule_directiveContext,0)
 
 
         def variables(self):
@@ -1007,7 +1007,7 @@ class SecLangParser ( Parser ):
                     _la = self._input.LA(1)
 
                 self.state = 144
-                self.rules_directive()
+                self.engine_config_rule_directive()
                 self.state = 145
                 self.variables()
                 self.state = 146
@@ -1361,38 +1361,38 @@ class SecLangParser ( Parser ):
         return localctx
 
 
-    class Rules_directiveContext(ParserRuleContext):
+    class Engine_config_rule_directiveContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def DIRECTIVE(self):
-            return self.getToken(SecLangParser.DIRECTIVE, 0)
+        def CONFIG_DIR_SEC_RULE(self):
+            return self.getToken(SecLangParser.CONFIG_DIR_SEC_RULE, 0)
 
         def getRuleIndex(self):
-            return SecLangParser.RULE_rules_directive
+            return SecLangParser.RULE_engine_config_rule_directive
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRules_directive" ):
-                listener.enterRules_directive(self)
+            if hasattr( listener, "enterEngine_config_rule_directive" ):
+                listener.enterEngine_config_rule_directive(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRules_directive" ):
-                listener.exitRules_directive(self)
+            if hasattr( listener, "exitEngine_config_rule_directive" ):
+                listener.exitEngine_config_rule_directive(self)
 
 
 
 
-    def rules_directive(self):
+    def engine_config_rule_directive(self):
 
-        localctx = SecLangParser.Rules_directiveContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_rules_directive)
+        localctx = SecLangParser.Engine_config_rule_directiveContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 6, self.RULE_engine_config_rule_directive)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 282
-            self.match(SecLangParser.DIRECTIVE)
+            self.match(SecLangParser.CONFIG_DIR_SEC_RULE)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

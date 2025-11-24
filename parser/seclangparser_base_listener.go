@@ -38,11 +38,13 @@ func (s *BaseSecLangParserListener) EnterComment(ctx *CommentContext) {}
 // ExitComment is called when production comment is exited.
 func (s *BaseSecLangParserListener) ExitComment(ctx *CommentContext) {}
 
-// EnterRules_directive is called when production rules_directive is entered.
-func (s *BaseSecLangParserListener) EnterRules_directive(ctx *Rules_directiveContext) {}
+// EnterEngine_config_rule_directive is called when production engine_config_rule_directive is entered.
+func (s *BaseSecLangParserListener) EnterEngine_config_rule_directive(ctx *Engine_config_rule_directiveContext) {
+}
 
-// ExitRules_directive is called when production rules_directive is exited.
-func (s *BaseSecLangParserListener) ExitRules_directive(ctx *Rules_directiveContext) {}
+// ExitEngine_config_rule_directive is called when production engine_config_rule_directive is exited.
+func (s *BaseSecLangParserListener) ExitEngine_config_rule_directive(ctx *Engine_config_rule_directiveContext) {
+}
 
 // EnterEngine_config_directive is called when production engine_config_directive is entered.
 func (s *BaseSecLangParserListener) EnterEngine_config_directive(ctx *Engine_config_directiveContext) {

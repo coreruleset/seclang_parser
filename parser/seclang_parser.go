@@ -146,25 +146,27 @@ func seclangparserParserInit() {
 		"CONFIG_VALUE_WARN", "CONFIG_XML_EXTERNAL_ENTITY", "CONFIG_DIR_RESPONSE_BODY_MP",
 		"CONFIG_DIR_RESPONSE_BODY_MP_CLEAR", "CONFIG_DIR_SEC_COOKIE_FORMAT",
 		"CONFIG_SEC_COOKIEV0_SEPARATOR", "CONFIG_DIR_SEC_DATA_DIR", "CONFIG_DIR_SEC_STATUS_ENGINE",
-		"CONFIG_DIR_SEC_TMP_DIR", "DIRECTIVE", "DIRECTIVE_SECRULESCRIPT", "OPTION_NAME",
-		"SINGLE_QUOTE_BUT_SCAPED", "DOUBLE_SINGLE_QUOTE_BUT_SCAPED", "COMMA_BUT_SCAPED",
-		"NATIVE", "NEWLINE", "VARIABLE_NAME", "IDENT", "INT", "DIGIT", "LETTER",
-		"DICT_ELEMENT_REGEXP", "FREE_TEXT_QUOTE_MACRO_EXPANSION", "WS_STRING_MODE",
-		"STRING", "MACRO_EXPANSION", "COLLECTION_NAME_SETVAR", "DOT", "COLLECTION_ELEMENT",
-		"COLLECTION_WITH_MACRO", "VAR_ASSIGNMENT", "SPACE_SETVAR_ASSIGNMENT",
-		"COMMA_SEPARATED_STRING", "WS_FILE_PATH_MODE", "XPATH_EXPRESSION", "XPATH_MODE_POP_CHARS",
-		"ACTION_CTL_BODY_PROCESSOR_TYPE", "STRING_LITERAL", "SPACE_COL", "SPACE_VAR",
-		"NEWLINE_VAR", "COLLECTION_ELEMENT_VALUE", "SPACE_COL_ELEM", "NEWLINE_COL_ELEM",
-		"SKIP_CHARS", "OPERATOR_UNQUOTED_STRING", "AT", "OPERATOR_QUOTED_STRING",
-		"COMMENT", "NEWLINE_COMMENT", "PIPE_DEFAULT", "COMMA_DEFAULT", "COLON_DEFAULT",
-		"EQUAL_DEFAULT", "NOT_DEFAULT", "QUOTE_DEFAULT", "SINGLE_QUOTE_SETVAR",
+		"CONFIG_DIR_SEC_TMP_DIR", "CONFIG_DIR_SEC_RULE", "DIRECTIVE_SECRULESCRIPT",
+		"OPTION_NAME", "SINGLE_QUOTE_BUT_SCAPED", "DOUBLE_SINGLE_QUOTE_BUT_SCAPED",
+		"COMMA_BUT_SCAPED", "NATIVE", "NEWLINE", "VARIABLE_NAME", "IDENT", "INT",
+		"DIGIT", "LETTER", "DICT_ELEMENT_REGEXP", "FREE_TEXT_QUOTE_MACRO_EXPANSION",
+		"WS_STRING_MODE", "STRING", "MACRO_EXPANSION", "COLLECTION_NAME_SETVAR",
+		"DOT", "COLLECTION_ELEMENT", "COLLECTION_WITH_MACRO", "VAR_ASSIGNMENT",
+		"SPACE_SETVAR_ASSIGNMENT", "COMMA_SEPARATED_STRING", "WS_FILE_PATH_MODE",
+		"XPATH_EXPRESSION", "XPATH_MODE_POP_CHARS", "ACTION_CTL_BODY_PROCESSOR_TYPE",
+		"STRING_LITERAL", "SPACE_COL", "SPACE_VAR", "NEWLINE_VAR", "COLLECTION_ELEMENT_VALUE",
+		"SPACE_COL_ELEM", "NEWLINE_COL_ELEM", "SKIP_CHARS", "OPERATOR_UNQUOTED_STRING",
+		"AT", "OPERATOR_QUOTED_STRING", "COMMENT", "NEWLINE_COMMENT", "PIPE_DEFAULT",
+		"COMMA_DEFAULT", "COLON_DEFAULT", "EQUAL_DEFAULT", "NOT_DEFAULT", "QUOTE_DEFAULT",
+		"SINGLE_QUOTE_SETVAR",
 	}
 	staticData.RuleNames = []string{
-		"configuration", "stmt", "comment", "rules_directive", "engine_config_directive",
-		"string_engine_config_directive", "sec_marker_directive", "engine_config_directive_with_param",
-		"rule_script_directive", "file_path", "remove_rule_by_id", "remove_rule_by_id_values",
-		"int_range", "range_start", "range_end", "string_remove_rules", "string_remove_rules_values",
-		"update_target_rules", "update_action_rule", "id", "engine_config_sec_cache_transformations",
+		"configuration", "stmt", "comment", "engine_config_rule_directive",
+		"engine_config_directive", "string_engine_config_directive", "sec_marker_directive",
+		"engine_config_directive_with_param", "rule_script_directive", "file_path",
+		"remove_rule_by_id", "remove_rule_by_id_values", "int_range", "range_start",
+		"range_end", "string_remove_rules", "string_remove_rules_values", "update_target_rules",
+		"update_action_rule", "id", "engine_config_sec_cache_transformations",
 		"option_list", "option", "option_name", "engine_config_action_directive",
 		"stmt_audit_log", "values", "action_ctl_target_value", "update_target_rules_values",
 		"operator_not", "operator", "operator_name", "operator_value", "var_not",
@@ -752,7 +754,7 @@ const (
 	SecLangParserCONFIG_DIR_SEC_DATA_DIR               = 215
 	SecLangParserCONFIG_DIR_SEC_STATUS_ENGINE          = 216
 	SecLangParserCONFIG_DIR_SEC_TMP_DIR                = 217
-	SecLangParserDIRECTIVE                             = 218
+	SecLangParserCONFIG_DIR_SEC_RULE                   = 218
 	SecLangParserDIRECTIVE_SECRULESCRIPT               = 219
 	SecLangParserOPTION_NAME                           = 220
 	SecLangParserSINGLE_QUOTE_BUT_SCAPED               = 221
@@ -808,7 +810,7 @@ const (
 	SecLangParserRULE_configuration                           = 0
 	SecLangParserRULE_stmt                                    = 1
 	SecLangParserRULE_comment                                 = 2
-	SecLangParserRULE_rules_directive                         = 3
+	SecLangParserRULE_engine_config_rule_directive            = 3
 	SecLangParserRULE_engine_config_directive                 = 4
 	SecLangParserRULE_string_engine_config_directive          = 5
 	SecLangParserRULE_sec_marker_directive                    = 6
@@ -1041,7 +1043,7 @@ type IStmtContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Rules_directive() IRules_directiveContext
+	Engine_config_rule_directive() IEngine_config_rule_directiveContext
 	Variables() IVariablesContext
 	Operator() IOperatorContext
 	AllComment() []ICommentContext
@@ -1101,10 +1103,10 @@ func NewStmtContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokin
 
 func (s *StmtContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *StmtContext) Rules_directive() IRules_directiveContext {
+func (s *StmtContext) Engine_config_rule_directive() IEngine_config_rule_directiveContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IRules_directiveContext); ok {
+		if _, ok := ctx.(IEngine_config_rule_directiveContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -1114,7 +1116,7 @@ func (s *StmtContext) Rules_directive() IRules_directiveContext {
 		return nil
 	}
 
-	return t.(IRules_directiveContext)
+	return t.(IEngine_config_rule_directiveContext)
 }
 
 func (s *StmtContext) Variables() IVariablesContext {
@@ -1509,7 +1511,7 @@ func (p *SecLangParser) Stmt() (localctx IStmtContext) {
 		}
 		{
 			p.SetState(144)
-			p.Rules_directive()
+			p.Engine_config_rule_directive()
 		}
 		{
 			p.SetState(145)
@@ -2190,83 +2192,83 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-// IRules_directiveContext is an interface to support dynamic dispatch.
-type IRules_directiveContext interface {
+// IEngine_config_rule_directiveContext is an interface to support dynamic dispatch.
+type IEngine_config_rule_directiveContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	DIRECTIVE() antlr.TerminalNode
+	CONFIG_DIR_SEC_RULE() antlr.TerminalNode
 
-	// IsRules_directiveContext differentiates from other interfaces.
-	IsRules_directiveContext()
+	// IsEngine_config_rule_directiveContext differentiates from other interfaces.
+	IsEngine_config_rule_directiveContext()
 }
 
-type Rules_directiveContext struct {
+type Engine_config_rule_directiveContext struct {
 	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyRules_directiveContext() *Rules_directiveContext {
-	var p = new(Rules_directiveContext)
+func NewEmptyEngine_config_rule_directiveContext() *Engine_config_rule_directiveContext {
+	var p = new(Engine_config_rule_directiveContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = SecLangParserRULE_rules_directive
+	p.RuleIndex = SecLangParserRULE_engine_config_rule_directive
 	return p
 }
 
-func InitEmptyRules_directiveContext(p *Rules_directiveContext) {
+func InitEmptyEngine_config_rule_directiveContext(p *Engine_config_rule_directiveContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = SecLangParserRULE_rules_directive
+	p.RuleIndex = SecLangParserRULE_engine_config_rule_directive
 }
 
-func (*Rules_directiveContext) IsRules_directiveContext() {}
+func (*Engine_config_rule_directiveContext) IsEngine_config_rule_directiveContext() {}
 
-func NewRules_directiveContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Rules_directiveContext {
-	var p = new(Rules_directiveContext)
+func NewEngine_config_rule_directiveContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Engine_config_rule_directiveContext {
+	var p = new(Engine_config_rule_directiveContext)
 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = SecLangParserRULE_rules_directive
+	p.RuleIndex = SecLangParserRULE_engine_config_rule_directive
 
 	return p
 }
 
-func (s *Rules_directiveContext) GetParser() antlr.Parser { return s.parser }
+func (s *Engine_config_rule_directiveContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Rules_directiveContext) DIRECTIVE() antlr.TerminalNode {
-	return s.GetToken(SecLangParserDIRECTIVE, 0)
+func (s *Engine_config_rule_directiveContext) CONFIG_DIR_SEC_RULE() antlr.TerminalNode {
+	return s.GetToken(SecLangParserCONFIG_DIR_SEC_RULE, 0)
 }
 
-func (s *Rules_directiveContext) GetRuleContext() antlr.RuleContext {
+func (s *Engine_config_rule_directiveContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *Rules_directiveContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *Engine_config_rule_directiveContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Rules_directiveContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *Engine_config_rule_directiveContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.EnterRules_directive(s)
+		listenerT.EnterEngine_config_rule_directive(s)
 	}
 }
 
-func (s *Rules_directiveContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *Engine_config_rule_directiveContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(SecLangParserListener); ok {
-		listenerT.ExitRules_directive(s)
+		listenerT.ExitEngine_config_rule_directive(s)
 	}
 }
 
-func (p *SecLangParser) Rules_directive() (localctx IRules_directiveContext) {
-	localctx = NewRules_directiveContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 6, SecLangParserRULE_rules_directive)
+func (p *SecLangParser) Engine_config_rule_directive() (localctx IEngine_config_rule_directiveContext) {
+	localctx = NewEngine_config_rule_directiveContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 6, SecLangParserRULE_engine_config_rule_directive)
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(282)
-		p.Match(SecLangParserDIRECTIVE)
+		p.Match(SecLangParserCONFIG_DIR_SEC_RULE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
@@ -11970,7 +11972,7 @@ func (p *SecLangParser) Collection_value() (localctx ICollection_valueContext) {
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case SecLangParserEOF, SecLangParserQUOTE, SecLangParserSINGLE_QUOTE, SecLangParserCOMMA, SecLangParserPIPE, SecLangParserHASH, SecLangParserVARIABLE_NAME_ENUM, SecLangParserUNKNOWN_VARIABLES, SecLangParserCONFIG_COMPONENT_SIG, SecLangParserCONFIG_SEC_SERVER_SIG, SecLangParserCONFIG_SEC_WEB_APP_ID, SecLangParserCONFIG_SEC_CACHE_TRANSFORMATIONS, SecLangParserCONFIG_SEC_CHROOT_DIR, SecLangParserCONFIG_CONN_ENGINE, SecLangParserCONFIG_SEC_HASH_ENGINE, SecLangParserCONFIG_SEC_HASH_KEY, SecLangParserCONFIG_SEC_HASH_PARAM, SecLangParserCONFIG_SEC_HASH_METHOD_RX, SecLangParserCONFIG_SEC_HASH_METHOD_PM, SecLangParserCONFIG_CONTENT_INJECTION, SecLangParserCONFIG_SEC_ARGUMENT_SEPARATOR, SecLangParserCONFIG_DIR_AUDIT_DIR, SecLangParserCONFIG_DIR_AUDIT_DIR_MOD, SecLangParserCONFIG_DIR_AUDIT_ENG, SecLangParserCONFIG_DIR_AUDIT_FILE_MODE, SecLangParserCONFIG_DIR_AUDIT_LOG2, SecLangParserCONFIG_DIR_AUDIT_LOG, SecLangParserCONFIG_DIR_AUDIT_LOG_FMT, SecLangParserCONFIG_DIR_AUDIT_LOG_P, SecLangParserCONFIG_DIR_AUDIT_STS, SecLangParserCONFIG_DIR_AUDIT_TYPE, SecLangParserCONFIG_DIR_DEBUG_LOG, SecLangParserCONFIG_DIR_DEBUG_LVL, SecLangParserCONFIG_DIR_GEO_DB, SecLangParserCONFIG_DIR_GSB_DB, SecLangParserCONFIG_SEC_GUARDIAN_LOG, SecLangParserCONFIG_SEC_INTERCEPT_ON_ERROR, SecLangParserCONFIG_SEC_CONN_R_STATE_LIMIT, SecLangParserCONFIG_SEC_CONN_W_STATE_LIMIT, SecLangParserCONFIG_SEC_SENSOR_ID, SecLangParserCONFIG_SEC_RULE_INHERITANCE, SecLangParserCONFIG_SEC_RULE_PERF_TIME, SecLangParserCONFIG_SEC_STREAM_IN_BODY_INSPECTION, SecLangParserCONFIG_SEC_STREAM_OUT_BODY_INSPECTION, SecLangParserCONFIG_DIR_PCRE_MATCH_LIMIT, SecLangParserCONFIG_DIR_PCRE_MATCH_LIMIT_RECURSION, SecLangParserCONFIG_DIR_ARGS_LIMIT, SecLangParserCONFIG_DIR_REQ_BODY_JSON_DEPTH_LIMIT, SecLangParserCONFIG_DIR_REQ_BODY, SecLangParserCONFIG_DIR_REQ_BODY_LIMIT, SecLangParserCONFIG_DIR_REQ_BODY_LIMIT_ACTION, SecLangParserCONFIG_DIR_REQ_BODY_NO_FILES_LIMIT, SecLangParserCONFIG_DIR_RES_BODY, SecLangParserCONFIG_DIR_RES_BODY_LIMIT, SecLangParserCONFIG_DIR_RES_BODY_LIMIT_ACTION, SecLangParserCONFIG_DIR_RULE_ENG, SecLangParserCONFIG_DIR_SEC_ACTION, SecLangParserCONFIG_DIR_SEC_DEFAULT_ACTION, SecLangParserCONFIG_SEC_DISABLE_BACKEND_COMPRESS, SecLangParserCONFIG_DIR_SEC_MARKER, SecLangParserCONFIG_DIR_UNICODE_MAP_FILE, SecLangParserCONFIG_SEC_COLLECTION_TIMEOUT, SecLangParserCONFIG_SEC_HTTP_BLKEY, SecLangParserCONFIG_SEC_REMOTE_RULES_FAIL_ACTION, SecLangParserCONFIG_SEC_RULE_REMOVE_BY_ID, SecLangParserCONFIG_SEC_RULE_REMOVE_BY_MSG, SecLangParserCONFIG_SEC_RULE_REMOVE_BY_TAG, SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG, SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG, SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_ID, SecLangParserCONFIG_SEC_RULE_UPDATE_ACTION_BY_ID, SecLangParserCONFIG_UPLOAD_KEEP_FILES, SecLangParserCONFIG_UPLOAD_SAVE_TMP_FILES, SecLangParserCONFIG_UPLOAD_DIR, SecLangParserCONFIG_UPLOAD_FILE_LIMIT, SecLangParserCONFIG_UPLOAD_FILE_MODE, SecLangParserCONFIG_XML_EXTERNAL_ENTITY, SecLangParserCONFIG_DIR_RESPONSE_BODY_MP, SecLangParserCONFIG_DIR_RESPONSE_BODY_MP_CLEAR, SecLangParserCONFIG_DIR_SEC_COOKIE_FORMAT, SecLangParserCONFIG_SEC_COOKIEV0_SEPARATOR, SecLangParserCONFIG_DIR_SEC_DATA_DIR, SecLangParserCONFIG_DIR_SEC_STATUS_ENGINE, SecLangParserCONFIG_DIR_SEC_TMP_DIR, SecLangParserDIRECTIVE, SecLangParserDIRECTIVE_SECRULESCRIPT, SecLangParserINT, SecLangParserSTRING, SecLangParserOPERATOR_UNQUOTED_STRING, SecLangParserOPERATOR_QUOTED_STRING:
+	case SecLangParserEOF, SecLangParserQUOTE, SecLangParserSINGLE_QUOTE, SecLangParserCOMMA, SecLangParserPIPE, SecLangParserHASH, SecLangParserVARIABLE_NAME_ENUM, SecLangParserUNKNOWN_VARIABLES, SecLangParserCONFIG_COMPONENT_SIG, SecLangParserCONFIG_SEC_SERVER_SIG, SecLangParserCONFIG_SEC_WEB_APP_ID, SecLangParserCONFIG_SEC_CACHE_TRANSFORMATIONS, SecLangParserCONFIG_SEC_CHROOT_DIR, SecLangParserCONFIG_CONN_ENGINE, SecLangParserCONFIG_SEC_HASH_ENGINE, SecLangParserCONFIG_SEC_HASH_KEY, SecLangParserCONFIG_SEC_HASH_PARAM, SecLangParserCONFIG_SEC_HASH_METHOD_RX, SecLangParserCONFIG_SEC_HASH_METHOD_PM, SecLangParserCONFIG_CONTENT_INJECTION, SecLangParserCONFIG_SEC_ARGUMENT_SEPARATOR, SecLangParserCONFIG_DIR_AUDIT_DIR, SecLangParserCONFIG_DIR_AUDIT_DIR_MOD, SecLangParserCONFIG_DIR_AUDIT_ENG, SecLangParserCONFIG_DIR_AUDIT_FILE_MODE, SecLangParserCONFIG_DIR_AUDIT_LOG2, SecLangParserCONFIG_DIR_AUDIT_LOG, SecLangParserCONFIG_DIR_AUDIT_LOG_FMT, SecLangParserCONFIG_DIR_AUDIT_LOG_P, SecLangParserCONFIG_DIR_AUDIT_STS, SecLangParserCONFIG_DIR_AUDIT_TYPE, SecLangParserCONFIG_DIR_DEBUG_LOG, SecLangParserCONFIG_DIR_DEBUG_LVL, SecLangParserCONFIG_DIR_GEO_DB, SecLangParserCONFIG_DIR_GSB_DB, SecLangParserCONFIG_SEC_GUARDIAN_LOG, SecLangParserCONFIG_SEC_INTERCEPT_ON_ERROR, SecLangParserCONFIG_SEC_CONN_R_STATE_LIMIT, SecLangParserCONFIG_SEC_CONN_W_STATE_LIMIT, SecLangParserCONFIG_SEC_SENSOR_ID, SecLangParserCONFIG_SEC_RULE_INHERITANCE, SecLangParserCONFIG_SEC_RULE_PERF_TIME, SecLangParserCONFIG_SEC_STREAM_IN_BODY_INSPECTION, SecLangParserCONFIG_SEC_STREAM_OUT_BODY_INSPECTION, SecLangParserCONFIG_DIR_PCRE_MATCH_LIMIT, SecLangParserCONFIG_DIR_PCRE_MATCH_LIMIT_RECURSION, SecLangParserCONFIG_DIR_ARGS_LIMIT, SecLangParserCONFIG_DIR_REQ_BODY_JSON_DEPTH_LIMIT, SecLangParserCONFIG_DIR_REQ_BODY, SecLangParserCONFIG_DIR_REQ_BODY_LIMIT, SecLangParserCONFIG_DIR_REQ_BODY_LIMIT_ACTION, SecLangParserCONFIG_DIR_REQ_BODY_NO_FILES_LIMIT, SecLangParserCONFIG_DIR_RES_BODY, SecLangParserCONFIG_DIR_RES_BODY_LIMIT, SecLangParserCONFIG_DIR_RES_BODY_LIMIT_ACTION, SecLangParserCONFIG_DIR_RULE_ENG, SecLangParserCONFIG_DIR_SEC_ACTION, SecLangParserCONFIG_DIR_SEC_DEFAULT_ACTION, SecLangParserCONFIG_SEC_DISABLE_BACKEND_COMPRESS, SecLangParserCONFIG_DIR_SEC_MARKER, SecLangParserCONFIG_DIR_UNICODE_MAP_FILE, SecLangParserCONFIG_SEC_COLLECTION_TIMEOUT, SecLangParserCONFIG_SEC_HTTP_BLKEY, SecLangParserCONFIG_SEC_REMOTE_RULES_FAIL_ACTION, SecLangParserCONFIG_SEC_RULE_REMOVE_BY_ID, SecLangParserCONFIG_SEC_RULE_REMOVE_BY_MSG, SecLangParserCONFIG_SEC_RULE_REMOVE_BY_TAG, SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_TAG, SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_MSG, SecLangParserCONFIG_SEC_RULE_UPDATE_TARGET_BY_ID, SecLangParserCONFIG_SEC_RULE_UPDATE_ACTION_BY_ID, SecLangParserCONFIG_UPLOAD_KEEP_FILES, SecLangParserCONFIG_UPLOAD_SAVE_TMP_FILES, SecLangParserCONFIG_UPLOAD_DIR, SecLangParserCONFIG_UPLOAD_FILE_LIMIT, SecLangParserCONFIG_UPLOAD_FILE_MODE, SecLangParserCONFIG_XML_EXTERNAL_ENTITY, SecLangParserCONFIG_DIR_RESPONSE_BODY_MP, SecLangParserCONFIG_DIR_RESPONSE_BODY_MP_CLEAR, SecLangParserCONFIG_DIR_SEC_COOKIE_FORMAT, SecLangParserCONFIG_SEC_COOKIEV0_SEPARATOR, SecLangParserCONFIG_DIR_SEC_DATA_DIR, SecLangParserCONFIG_DIR_SEC_STATUS_ENGINE, SecLangParserCONFIG_DIR_SEC_TMP_DIR, SecLangParserCONFIG_DIR_SEC_RULE, SecLangParserDIRECTIVE_SECRULESCRIPT, SecLangParserINT, SecLangParserSTRING, SecLangParserOPERATOR_UNQUOTED_STRING, SecLangParserOPERATOR_QUOTED_STRING:
 		p.EnterOuterAlt(localctx, 1)
 
 	case SecLangParserXPATH_EXPRESSION:
