@@ -14,6 +14,7 @@ import (
 
 type ParserResult struct {
 	Comments              []string `yaml:"comments"`
+	CommentsBlocks        int      `yaml:"comment_blocks"`
 	Variables             []string `yaml:"variables"`
 	NegatedVarCount       int      `yaml:"negated_var_count"`
 	CollectionLengthCount int      `yaml:"collection_length_count"`
@@ -196,4 +197,8 @@ func (l *TreeShapeListener) EnterComment(ctx *parser.CommentContext) {
 
 func (l *TreeShapeListener) EnterTransformation_action_value(ctx *parser.Transformation_action_valueContext) {
 	l.results.DirectiveValues = append(l.results.DirectiveValues, ctx.GetText())
+}
+
+func (l *TreeShapeListener) EnterComment_block(ctx *parser.Comment_blockContext) {
+	l.results.CommentsBlocks++
 }

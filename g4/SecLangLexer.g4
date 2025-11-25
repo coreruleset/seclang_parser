@@ -19,15 +19,15 @@ limitations under the License.
 lexer grammar SecLangLexer;
 
 tokens {
-	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE, CONFIG_VALUE_PATH, NOT
+	QUOTE, SINGLE_QUOTE, EQUAL, COLON, EQUALS_PLUS, EQUALS_MINUS, COMMA, PIPE, CONFIG_VALUE_PATH, NOT, HASH
 }
 
 WS
    : ([ \t\r\n\\]+)  -> skip
    ;
 
-HASH
-   : '#' -> pushMode(COMMENT_MODE)
+HASH_DEFAULT
+   : '#' -> type(HASH),pushMode(COMMENT_MODE)
    ;
 
 PIPE_DEFAULT
@@ -1384,13 +1384,16 @@ OPERATOR_QUOTED_STRING
     : (('\\"') | ~([" @!])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
     ;
 
-
 mode COMMENT_MODE;
 
 COMMENT
-   : (~[\r\n] | '\\' '\r'? '\n')+
+   : (~[\r\n])+
+   ;
+
+HASH_COMMENT_BLOCK
+   : '\r'? '\n' '#' -> type(HASH)
    ;
 
 NEWLINE_COMMENT
-   : '\r'? '\n' -> skip,popMode
+   : '\r'? '\n' -> popMode
    ;

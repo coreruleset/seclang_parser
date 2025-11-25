@@ -26,6 +26,15 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#comment_block.
+    def enterComment_block(self, ctx:SecLangParser.Comment_blockContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#comment_block.
+    def exitComment_block(self, ctx:SecLangParser.Comment_blockContext):
+        pass
+
+
     # Enter a parse tree produced by SecLangParser#comment.
     def enterComment(self, ctx:SecLangParser.CommentContext):
         pass
