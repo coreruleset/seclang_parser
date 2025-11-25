@@ -25,18 +25,18 @@ configuration
      ;
 
 stmt:
-    comment_block* engine_config_rule_directive variables operator actions?
-    | comment_block* rule_script_directive file_path actions?
-    | comment_block* rule_script_directive QUOTE file_path QUOTE actions?
-    | comment_block* remove_rule_by_id remove_rule_by_id_values+
-    | comment_block* string_remove_rules string_remove_rules_values
-    | comment_block* string_remove_rules QUOTE string_remove_rules_values QUOTE
-    | comment_block* update_target_rules update_target_rules_values update_variables
-    | comment_block* update_target_rules QUOTE update_target_rules_values QUOTE update_variables
-    | comment_block* update_target_rules update_target_rules_values update_variables PIPE new_target
-    | comment_block* update_target_rules QUOTE update_target_rules_values QUOTE update_variables PIPE new_target
-    | comment_block* update_action_rule id actions
-    | comment_block* engine_config_directive
+    comment_block? engine_config_rule_directive variables operator actions?
+    | comment_block? rule_script_directive file_path actions?
+    | comment_block? rule_script_directive QUOTE file_path QUOTE actions?
+    | comment_block? remove_rule_by_id remove_rule_by_id_values+
+    | comment_block? string_remove_rules string_remove_rules_values
+    | comment_block? string_remove_rules QUOTE string_remove_rules_values QUOTE
+    | comment_block? update_target_rules update_target_rules_values update_variables
+    | comment_block? update_target_rules QUOTE update_target_rules_values QUOTE update_variables
+    | comment_block? update_target_rules update_target_rules_values update_variables PIPE new_target
+    | comment_block? update_target_rules QUOTE update_target_rules_values QUOTE update_variables PIPE new_target
+    | comment_block? update_action_rule id actions
+    | comment_block? engine_config_directive
     | comment_block+;
 
 comment_block:
