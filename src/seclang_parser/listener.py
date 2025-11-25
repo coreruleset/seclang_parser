@@ -134,6 +134,7 @@ class TreeShapeListener(SecLangParserListener):
             self.results.comments.append(ctx.COMMENT().getText())
         else:
             self.results.comments.append("")
+        # print(ctx.stop.getLine())
 
     def enterTransformation_action_value(self, ctx: SecLangParser.Transformation_action_valueContext):
         self.results.directive_values.append(ctx.getText())

@@ -40,7 +40,7 @@ stmt:
     | comment_block+;
 
 comment_block:
-    comment+ (NEWLINE_COMMENT| EOF)
+    comment+ (BLOCK_COMMENT_END | EOF)?
     ;
 
 comment:
