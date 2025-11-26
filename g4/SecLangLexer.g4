@@ -1129,8 +1129,8 @@ QUOTE_STRING_MODE
     ;
 
 WS_STRING_MODE
-	: WS -> skip
-	;
+   : ' '+  -> skip
+   ;
 
 STRING
     : (('\\"') | ~([" ])) (('\\"')|~('"'))* -> popMode

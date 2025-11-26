@@ -436,3 +436,40 @@ check_output_tests:
         - ""
         - " This is a multiline \\"
       comment_blocks: 1
+  testdata/test_45_backslash.conf:
+    error_count: 0
+    comment: ""
+    expected_result:
+      comments:
+        - ""
+        - " Broken/Malicious clients often have duplicate or conflicting headers"
+        - " Automated programs and bots often do not obey the HTTP RFC"
+        - ""
+        - " -=[ Rule Logic ]=-"
+        - " This rule inspects the Connection header and looks for duplicates of the"
+        - " keep-alive and close options."
+        - ""
+        - " -=[ References ]=-"
+        - " https://datatracker.ietf.org/doc/html/rfc7233"
+        - ""
+      comment_blocks: 1
+      collections:
+        - REQUEST_HEADERS
+      collection_args:
+        - Connection
+      operator_list:
+        - rx
+      operator_value_list:
+        - \b(?:keep-alive|close),\s?(?:keep-alive|close)\b
+      negated_operator_count: 0
+      directive_list:
+        - SecRule
+      setvar_collections:
+        - tx
+      setvar_names:
+        - inbound_anomaly_score_pl1
+      setvar_operations:
+        - "=+"
+      directive_values:
+        - "none"
+        - "%{tx.warning_anomaly_score}"
