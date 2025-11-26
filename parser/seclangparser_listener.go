@@ -13,6 +13,9 @@ type SecLangParserListener interface {
 	// EnterStmt is called when entering the stmt production.
 	EnterStmt(c *StmtContext)
 
+	// EnterComment_block is called when entering the comment_block production.
+	EnterComment_block(c *Comment_blockContext)
+
 	// EnterComment is called when entering the comment production.
 	EnterComment(c *CommentContext)
 
@@ -243,6 +246,9 @@ type SecLangParserListener interface {
 
 	// ExitStmt is called when exiting the stmt production.
 	ExitStmt(c *StmtContext)
+
+	// ExitComment_block is called when exiting the comment_block production.
+	ExitComment_block(c *Comment_blockContext)
 
 	// ExitComment is called when exiting the comment production.
 	ExitComment(c *CommentContext)

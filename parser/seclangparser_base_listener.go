@@ -32,6 +32,12 @@ func (s *BaseSecLangParserListener) EnterStmt(ctx *StmtContext) {}
 // ExitStmt is called when production stmt is exited.
 func (s *BaseSecLangParserListener) ExitStmt(ctx *StmtContext) {}
 
+// EnterComment_block is called when production comment_block is entered.
+func (s *BaseSecLangParserListener) EnterComment_block(ctx *Comment_blockContext) {}
+
+// ExitComment_block is called when production comment_block is exited.
+func (s *BaseSecLangParserListener) ExitComment_block(ctx *Comment_blockContext) {}
+
 // EnterComment is called when production comment is entered.
 func (s *BaseSecLangParserListener) EnterComment(ctx *CommentContext) {}
 

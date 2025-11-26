@@ -214,6 +214,7 @@ check_output_tests:
     expected_result:
       comments:
         - " Test comment"
+      comment_blocks: 1
       variables:
         - REQUEST_FILENAME
         - REQUEST_URI
@@ -273,6 +274,7 @@ check_output_tests:
         - " The variable is a numerical representation of the CRS version number."
         - " E.g., v3.0.0 is represented as 300."
         - ""
+      comment_blocks: 1
       variables:
         - REQUEST_URI
       negated_var_count: 2
@@ -343,6 +345,7 @@ check_output_tests:
       comments:
         - " Force body variable"
         - " Force body processor URLENCODED"
+      comment_blocks: 2
       variables:
         - REQBODY_PROCESSOR
         - REQBODY_PROCESSOR
@@ -420,3 +423,16 @@ check_output_tests:
         - "1"
         - "/%{tx.0}/"
         - "%{tx.critical_anomaly_score}"
+  testdata/test_44_comments.conf:
+    error_count: 0
+    comment: ""
+    expected_result:
+      comments:
+        - ""
+        - " This is a comment"
+        - ""
+        - " This is a multiline \\"
+        - " comment"
+        - ""
+        - " This is a multiline \\"
+      comment_blocks: 1

@@ -14,6 +14,7 @@ class ParserResult:
     """Stores results from parsing for test validation."""
 
     comments: list[str] = field(default_factory=list)
+    comment_blocks: int = 0
     variables: list[str] = field(default_factory=list)
     negated_var_count: int = 0
     collection_length_count: int = 0
@@ -133,6 +134,10 @@ class TreeShapeListener(SecLangParserListener):
             self.results.comments.append(ctx.COMMENT().getText())
         else:
             self.results.comments.append("")
+        # print(ctx.stop.getLine())
 
     def enterTransformation_action_value(self, ctx: SecLangParser.Transformation_action_valueContext):
         self.results.directive_values.append(ctx.getText())
+
+    def enterComment_block(self, ctx: SecLangParser.Comment_blockContext):
+        self.results.comment_blocks += 1

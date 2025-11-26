@@ -1384,13 +1384,16 @@ OPERATOR_QUOTED_STRING
     : (('\\"') | ~([" @!])) (('\\"')|~('"'))* -> pushMode(DEFAULT_MODE)
     ;
 
-
 mode COMMENT_MODE;
 
 COMMENT
-   : (~[\r\n] | '\\' '\r'? '\n')+
+   : (~[\r\n])+
    ;
 
-NEWLINE_COMMENT
+HASH_COMMENT_BLOCK
    : '\r'? '\n' -> skip,popMode
+   ;
+
+BLOCK_COMMENT_END
+   : '\r'? '\n' '\r'? '\n' -> popMode
    ;
