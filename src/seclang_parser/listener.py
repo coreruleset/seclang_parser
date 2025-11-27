@@ -49,6 +49,11 @@ class TreeShapeListener(SecLangParserListener):
     def enterRange_end(self, ctx: SecLangParser.Range_endContext):
         self.results.range_end_events.append(int(ctx.getText()))
 
+    def enterOperator_int_range(self, ctx: SecLangParser.Operator_int_rangeContext):
+        self.results.range_events.append(ctx.getText())
+        self.results.range_start_events.append(int(ctx.INT_RANGE_VALUE(0).getText()))
+        self.results.range_end_events.append(int(ctx.INT_RANGE_VALUE(1).getText()))
+
     def enterRemove_rule_by_id(self, ctx: SecLangParser.Remove_rule_by_idContext):
         self.results.directive_list.append(ctx.getText())
 

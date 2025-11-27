@@ -49,6 +49,9 @@ type SecLangParserListener interface {
 	// EnterRemove_rule_by_id_int_range is called when entering the remove_rule_by_id_int_range production.
 	EnterRemove_rule_by_id_int_range(c *Remove_rule_by_id_int_rangeContext)
 
+	// EnterOperator_int_range is called when entering the operator_int_range production.
+	EnterOperator_int_range(c *Operator_int_rangeContext)
+
 	// EnterInt_range is called when entering the int_range production.
 	EnterInt_range(c *Int_rangeContext)
 
@@ -282,6 +285,9 @@ type SecLangParserListener interface {
 
 	// ExitRemove_rule_by_id_int_range is called when exiting the remove_rule_by_id_int_range production.
 	ExitRemove_rule_by_id_int_range(c *Remove_rule_by_id_int_rangeContext)
+
+	// ExitOperator_int_range is called when exiting the operator_int_range production.
+	ExitOperator_int_range(c *Operator_int_rangeContext)
 
 	// ExitInt_range is called when exiting the int_range production.
 	ExitInt_range(c *Int_rangeContext)

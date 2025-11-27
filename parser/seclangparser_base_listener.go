@@ -114,6 +114,12 @@ func (s *BaseSecLangParserListener) EnterRemove_rule_by_id_int_range(ctx *Remove
 func (s *BaseSecLangParserListener) ExitRemove_rule_by_id_int_range(ctx *Remove_rule_by_id_int_rangeContext) {
 }
 
+// EnterOperator_int_range is called when production operator_int_range is entered.
+func (s *BaseSecLangParserListener) EnterOperator_int_range(ctx *Operator_int_rangeContext) {}
+
+// ExitOperator_int_range is called when production operator_int_range is exited.
+func (s *BaseSecLangParserListener) ExitOperator_int_range(ctx *Operator_int_rangeContext) {}
+
 // EnterInt_range is called when production int_range is entered.
 func (s *BaseSecLangParserListener) EnterInt_range(ctx *Int_rangeContext) {}
 

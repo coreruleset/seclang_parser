@@ -290,7 +290,7 @@ check_output_tests:
         - validateByteRange
         - eq
       operator_value_list:
-        - "32,34,38,42-59,61,65-90,95,97-122"
+        - "32, 34,38,42-59,61,65-90,95,97-122"
         - "0"
       directive_list:
         - SecRule
