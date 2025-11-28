@@ -134,6 +134,15 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#operator_int_range.
+    def enterOperator_int_range(self, ctx:SecLangParser.Operator_int_rangeContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#operator_int_range.
+    def exitOperator_int_range(self, ctx:SecLangParser.Operator_int_rangeContext):
+        pass
+
+
     # Enter a parse tree produced by SecLangParser#int_range.
     def enterInt_range(self, ctx:SecLangParser.Int_rangeContext):
         pass

@@ -138,6 +138,10 @@ remove_rule_by_id_values:
     | int_range # remove_rule_by_id_int_range
     ;
 
+operator_int_range:
+    INT_RANGE_VALUE MINUS_INT_RANGE INT_RANGE_VALUE
+    ;
+
 int_range:
     range_start MINUS range_end
     ;
@@ -305,7 +309,7 @@ operator_name:
 operator_value:
     variable_enum
     | STRING
-    | (INT | int_range) (COMMA (INT | int_range))*
+    | WS_INT_RANGE* (INT_RANGE_VALUE | operator_int_range) (COMMA WS_INT_RANGE* (INT_RANGE_VALUE | operator_int_range))*
     | OPERATOR_UNQUOTED_STRING
     | OPERATOR_QUOTED_STRING
     ;

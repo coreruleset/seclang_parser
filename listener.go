@@ -86,6 +86,20 @@ func (l *TreeShapeListener) EnterRange_end(ctx *parser.Range_endContext) {
 	l.results.RangeEndEvents = append(l.results.RangeEndEvents, i)
 }
 
+func (l *TreeShapeListener) EnterOperator_int_range(ctx *parser.Operator_int_rangeContext) {
+	l.results.RangeEvents = append(l.results.RangeEvents, ctx.GetText())
+	i, err := strconv.Atoi(ctx.INT_RANGE_VALUE(0).GetText())
+	if err != nil {
+		panic(err)
+	}
+	l.results.RangeStartEvents = append(l.results.RangeStartEvents, i)
+	i, err = strconv.Atoi(ctx.INT_RANGE_VALUE(1).GetText())
+	if err != nil {
+		panic(err)
+	}
+	l.results.RangeEndEvents = append(l.results.RangeEndEvents, i)
+}
+
 func (l *TreeShapeListener) EnterRemove_rule_by_id(ctx *parser.Remove_rule_by_idContext) {
 	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }

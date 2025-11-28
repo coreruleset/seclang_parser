@@ -630,7 +630,7 @@ OPERATOR_UNCONDITIONAL_MATCH
 	;
 
 OPERATOR_VALIDATE_BYTE_RANGE
-	: 'validateByteRange'
+	: 'validateByteRange' -> pushMode(REMOVE_SPACE_MODE)
 	;
 
 OPERATOR_VALIDATE_DTD
@@ -1393,4 +1393,32 @@ HASH_COMMENT_BLOCK
 
 BLOCK_COMMENT_END
    : '\r'? '\n' '\r'? '\n' -> popMode
+   ;
+
+mode REMOVE_SPACE_MODE;
+
+WS_REMOVE_SPACE
+   : ' '  -> skip, pushMode(INT_RANGE_MODE)
+   ;
+
+mode INT_RANGE_MODE;
+
+INT_RANGE_VALUE 
+   : DIGIT+
+   ;
+
+MINUS_INT_RANGE
+   : '-'
+   ;
+
+WS_INT_RANGE
+   : ' '+
+   ;
+
+QUOTE_INT_RANGE
+   : '"' -> type(QUOTE), pushMode(DEFAULT_MODE)
+   ;
+
+COMMA_INT_RANGE
+   : ',' -> type(COMMA)
    ;
