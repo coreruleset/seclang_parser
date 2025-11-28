@@ -150,6 +150,10 @@ func (l *TreeShapeListener) EnterEngine_config_rule_directive(ctx *parser.Engine
 	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
 }
 
+func (l *TreeShapeListener) EnterConfig_dir_sec_action(ctx *parser.Config_dir_sec_actionContext) {
+	l.results.DirectiveList = append(l.results.DirectiveList, ctx.GetText())
+}
+
 func (l *TreeShapeListener) EnterOperator_name(ctx *parser.Operator_nameContext) {
 	l.results.OperatorList = append(l.results.OperatorList, ctx.GetText())
 }

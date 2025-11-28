@@ -188,6 +188,18 @@ generic_tests:
     comment: ""
 
 check_output_tests:
+  testdata/test_13_secaction_ctl_05.conf:
+    error_count: 0
+    comment: ""
+    expected_result:
+      directive_list:
+        - SecAction
+      directive_values:
+        - "none"
+        - "ruleRemoveTargetById"
+        - "1001"
+      setvar_operations:
+        - "="
   testdata/test_39_remove_rules.conf:
     error_count: 0
     comment: ""
