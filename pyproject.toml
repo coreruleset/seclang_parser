@@ -3,7 +3,7 @@ name = "seclang_parser"
 dynamic = [ "version" ]
 description = "SecLang Parser using ANTLR"
 authors = [
-  {name = "Felipe Zipitria", email = "felipe.zipitria@owasp.org"}
+  {name = "Felipe Zipitria", email = "felipe.zipitria@owasp.org"},
   {name = "Agustin de Leon", email = "adeleon@fing.edu.uy"}
 ]
 requires-python = ">=3.11"
