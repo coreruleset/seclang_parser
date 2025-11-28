@@ -148,8 +148,14 @@ type SecLangParserListener interface {
 	// EnterVariable_enum is called when entering the variable_enum production.
 	EnterVariable_enum(c *Variable_enumContext)
 
+	// EnterCtl_variable_enum is called when entering the ctl_variable_enum production.
+	EnterCtl_variable_enum(c *Ctl_variable_enumContext)
+
 	// EnterCollection_enum is called when entering the collection_enum production.
 	EnterCollection_enum(c *Collection_enumContext)
+
+	// EnterCtl_collection_enum is called when entering the ctl_collection_enum production.
+	EnterCtl_collection_enum(c *Ctl_collection_enumContext)
 
 	// EnterActions is called when entering the actions production.
 	EnterActions(c *ActionsContext)
@@ -225,6 +231,9 @@ type SecLangParserListener interface {
 
 	// EnterCollection_value is called when entering the collection_value production.
 	EnterCollection_value(c *Collection_valueContext)
+
+	// EnterCtl_collection_value is called when entering the ctl_collection_value production.
+	EnterCtl_collection_value(c *Ctl_collection_valueContext)
 
 	// EnterSetvar_action is called when entering the setvar_action production.
 	EnterSetvar_action(c *Setvar_actionContext)
@@ -385,8 +394,14 @@ type SecLangParserListener interface {
 	// ExitVariable_enum is called when exiting the variable_enum production.
 	ExitVariable_enum(c *Variable_enumContext)
 
+	// ExitCtl_variable_enum is called when exiting the ctl_variable_enum production.
+	ExitCtl_variable_enum(c *Ctl_variable_enumContext)
+
 	// ExitCollection_enum is called when exiting the collection_enum production.
 	ExitCollection_enum(c *Collection_enumContext)
+
+	// ExitCtl_collection_enum is called when exiting the ctl_collection_enum production.
+	ExitCtl_collection_enum(c *Ctl_collection_enumContext)
 
 	// ExitActions is called when exiting the actions production.
 	ExitActions(c *ActionsContext)
@@ -462,6 +477,9 @@ type SecLangParserListener interface {
 
 	// ExitCollection_value is called when exiting the collection_value production.
 	ExitCollection_value(c *Collection_valueContext)
+
+	// ExitCtl_collection_value is called when exiting the ctl_collection_value production.
+	ExitCtl_collection_value(c *Ctl_collection_valueContext)
 
 	// ExitSetvar_action is called when exiting the setvar_action production.
 	ExitSetvar_action(c *Setvar_actionContext)

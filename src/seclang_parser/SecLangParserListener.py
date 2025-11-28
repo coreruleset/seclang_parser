@@ -431,12 +431,30 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#ctl_variable_enum.
+    def enterCtl_variable_enum(self, ctx:SecLangParser.Ctl_variable_enumContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#ctl_variable_enum.
+    def exitCtl_variable_enum(self, ctx:SecLangParser.Ctl_variable_enumContext):
+        pass
+
+
     # Enter a parse tree produced by SecLangParser#collection_enum.
     def enterCollection_enum(self, ctx:SecLangParser.Collection_enumContext):
         pass
 
     # Exit a parse tree produced by SecLangParser#collection_enum.
     def exitCollection_enum(self, ctx:SecLangParser.Collection_enumContext):
+        pass
+
+
+    # Enter a parse tree produced by SecLangParser#ctl_collection_enum.
+    def enterCtl_collection_enum(self, ctx:SecLangParser.Ctl_collection_enumContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#ctl_collection_enum.
+    def exitCtl_collection_enum(self, ctx:SecLangParser.Ctl_collection_enumContext):
         pass
 
 
@@ -662,6 +680,15 @@ class SecLangParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SecLangParser#collection_value.
     def exitCollection_value(self, ctx:SecLangParser.Collection_valueContext):
+        pass
+
+
+    # Enter a parse tree produced by SecLangParser#ctl_collection_value.
+    def enterCtl_collection_value(self, ctx:SecLangParser.Ctl_collection_valueContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#ctl_collection_value.
+    def exitCtl_collection_value(self, ctx:SecLangParser.Ctl_collection_valueContext):
         pass
 
 

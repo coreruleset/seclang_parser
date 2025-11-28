@@ -322,11 +322,23 @@ func (s *BaseSecLangParserListener) EnterVariable_enum(ctx *Variable_enumContext
 // ExitVariable_enum is called when production variable_enum is exited.
 func (s *BaseSecLangParserListener) ExitVariable_enum(ctx *Variable_enumContext) {}
 
+// EnterCtl_variable_enum is called when production ctl_variable_enum is entered.
+func (s *BaseSecLangParserListener) EnterCtl_variable_enum(ctx *Ctl_variable_enumContext) {}
+
+// ExitCtl_variable_enum is called when production ctl_variable_enum is exited.
+func (s *BaseSecLangParserListener) ExitCtl_variable_enum(ctx *Ctl_variable_enumContext) {}
+
 // EnterCollection_enum is called when production collection_enum is entered.
 func (s *BaseSecLangParserListener) EnterCollection_enum(ctx *Collection_enumContext) {}
 
 // ExitCollection_enum is called when production collection_enum is exited.
 func (s *BaseSecLangParserListener) ExitCollection_enum(ctx *Collection_enumContext) {}
+
+// EnterCtl_collection_enum is called when production ctl_collection_enum is entered.
+func (s *BaseSecLangParserListener) EnterCtl_collection_enum(ctx *Ctl_collection_enumContext) {}
+
+// ExitCtl_collection_enum is called when production ctl_collection_enum is exited.
+func (s *BaseSecLangParserListener) ExitCtl_collection_enum(ctx *Ctl_collection_enumContext) {}
 
 // EnterActions is called when production actions is entered.
 func (s *BaseSecLangParserListener) EnterActions(ctx *ActionsContext) {}
@@ -489,6 +501,12 @@ func (s *BaseSecLangParserListener) EnterCollection_value(ctx *Collection_valueC
 
 // ExitCollection_value is called when production collection_value is exited.
 func (s *BaseSecLangParserListener) ExitCollection_value(ctx *Collection_valueContext) {}
+
+// EnterCtl_collection_value is called when production ctl_collection_value is entered.
+func (s *BaseSecLangParserListener) EnterCtl_collection_value(ctx *Ctl_collection_valueContext) {}
+
+// ExitCtl_collection_value is called when production ctl_collection_value is exited.
+func (s *BaseSecLangParserListener) ExitCtl_collection_value(ctx *Ctl_collection_valueContext) {}
 
 // EnterSetvar_action is called when production setvar_action is entered.
 func (s *BaseSecLangParserListener) EnterSetvar_action(ctx *Setvar_actionContext) {}
