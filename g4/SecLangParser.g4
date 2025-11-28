@@ -242,8 +242,8 @@ values:
     ;
 
 action_ctl_target_value:
-    (ctl_id | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI variable_enum
-    | (ctl_id | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI collection_enum (COLON collection_value)?
+    (ctl_id | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI ctl_variable_enum
+    | (ctl_id | SINGLE_QUOTE string_literal SINGLE_QUOTE | VARIABLE_NAME) SEMI ctl_collection_enum (COLON ctl_collection_value)?
     ;
 
 update_target_rules_values:
@@ -333,15 +333,22 @@ new_target:
 var_stmt:
     variable_enum
     | collection_enum (COLON collection_value)?
-
     ;
 
 variable_enum:
     VARIABLE_NAME_ENUM
-    | UNKNOWN_VARIABLES
+    ;
+
+ctl_variable_enum:
+    VARIABLE_NAME_ENUM
     ;
 
 collection_enum:
+    COLLECTION_NAME_ENUM
+    | RUN_TIME_VAR_XML
+    ;
+
+ctl_collection_enum:
     COLLECTION_NAME_ENUM
     | RUN_TIME_VAR_XML
     ;
@@ -478,6 +485,11 @@ transformation_action_value:
     ;
 
 collection_value:
+    | XPATH_EXPRESSION
+    | COLLECTION_ELEMENT_VALUE
+    ;
+
+ctl_collection_value:
     | XPATH_EXPRESSION
     | COLLECTION_ELEMENT_VALUE
     ;

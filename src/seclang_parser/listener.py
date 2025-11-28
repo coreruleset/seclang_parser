@@ -101,6 +101,9 @@ class TreeShapeListener(SecLangParserListener):
     def enterEngine_config_rule_directive(self, ctx: SecLangParser.Engine_config_rule_directiveContext):
         self.results.directive_list.append(ctx.getText())
 
+    def enterConfig_dir_sec_action(self, ctx: SecLangParser.Config_dir_sec_actionContext):
+        self.results.directive_list.append(ctx.getText())
+
     def enterOperator_name(self, ctx: SecLangParser.Operator_nameContext):
         self.results.operator_list.append(ctx.getText())
 
