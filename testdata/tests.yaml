@@ -447,7 +447,14 @@ check_output_tests:
         - " comment"
         - ""
         - " This is a multiline \\"
-      comment_blocks: 1
+        - ""
+        - " This is a comment"
+        - ""
+        - " This is a multiline \\"
+        - " comment"
+        - ""
+        - " This is a multiline \\"
+      comment_blocks: 2
   testdata/test_45_backslash.conf:
     error_count: 0
     comment: ""
