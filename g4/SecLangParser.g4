@@ -37,7 +37,7 @@ stmt:
     | comment_block? update_target_rules QUOTE update_target_rules_values QUOTE update_variables PIPE new_target
     | comment_block? update_action_rule id actions
     | comment_block? engine_config_directive
-    | comment_block+;
+    | comment_block;
 
 comment_block:
     comment+ (BLOCK_COMMENT_END | EOF)?
