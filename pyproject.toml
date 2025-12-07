@@ -31,7 +31,7 @@ dependencies = [
 
 [dependency-groups]
   dev = [
-    "pytest >=8.1.1,<9",
+    "pytest >=9.0.2,<10",
     "pyyaml >=6.0"
   ]
 
