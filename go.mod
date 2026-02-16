@@ -2,7 +2,7 @@ module github.com/coreruleset/seclang_parser
 
 go 1.22
 
-toolchain go1.25.7
+toolchain go1.26.0
 
 require (
 	github.com/antlr4-go/antlr/v4 v4.13.1
