@@ -31,6 +31,7 @@ type ParserResult struct {
 	SetvarCollections     []string `yaml:"setvar_collections"`
 	SetvarNames           []string `yaml:"setvar_names"`
 	SetvarOperations      []string `yaml:"setvar_operations"`
+	LogdataActionCount    int      `yaml:"logdata_action_count"`
 }
 
 type TreeShapeListener struct {
@@ -219,4 +220,8 @@ func (l *TreeShapeListener) EnterTransformation_action_value(ctx *parser.Transfo
 
 func (l *TreeShapeListener) EnterComment_block(ctx *parser.Comment_blockContext) {
 	l.results.CommentsBlocks++
+}
+
+func (l *TreeShapeListener) EnterACTION_LOG_DATA(ctx *parser.ACTION_LOG_DATAContext) {
+	l.results.LogdataActionCount += 1
 }

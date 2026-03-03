@@ -593,6 +593,15 @@ class SecLangParserListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by SecLangParser#ACTION_LOG_DATA.
+    def enterACTION_LOG_DATA(self, ctx:SecLangParser.ACTION_LOG_DATAContext):
+        pass
+
+    # Exit a parse tree produced by SecLangParser#ACTION_LOG_DATA.
+    def exitACTION_LOG_DATA(self, ctx:SecLangParser.ACTION_LOG_DATAContext):
+        pass
+
+
     # Enter a parse tree produced by SecLangParser#disruptive_action_with_params.
     def enterDisruptive_action_with_params(self, ctx:SecLangParser.Disruptive_action_with_paramsContext):
         pass

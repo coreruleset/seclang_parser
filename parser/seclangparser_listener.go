@@ -202,6 +202,9 @@ type SecLangParserListener interface {
 	// EnterACTION_VER is called when entering the ACTION_VER production.
 	EnterACTION_VER(c *ACTION_VERContext)
 
+	// EnterACTION_LOG_DATA is called when entering the ACTION_LOG_DATA production.
+	EnterACTION_LOG_DATA(c *ACTION_LOG_DATAContext)
+
 	// EnterDisruptive_action_with_params is called when entering the disruptive_action_with_params production.
 	EnterDisruptive_action_with_params(c *Disruptive_action_with_paramsContext)
 
@@ -447,6 +450,9 @@ type SecLangParserListener interface {
 
 	// ExitACTION_VER is called when exiting the ACTION_VER production.
 	ExitACTION_VER(c *ACTION_VERContext)
+
+	// ExitACTION_LOG_DATA is called when exiting the ACTION_LOG_DATA production.
+	ExitACTION_LOG_DATA(c *ACTION_LOG_DATAContext)
 
 	// ExitDisruptive_action_with_params is called when exiting the disruptive_action_with_params production.
 	ExitDisruptive_action_with_params(c *Disruptive_action_with_paramsContext)

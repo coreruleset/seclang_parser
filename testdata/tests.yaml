@@ -492,3 +492,4 @@ check_output_tests:
       directive_values:
         - "none"
         - "%{tx.warning_anomaly_score}"
+      logdata_action_count: 1
