@@ -183,7 +183,7 @@ func seclangparserParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 270, 683, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 270, 684, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
@@ -245,61 +245,61 @@ func seclangparserParserInit() {
 		46, 1, 46, 1, 46, 1, 46, 3, 46, 584, 8, 46, 1, 47, 1, 47, 1, 47, 3, 47,
 		589, 8, 47, 1, 48, 1, 48, 1, 49, 1, 49, 1, 50, 1, 50, 1, 51, 1, 51, 1,
 		51, 1, 51, 1, 51, 3, 51, 602, 8, 51, 1, 52, 1, 52, 1, 52, 1, 52, 1, 52,
-		1, 52, 1, 52, 1, 52, 3, 52, 612, 8, 52, 1, 53, 1, 53, 1, 54, 1, 54, 1,
-		55, 1, 55, 1, 56, 1, 56, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57,
-		1, 57, 1, 57, 3, 57, 631, 8, 57, 1, 58, 1, 58, 1, 58, 1, 58, 1, 58, 1,
-		58, 1, 58, 1, 58, 1, 58, 1, 58, 1, 58, 3, 58, 644, 8, 58, 1, 59, 1, 59,
-		1, 60, 1, 60, 1, 61, 1, 61, 1, 62, 1, 62, 1, 62, 3, 62, 655, 8, 62, 1,
-		63, 1, 63, 1, 63, 3, 63, 660, 8, 63, 1, 64, 1, 64, 1, 64, 1, 64, 1, 64,
-		1, 64, 1, 65, 1, 65, 1, 66, 1, 66, 1, 66, 4, 66, 673, 8, 66, 11, 66, 12,
-		66, 674, 1, 67, 1, 67, 1, 68, 1, 68, 1, 69, 1, 69, 1, 69, 0, 0, 70, 0,
-		2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38,
-		40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74,
-		76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108,
-		110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138,
-		0, 15, 1, 1, 259, 259, 8, 0, 131, 139, 150, 167, 169, 175, 178, 178, 180,
-		180, 182, 183, 185, 185, 209, 216, 3, 0, 225, 225, 233, 233, 241, 241,
-		3, 0, 140, 149, 193, 197, 227, 227, 1, 0, 89, 125, 2, 0, 85, 85, 87, 87,
-		5, 0, 27, 27, 30, 30, 44, 44, 46, 46, 58, 59, 5, 0, 29, 29, 31, 31, 52,
-		52, 55, 57, 67, 67, 1, 0, 62, 63, 8, 0, 28, 28, 33, 33, 45, 45, 47, 48,
-		50, 51, 61, 61, 65, 66, 68, 74, 2, 0, 79, 79, 82, 82, 1, 0, 77, 78, 1,
-		0, 34, 43, 2, 0, 3, 3, 5, 6, 1, 0, 226, 227, 753, 0, 143, 1, 0, 0, 0, 2,
-		246, 1, 0, 0, 0, 4, 249, 1, 0, 0, 0, 6, 256, 1, 0, 0, 0, 8, 260, 1, 0,
-		0, 0, 10, 290, 1, 0, 0, 0, 12, 296, 1, 0, 0, 0, 14, 298, 1, 0, 0, 0, 16,
-		300, 1, 0, 0, 0, 18, 302, 1, 0, 0, 0, 20, 304, 1, 0, 0, 0, 22, 306, 1,
-		0, 0, 0, 24, 310, 1, 0, 0, 0, 26, 312, 1, 0, 0, 0, 28, 316, 1, 0, 0, 0,
-		30, 320, 1, 0, 0, 0, 32, 322, 1, 0, 0, 0, 34, 326, 1, 0, 0, 0, 36, 328,
-		1, 0, 0, 0, 38, 333, 1, 0, 0, 0, 40, 335, 1, 0, 0, 0, 42, 337, 1, 0, 0,
-		0, 44, 339, 1, 0, 0, 0, 46, 341, 1, 0, 0, 0, 48, 352, 1, 0, 0, 0, 50, 356,
-		1, 0, 0, 0, 52, 360, 1, 0, 0, 0, 54, 362, 1, 0, 0, 0, 56, 387, 1, 0, 0,
-		0, 58, 413, 1, 0, 0, 0, 60, 418, 1, 0, 0, 0, 62, 420, 1, 0, 0, 0, 64, 438,
-		1, 0, 0, 0, 66, 440, 1, 0, 0, 0, 68, 472, 1, 0, 0, 0, 70, 474, 1, 0, 0,
-		0, 72, 476, 1, 0, 0, 0, 74, 479, 1, 0, 0, 0, 76, 508, 1, 0, 0, 0, 78, 536,
-		1, 0, 0, 0, 80, 544, 1, 0, 0, 0, 82, 546, 1, 0, 0, 0, 84, 548, 1, 0, 0,
-		0, 86, 550, 1, 0, 0, 0, 88, 552, 1, 0, 0, 0, 90, 554, 1, 0, 0, 0, 92, 583,
-		1, 0, 0, 0, 94, 588, 1, 0, 0, 0, 96, 590, 1, 0, 0, 0, 98, 592, 1, 0, 0,
-		0, 100, 594, 1, 0, 0, 0, 102, 601, 1, 0, 0, 0, 104, 611, 1, 0, 0, 0, 106,
-		613, 1, 0, 0, 0, 108, 615, 1, 0, 0, 0, 110, 617, 1, 0, 0, 0, 112, 619,
-		1, 0, 0, 0, 114, 630, 1, 0, 0, 0, 116, 643, 1, 0, 0, 0, 118, 645, 1, 0,
-		0, 0, 120, 647, 1, 0, 0, 0, 122, 649, 1, 0, 0, 0, 124, 654, 1, 0, 0, 0,
-		126, 659, 1, 0, 0, 0, 128, 661, 1, 0, 0, 0, 130, 667, 1, 0, 0, 0, 132,
-		672, 1, 0, 0, 0, 134, 676, 1, 0, 0, 0, 136, 678, 1, 0, 0, 0, 138, 680,
-		1, 0, 0, 0, 140, 142, 3, 2, 1, 0, 141, 140, 1, 0, 0, 0, 142, 145, 1, 0,
-		0, 0, 143, 141, 1, 0, 0, 0, 143, 144, 1, 0, 0, 0, 144, 146, 1, 0, 0, 0,
-		145, 143, 1, 0, 0, 0, 146, 147, 5, 0, 0, 1, 147, 1, 1, 0, 0, 0, 148, 150,
-		3, 4, 2, 0, 149, 148, 1, 0, 0, 0, 149, 150, 1, 0, 0, 0, 150, 151, 1, 0,
-		0, 0, 151, 152, 3, 8, 4, 0, 152, 153, 3, 74, 37, 0, 153, 155, 3, 64, 32,
-		0, 154, 156, 3, 90, 45, 0, 155, 154, 1, 0, 0, 0, 155, 156, 1, 0, 0, 0,
-		156, 247, 1, 0, 0, 0, 157, 159, 3, 4, 2, 0, 158, 157, 1, 0, 0, 0, 158,
-		159, 1, 0, 0, 0, 159, 160, 1, 0, 0, 0, 160, 161, 3, 18, 9, 0, 161, 163,
-		3, 20, 10, 0, 162, 164, 3, 90, 45, 0, 163, 162, 1, 0, 0, 0, 163, 164, 1,
-		0, 0, 0, 164, 247, 1, 0, 0, 0, 165, 167, 3, 4, 2, 0, 166, 165, 1, 0, 0,
-		0, 166, 167, 1, 0, 0, 0, 167, 168, 1, 0, 0, 0, 168, 169, 3, 18, 9, 0, 169,
-		170, 5, 1, 0, 0, 170, 171, 3, 20, 10, 0, 171, 173, 5, 1, 0, 0, 172, 174,
-		3, 90, 45, 0, 173, 172, 1, 0, 0, 0, 173, 174, 1, 0, 0, 0, 174, 247, 1,
-		0, 0, 0, 175, 177, 3, 4, 2, 0, 176, 175, 1, 0, 0, 0, 176, 177, 1, 0, 0,
-		0, 177, 178, 1, 0, 0, 0, 178, 180, 3, 22, 11, 0, 179, 181, 3, 24, 12, 0,
-		180, 179, 1, 0, 0, 0, 181, 182, 1, 0, 0, 0, 182, 180, 1, 0, 0, 0, 182,
+		1, 52, 1, 52, 1, 52, 1, 52, 3, 52, 613, 8, 52, 1, 53, 1, 53, 1, 54, 1,
+		54, 1, 55, 1, 55, 1, 56, 1, 56, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57, 1, 57,
+		1, 57, 1, 57, 1, 57, 3, 57, 632, 8, 57, 1, 58, 1, 58, 1, 58, 1, 58, 1,
+		58, 1, 58, 1, 58, 1, 58, 1, 58, 1, 58, 1, 58, 3, 58, 645, 8, 58, 1, 59,
+		1, 59, 1, 60, 1, 60, 1, 61, 1, 61, 1, 62, 1, 62, 1, 62, 3, 62, 656, 8,
+		62, 1, 63, 1, 63, 1, 63, 3, 63, 661, 8, 63, 1, 64, 1, 64, 1, 64, 1, 64,
+		1, 64, 1, 64, 1, 65, 1, 65, 1, 66, 1, 66, 1, 66, 4, 66, 674, 8, 66, 11,
+		66, 12, 66, 675, 1, 67, 1, 67, 1, 68, 1, 68, 1, 69, 1, 69, 1, 69, 0, 0,
+		70, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34,
+		36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70,
+		72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104,
+		106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134,
+		136, 138, 0, 15, 1, 1, 259, 259, 8, 0, 131, 139, 150, 167, 169, 175, 178,
+		178, 180, 180, 182, 183, 185, 185, 209, 216, 3, 0, 225, 225, 233, 233,
+		241, 241, 3, 0, 140, 149, 193, 197, 227, 227, 1, 0, 89, 125, 2, 0, 85,
+		85, 87, 87, 5, 0, 27, 27, 30, 30, 44, 44, 46, 46, 58, 59, 5, 0, 29, 29,
+		31, 31, 52, 52, 55, 57, 67, 67, 1, 0, 62, 63, 8, 0, 28, 28, 33, 33, 45,
+		45, 47, 48, 50, 50, 61, 61, 65, 66, 68, 74, 2, 0, 79, 79, 82, 82, 1, 0,
+		77, 78, 1, 0, 34, 43, 2, 0, 3, 3, 5, 6, 1, 0, 226, 227, 755, 0, 143, 1,
+		0, 0, 0, 2, 246, 1, 0, 0, 0, 4, 249, 1, 0, 0, 0, 6, 256, 1, 0, 0, 0, 8,
+		260, 1, 0, 0, 0, 10, 290, 1, 0, 0, 0, 12, 296, 1, 0, 0, 0, 14, 298, 1,
+		0, 0, 0, 16, 300, 1, 0, 0, 0, 18, 302, 1, 0, 0, 0, 20, 304, 1, 0, 0, 0,
+		22, 306, 1, 0, 0, 0, 24, 310, 1, 0, 0, 0, 26, 312, 1, 0, 0, 0, 28, 316,
+		1, 0, 0, 0, 30, 320, 1, 0, 0, 0, 32, 322, 1, 0, 0, 0, 34, 326, 1, 0, 0,
+		0, 36, 328, 1, 0, 0, 0, 38, 333, 1, 0, 0, 0, 40, 335, 1, 0, 0, 0, 42, 337,
+		1, 0, 0, 0, 44, 339, 1, 0, 0, 0, 46, 341, 1, 0, 0, 0, 48, 352, 1, 0, 0,
+		0, 50, 356, 1, 0, 0, 0, 52, 360, 1, 0, 0, 0, 54, 362, 1, 0, 0, 0, 56, 387,
+		1, 0, 0, 0, 58, 413, 1, 0, 0, 0, 60, 418, 1, 0, 0, 0, 62, 420, 1, 0, 0,
+		0, 64, 438, 1, 0, 0, 0, 66, 440, 1, 0, 0, 0, 68, 472, 1, 0, 0, 0, 70, 474,
+		1, 0, 0, 0, 72, 476, 1, 0, 0, 0, 74, 479, 1, 0, 0, 0, 76, 508, 1, 0, 0,
+		0, 78, 536, 1, 0, 0, 0, 80, 544, 1, 0, 0, 0, 82, 546, 1, 0, 0, 0, 84, 548,
+		1, 0, 0, 0, 86, 550, 1, 0, 0, 0, 88, 552, 1, 0, 0, 0, 90, 554, 1, 0, 0,
+		0, 92, 583, 1, 0, 0, 0, 94, 588, 1, 0, 0, 0, 96, 590, 1, 0, 0, 0, 98, 592,
+		1, 0, 0, 0, 100, 594, 1, 0, 0, 0, 102, 601, 1, 0, 0, 0, 104, 612, 1, 0,
+		0, 0, 106, 614, 1, 0, 0, 0, 108, 616, 1, 0, 0, 0, 110, 618, 1, 0, 0, 0,
+		112, 620, 1, 0, 0, 0, 114, 631, 1, 0, 0, 0, 116, 644, 1, 0, 0, 0, 118,
+		646, 1, 0, 0, 0, 120, 648, 1, 0, 0, 0, 122, 650, 1, 0, 0, 0, 124, 655,
+		1, 0, 0, 0, 126, 660, 1, 0, 0, 0, 128, 662, 1, 0, 0, 0, 130, 668, 1, 0,
+		0, 0, 132, 673, 1, 0, 0, 0, 134, 677, 1, 0, 0, 0, 136, 679, 1, 0, 0, 0,
+		138, 681, 1, 0, 0, 0, 140, 142, 3, 2, 1, 0, 141, 140, 1, 0, 0, 0, 142,
+		145, 1, 0, 0, 0, 143, 141, 1, 0, 0, 0, 143, 144, 1, 0, 0, 0, 144, 146,
+		1, 0, 0, 0, 145, 143, 1, 0, 0, 0, 146, 147, 5, 0, 0, 1, 147, 1, 1, 0, 0,
+		0, 148, 150, 3, 4, 2, 0, 149, 148, 1, 0, 0, 0, 149, 150, 1, 0, 0, 0, 150,
+		151, 1, 0, 0, 0, 151, 152, 3, 8, 4, 0, 152, 153, 3, 74, 37, 0, 153, 155,
+		3, 64, 32, 0, 154, 156, 3, 90, 45, 0, 155, 154, 1, 0, 0, 0, 155, 156, 1,
+		0, 0, 0, 156, 247, 1, 0, 0, 0, 157, 159, 3, 4, 2, 0, 158, 157, 1, 0, 0,
+		0, 158, 159, 1, 0, 0, 0, 159, 160, 1, 0, 0, 0, 160, 161, 3, 18, 9, 0, 161,
+		163, 3, 20, 10, 0, 162, 164, 3, 90, 45, 0, 163, 162, 1, 0, 0, 0, 163, 164,
+		1, 0, 0, 0, 164, 247, 1, 0, 0, 0, 165, 167, 3, 4, 2, 0, 166, 165, 1, 0,
+		0, 0, 166, 167, 1, 0, 0, 0, 167, 168, 1, 0, 0, 0, 168, 169, 3, 18, 9, 0,
+		169, 170, 5, 1, 0, 0, 170, 171, 3, 20, 10, 0, 171, 173, 5, 1, 0, 0, 172,
+		174, 3, 90, 45, 0, 173, 172, 1, 0, 0, 0, 173, 174, 1, 0, 0, 0, 174, 247,
+		1, 0, 0, 0, 175, 177, 3, 4, 2, 0, 176, 175, 1, 0, 0, 0, 176, 177, 1, 0,
+		0, 0, 177, 178, 1, 0, 0, 0, 178, 180, 3, 22, 11, 0, 179, 181, 3, 24, 12,
+		0, 180, 179, 1, 0, 0, 0, 181, 182, 1, 0, 0, 0, 182, 180, 1, 0, 0, 0, 182,
 		183, 1, 0, 0, 0, 183, 247, 1, 0, 0, 0, 184, 186, 3, 4, 2, 0, 185, 184,
 		1, 0, 0, 0, 185, 186, 1, 0, 0, 0, 186, 187, 1, 0, 0, 0, 187, 188, 3, 34,
 		17, 0, 188, 189, 3, 36, 18, 0, 189, 247, 1, 0, 0, 0, 190, 192, 3, 4, 2,
@@ -464,44 +464,45 @@ func seclangparserParserInit() {
 		101, 1, 0, 0, 0, 596, 602, 3, 104, 52, 0, 597, 602, 3, 106, 53, 0, 598,
 		602, 3, 108, 54, 0, 599, 602, 3, 112, 56, 0, 600, 602, 3, 110, 55, 0, 601,
 		596, 1, 0, 0, 0, 601, 597, 1, 0, 0, 0, 601, 598, 1, 0, 0, 0, 601, 599,
-		1, 0, 0, 0, 601, 600, 1, 0, 0, 0, 602, 103, 1, 0, 0, 0, 603, 612, 5, 60,
-		0, 0, 604, 612, 5, 49, 0, 0, 605, 612, 5, 53, 0, 0, 606, 612, 5, 54, 0,
-		0, 607, 612, 5, 64, 0, 0, 608, 612, 5, 75, 0, 0, 609, 612, 5, 80, 0, 0,
-		610, 612, 5, 81, 0, 0, 611, 603, 1, 0, 0, 0, 611, 604, 1, 0, 0, 0, 611,
-		605, 1, 0, 0, 0, 611, 606, 1, 0, 0, 0, 611, 607, 1, 0, 0, 0, 611, 608,
-		1, 0, 0, 0, 611, 609, 1, 0, 0, 0, 611, 610, 1, 0, 0, 0, 612, 105, 1, 0,
-		0, 0, 613, 614, 7, 8, 0, 0, 614, 107, 1, 0, 0, 0, 615, 616, 7, 9, 0, 0,
-		616, 109, 1, 0, 0, 0, 617, 618, 7, 10, 0, 0, 618, 111, 1, 0, 0, 0, 619,
-		620, 7, 11, 0, 0, 620, 113, 1, 0, 0, 0, 621, 631, 3, 116, 58, 0, 622, 623,
-		5, 2, 0, 0, 623, 624, 3, 116, 58, 0, 624, 625, 5, 2, 0, 0, 625, 631, 1,
-		0, 0, 0, 626, 627, 5, 2, 0, 0, 627, 628, 3, 118, 59, 0, 628, 629, 5, 2,
-		0, 0, 629, 631, 1, 0, 0, 0, 630, 621, 1, 0, 0, 0, 630, 622, 1, 0, 0, 0,
-		630, 626, 1, 0, 0, 0, 631, 115, 1, 0, 0, 0, 632, 644, 5, 227, 0, 0, 633,
-		644, 3, 124, 62, 0, 634, 644, 3, 128, 64, 0, 635, 636, 3, 120, 60, 0, 636,
-		637, 3, 134, 67, 0, 637, 638, 3, 56, 28, 0, 638, 644, 1, 0, 0, 0, 639,
-		644, 5, 225, 0, 0, 640, 644, 5, 76, 0, 0, 641, 644, 5, 231, 0, 0, 642,
-		644, 5, 241, 0, 0, 643, 632, 1, 0, 0, 0, 643, 633, 1, 0, 0, 0, 643, 634,
-		1, 0, 0, 0, 643, 635, 1, 0, 0, 0, 643, 639, 1, 0, 0, 0, 643, 640, 1, 0,
-		0, 0, 643, 641, 1, 0, 0, 0, 643, 642, 1, 0, 0, 0, 644, 117, 1, 0, 0, 0,
-		645, 646, 5, 246, 0, 0, 646, 119, 1, 0, 0, 0, 647, 648, 7, 12, 0, 0, 648,
-		121, 1, 0, 0, 0, 649, 650, 5, 84, 0, 0, 650, 123, 1, 0, 0, 0, 651, 655,
-		1, 0, 0, 0, 652, 655, 5, 243, 0, 0, 653, 655, 5, 250, 0, 0, 654, 651, 1,
-		0, 0, 0, 654, 652, 1, 0, 0, 0, 654, 653, 1, 0, 0, 0, 655, 125, 1, 0, 0,
-		0, 656, 660, 1, 0, 0, 0, 657, 660, 5, 243, 0, 0, 658, 660, 5, 250, 0, 0,
-		659, 656, 1, 0, 0, 0, 659, 657, 1, 0, 0, 0, 659, 658, 1, 0, 0, 0, 660,
-		127, 1, 0, 0, 0, 661, 662, 3, 130, 65, 0, 662, 663, 5, 236, 0, 0, 663,
-		664, 3, 132, 66, 0, 664, 665, 3, 134, 67, 0, 665, 666, 3, 136, 68, 0, 666,
-		129, 1, 0, 0, 0, 667, 668, 5, 235, 0, 0, 668, 131, 1, 0, 0, 0, 669, 673,
-		5, 237, 0, 0, 670, 671, 5, 238, 0, 0, 671, 673, 5, 234, 0, 0, 672, 669,
-		1, 0, 0, 0, 672, 670, 1, 0, 0, 0, 673, 674, 1, 0, 0, 0, 674, 672, 1, 0,
-		0, 0, 674, 675, 1, 0, 0, 0, 675, 133, 1, 0, 0, 0, 676, 677, 7, 13, 0, 0,
-		677, 135, 1, 0, 0, 0, 678, 679, 5, 239, 0, 0, 679, 137, 1, 0, 0, 0, 680,
-		681, 7, 14, 0, 0, 681, 139, 1, 0, 0, 0, 74, 143, 149, 155, 158, 163, 166,
-		173, 176, 182, 185, 191, 199, 206, 215, 224, 235, 242, 246, 251, 254, 258,
-		290, 296, 310, 326, 333, 347, 360, 387, 395, 405, 411, 413, 418, 424, 429,
-		438, 447, 452, 458, 463, 467, 472, 479, 482, 485, 489, 493, 496, 500, 504,
-		508, 511, 514, 518, 522, 525, 529, 533, 542, 544, 560, 568, 571, 583, 588,
-		601, 611, 630, 643, 654, 659, 672, 674,
+		1, 0, 0, 0, 601, 600, 1, 0, 0, 0, 602, 103, 1, 0, 0, 0, 603, 613, 5, 60,
+		0, 0, 604, 613, 5, 49, 0, 0, 605, 613, 5, 53, 0, 0, 606, 613, 5, 54, 0,
+		0, 607, 613, 5, 64, 0, 0, 608, 613, 5, 75, 0, 0, 609, 613, 5, 80, 0, 0,
+		610, 613, 5, 81, 0, 0, 611, 613, 5, 51, 0, 0, 612, 603, 1, 0, 0, 0, 612,
+		604, 1, 0, 0, 0, 612, 605, 1, 0, 0, 0, 612, 606, 1, 0, 0, 0, 612, 607,
+		1, 0, 0, 0, 612, 608, 1, 0, 0, 0, 612, 609, 1, 0, 0, 0, 612, 610, 1, 0,
+		0, 0, 612, 611, 1, 0, 0, 0, 613, 105, 1, 0, 0, 0, 614, 615, 7, 8, 0, 0,
+		615, 107, 1, 0, 0, 0, 616, 617, 7, 9, 0, 0, 617, 109, 1, 0, 0, 0, 618,
+		619, 7, 10, 0, 0, 619, 111, 1, 0, 0, 0, 620, 621, 7, 11, 0, 0, 621, 113,
+		1, 0, 0, 0, 622, 632, 3, 116, 58, 0, 623, 624, 5, 2, 0, 0, 624, 625, 3,
+		116, 58, 0, 625, 626, 5, 2, 0, 0, 626, 632, 1, 0, 0, 0, 627, 628, 5, 2,
+		0, 0, 628, 629, 3, 118, 59, 0, 629, 630, 5, 2, 0, 0, 630, 632, 1, 0, 0,
+		0, 631, 622, 1, 0, 0, 0, 631, 623, 1, 0, 0, 0, 631, 627, 1, 0, 0, 0, 632,
+		115, 1, 0, 0, 0, 633, 645, 5, 227, 0, 0, 634, 645, 3, 124, 62, 0, 635,
+		645, 3, 128, 64, 0, 636, 637, 3, 120, 60, 0, 637, 638, 3, 134, 67, 0, 638,
+		639, 3, 56, 28, 0, 639, 645, 1, 0, 0, 0, 640, 645, 5, 225, 0, 0, 641, 645,
+		5, 76, 0, 0, 642, 645, 5, 231, 0, 0, 643, 645, 5, 241, 0, 0, 644, 633,
+		1, 0, 0, 0, 644, 634, 1, 0, 0, 0, 644, 635, 1, 0, 0, 0, 644, 636, 1, 0,
+		0, 0, 644, 640, 1, 0, 0, 0, 644, 641, 1, 0, 0, 0, 644, 642, 1, 0, 0, 0,
+		644, 643, 1, 0, 0, 0, 645, 117, 1, 0, 0, 0, 646, 647, 5, 246, 0, 0, 647,
+		119, 1, 0, 0, 0, 648, 649, 7, 12, 0, 0, 649, 121, 1, 0, 0, 0, 650, 651,
+		5, 84, 0, 0, 651, 123, 1, 0, 0, 0, 652, 656, 1, 0, 0, 0, 653, 656, 5, 243,
+		0, 0, 654, 656, 5, 250, 0, 0, 655, 652, 1, 0, 0, 0, 655, 653, 1, 0, 0,
+		0, 655, 654, 1, 0, 0, 0, 656, 125, 1, 0, 0, 0, 657, 661, 1, 0, 0, 0, 658,
+		661, 5, 243, 0, 0, 659, 661, 5, 250, 0, 0, 660, 657, 1, 0, 0, 0, 660, 658,
+		1, 0, 0, 0, 660, 659, 1, 0, 0, 0, 661, 127, 1, 0, 0, 0, 662, 663, 3, 130,
+		65, 0, 663, 664, 5, 236, 0, 0, 664, 665, 3, 132, 66, 0, 665, 666, 3, 134,
+		67, 0, 666, 667, 3, 136, 68, 0, 667, 129, 1, 0, 0, 0, 668, 669, 5, 235,
+		0, 0, 669, 131, 1, 0, 0, 0, 670, 674, 5, 237, 0, 0, 671, 672, 5, 238, 0,
+		0, 672, 674, 5, 234, 0, 0, 673, 670, 1, 0, 0, 0, 673, 671, 1, 0, 0, 0,
+		674, 675, 1, 0, 0, 0, 675, 673, 1, 0, 0, 0, 675, 676, 1, 0, 0, 0, 676,
+		133, 1, 0, 0, 0, 677, 678, 7, 13, 0, 0, 678, 135, 1, 0, 0, 0, 679, 680,
+		5, 239, 0, 0, 680, 137, 1, 0, 0, 0, 681, 682, 7, 14, 0, 0, 682, 139, 1,
+		0, 0, 0, 74, 143, 149, 155, 158, 163, 166, 173, 176, 182, 185, 191, 199,
+		206, 215, 224, 235, 242, 246, 251, 254, 258, 290, 296, 310, 326, 333, 347,
+		360, 387, 395, 405, 411, 413, 418, 424, 429, 438, 447, 452, 458, 463, 467,
+		472, 479, 482, 485, 489, 493, 496, 500, 504, 508, 511, 514, 518, 522, 525,
+		529, 533, 542, 544, 560, 568, 571, 583, 588, 601, 612, 631, 644, 655, 660,
+		673, 675,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -10520,7 +10521,7 @@ func (p *SecLangParser) Action_with_params() (localctx IAction_with_paramsContex
 	}
 
 	switch p.GetTokenStream().LA(1) {
-	case SecLangParserACTION_ID, SecLangParserACTION_MATURITY, SecLangParserACTION_MSG, SecLangParserACTION_PHASE, SecLangParserACTION_REV, SecLangParserACTION_SEVERITY, SecLangParserACTION_TAG, SecLangParserACTION_VER:
+	case SecLangParserACTION_ID, SecLangParserACTION_LOG_DATA, SecLangParserACTION_MATURITY, SecLangParserACTION_MSG, SecLangParserACTION_PHASE, SecLangParserACTION_REV, SecLangParserACTION_SEVERITY, SecLangParserACTION_TAG, SecLangParserACTION_VER:
 		p.EnterOuterAlt(localctx, 1)
 		{
 			p.SetState(596)
@@ -10534,7 +10535,7 @@ func (p *SecLangParser) Action_with_params() (localctx IAction_with_paramsContex
 			p.Disruptive_action_with_params()
 		}
 
-	case SecLangParserACTION_APPEND, SecLangParserACTION_CTL, SecLangParserACTION_DEPRECATE_VAR, SecLangParserACTION_EXEC, SecLangParserACTION_EXPIRE_VAR, SecLangParserACTION_INITCOL, SecLangParserACTION_LOG_DATA, SecLangParserACTION_PREPEND, SecLangParserACTION_SANITISE_ARG, SecLangParserACTION_SANITISE_MATCHED_BYTES, SecLangParserACTION_SANITISE_REQUEST_HEADER, SecLangParserACTION_SANITISE_RESPONSE_HEADER, SecLangParserACTION_SETENV, SecLangParserACTION_SETRSC, SecLangParserACTION_SETSID, SecLangParserACTION_SETUID, SecLangParserACTION_SETVAR:
+	case SecLangParserACTION_APPEND, SecLangParserACTION_CTL, SecLangParserACTION_DEPRECATE_VAR, SecLangParserACTION_EXEC, SecLangParserACTION_EXPIRE_VAR, SecLangParserACTION_INITCOL, SecLangParserACTION_PREPEND, SecLangParserACTION_SANITISE_ARG, SecLangParserACTION_SANITISE_MATCHED_BYTES, SecLangParserACTION_SANITISE_REQUEST_HEADER, SecLangParserACTION_SANITISE_RESPONSE_HEADER, SecLangParserACTION_SETENV, SecLangParserACTION_SETRSC, SecLangParserACTION_SETSID, SecLangParserACTION_SETUID, SecLangParserACTION_SETVAR:
 		p.EnterOuterAlt(localctx, 3)
 		{
 			p.SetState(598)
@@ -10797,6 +10798,40 @@ func (s *ACTION_MSGContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
+type ACTION_LOG_DATAContext struct {
+	Metadata_action_with_paramsContext
+}
+
+func NewACTION_LOG_DATAContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ACTION_LOG_DATAContext {
+	var p = new(ACTION_LOG_DATAContext)
+
+	InitEmptyMetadata_action_with_paramsContext(&p.Metadata_action_with_paramsContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*Metadata_action_with_paramsContext))
+
+	return p
+}
+
+func (s *ACTION_LOG_DATAContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ACTION_LOG_DATAContext) ACTION_LOG_DATA() antlr.TerminalNode {
+	return s.GetToken(SecLangParserACTION_LOG_DATA, 0)
+}
+
+func (s *ACTION_LOG_DATAContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.EnterACTION_LOG_DATA(s)
+	}
+}
+
+func (s *ACTION_LOG_DATAContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(SecLangParserListener); ok {
+		listenerT.ExitACTION_LOG_DATA(s)
+	}
+}
+
 type ACTION_PHASEContext struct {
 	Metadata_action_with_paramsContext
 }
@@ -10902,7 +10937,7 @@ func (s *ACTION_TAGContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *SecLangParser) Metadata_action_with_params() (localctx IMetadata_action_with_paramsContext) {
 	localctx = NewMetadata_action_with_paramsContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 104, SecLangParserRULE_metadata_action_with_params)
-	p.SetState(611)
+	p.SetState(612)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -10999,6 +11034,18 @@ func (p *SecLangParser) Metadata_action_with_params() (localctx IMetadata_action
 		{
 			p.SetState(610)
 			p.Match(SecLangParserACTION_VER)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case SecLangParserACTION_LOG_DATA:
+		localctx = NewACTION_LOG_DATAContext(p, localctx)
+		p.EnterOuterAlt(localctx, 9)
+		{
+			p.SetState(611)
+			p.Match(SecLangParserACTION_LOG_DATA)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -11105,7 +11152,7 @@ func (p *SecLangParser) Disruptive_action_with_params() (localctx IDisruptive_ac
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(613)
+		p.SetState(614)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == SecLangParserACTION_PROXY || _la == SecLangParserACTION_REDIRECT) {
@@ -11143,7 +11190,6 @@ type INon_disruptive_action_with_paramsContext interface {
 	ACTION_EXPIRE_VAR() antlr.TerminalNode
 	ACTION_DEPRECATE_VAR() antlr.TerminalNode
 	ACTION_INITCOL() antlr.TerminalNode
-	ACTION_LOG_DATA() antlr.TerminalNode
 	ACTION_PREPEND() antlr.TerminalNode
 	ACTION_SANITISE_ARG() antlr.TerminalNode
 	ACTION_SANITISE_MATCHED_BYTES() antlr.TerminalNode
@@ -11215,10 +11261,6 @@ func (s *Non_disruptive_action_with_paramsContext) ACTION_INITCOL() antlr.Termin
 	return s.GetToken(SecLangParserACTION_INITCOL, 0)
 }
 
-func (s *Non_disruptive_action_with_paramsContext) ACTION_LOG_DATA() antlr.TerminalNode {
-	return s.GetToken(SecLangParserACTION_LOG_DATA, 0)
-}
-
 func (s *Non_disruptive_action_with_paramsContext) ACTION_PREPEND() antlr.TerminalNode {
 	return s.GetToken(SecLangParserACTION_PREPEND, 0)
 }
@@ -11286,10 +11328,10 @@ func (p *SecLangParser) Non_disruptive_action_with_params() (localctx INon_disru
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(615)
+		p.SetState(616)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64((_la-28)) & ^0x3f) == 0 && ((int64(1)<<(_la-28))&140058897809441) != 0) {
+		if !((int64((_la-28)) & ^0x3f) == 0 && ((int64(1)<<(_la-28))&140058889420833) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -11392,7 +11434,7 @@ func (p *SecLangParser) Data_action_with_params() (localctx IData_action_with_pa
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(617)
+		p.SetState(618)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == SecLangParserACTION_STATUS || _la == SecLangParserACTION_XMLNS) {
@@ -11498,7 +11540,7 @@ func (p *SecLangParser) Flow_action_with_params() (localctx IFlow_action_with_pa
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(619)
+		p.SetState(620)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == SecLangParserACTION_SKIP_AFTER || _la == SecLangParserACTION_SKIP) {
@@ -11634,7 +11676,7 @@ func (s *Action_valueContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *SecLangParser) Action_value() (localctx IAction_valueContext) {
 	localctx = NewAction_valueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 114, SecLangParserRULE_action_value)
-	p.SetState(630)
+	p.SetState(631)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -11644,14 +11686,14 @@ func (p *SecLangParser) Action_value() (localctx IAction_valueContext) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(621)
+			p.SetState(622)
 			p.Action_value_types()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(622)
+			p.SetState(623)
 			p.Match(SecLangParserSINGLE_QUOTE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11659,11 +11701,11 @@ func (p *SecLangParser) Action_value() (localctx IAction_valueContext) {
 			}
 		}
 		{
-			p.SetState(623)
+			p.SetState(624)
 			p.Action_value_types()
 		}
 		{
-			p.SetState(624)
+			p.SetState(625)
 			p.Match(SecLangParserSINGLE_QUOTE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11674,7 +11716,7 @@ func (p *SecLangParser) Action_value() (localctx IAction_valueContext) {
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(626)
+			p.SetState(627)
 			p.Match(SecLangParserSINGLE_QUOTE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11682,11 +11724,11 @@ func (p *SecLangParser) Action_value() (localctx IAction_valueContext) {
 			}
 		}
 		{
-			p.SetState(627)
+			p.SetState(628)
 			p.String_literal()
 		}
 		{
-			p.SetState(628)
+			p.SetState(629)
 			p.Match(SecLangParserSINGLE_QUOTE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11889,7 +11931,7 @@ func (s *Action_value_typesContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *SecLangParser) Action_value_types() (localctx IAction_value_typesContext) {
 	localctx = NewAction_value_typesContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 116, SecLangParserRULE_action_value_types)
-	p.SetState(643)
+	p.SetState(644)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -11899,7 +11941,7 @@ func (p *SecLangParser) Action_value_types() (localctx IAction_value_typesContex
 	case SecLangParserINT:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(632)
+			p.SetState(633)
 			p.Match(SecLangParserINT)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11910,36 +11952,36 @@ func (p *SecLangParser) Action_value_types() (localctx IAction_value_typesContex
 	case SecLangParserQUOTE, SecLangParserSINGLE_QUOTE, SecLangParserCOMMA, SecLangParserXPATH_EXPRESSION, SecLangParserCOLLECTION_ELEMENT_VALUE:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(633)
+			p.SetState(634)
 			p.Collection_value()
 		}
 
 	case SecLangParserCOLLECTION_NAME_SETVAR:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(634)
+			p.SetState(635)
 			p.Setvar_action()
 		}
 
 	case SecLangParserACTION_CTL_AUDIT_ENGINE, SecLangParserACTION_CTL_AUDIT_LOG_PARTS, SecLangParserACTION_CTL_REQUEST_BODY_PROCESSOR, SecLangParserACTION_CTL_FORCE_REQ_BODY_VAR, SecLangParserACTION_CTL_REQUEST_BODY_ACCESS, SecLangParserACTION_CTL_RULE_ENGINE, SecLangParserACTION_CTL_RULE_REMOVE_BY_TAG, SecLangParserACTION_CTL_RULE_REMOVE_BY_ID, SecLangParserACTION_CTL_RULE_REMOVE_TARGET_BY_ID, SecLangParserACTION_CTL_RULE_REMOVE_TARGET_BY_TAG:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(635)
+			p.SetState(636)
 			p.Ctl_action()
 		}
 		{
-			p.SetState(636)
+			p.SetState(637)
 			p.Assignment()
 		}
 		{
-			p.SetState(637)
+			p.SetState(638)
 			p.Values()
 		}
 
 	case SecLangParserVARIABLE_NAME:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(639)
+			p.SetState(640)
 			p.Match(SecLangParserVARIABLE_NAME)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11950,7 +11992,7 @@ func (p *SecLangParser) Action_value_types() (localctx IAction_value_typesContex
 	case SecLangParserACTION_SEVERITY_VALUE:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(640)
+			p.SetState(641)
 			p.Match(SecLangParserACTION_SEVERITY_VALUE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11961,7 +12003,7 @@ func (p *SecLangParser) Action_value_types() (localctx IAction_value_typesContex
 	case SecLangParserFREE_TEXT_QUOTE_MACRO_EXPANSION:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(641)
+			p.SetState(642)
 			p.Match(SecLangParserFREE_TEXT_QUOTE_MACRO_EXPANSION)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -11972,7 +12014,7 @@ func (p *SecLangParser) Action_value_types() (localctx IAction_value_typesContex
 	case SecLangParserCOMMA_SEPARATED_STRING:
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(642)
+			p.SetState(643)
 			p.Match(SecLangParserCOMMA_SEPARATED_STRING)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -12073,7 +12115,7 @@ func (p *SecLangParser) String_literal() (localctx IString_literalContext) {
 	p.EnterRule(localctx, 118, SecLangParserRULE_string_literal)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(645)
+		p.SetState(646)
 		p.Match(SecLangParserSTRING_LITERAL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -12216,7 +12258,7 @@ func (p *SecLangParser) Ctl_action() (localctx ICtl_actionContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(647)
+		p.SetState(648)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&17575006175232) != 0) {
@@ -12315,7 +12357,7 @@ func (p *SecLangParser) Transformation_action_value() (localctx ITransformation_
 	p.EnterRule(localctx, 122, SecLangParserRULE_transformation_action_value)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(649)
+		p.SetState(650)
 		p.Match(SecLangParserTRANSFORMATION_VALUE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -12414,7 +12456,7 @@ func (s *Collection_valueContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *SecLangParser) Collection_value() (localctx ICollection_valueContext) {
 	localctx = NewCollection_valueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 124, SecLangParserRULE_collection_value)
-	p.SetState(654)
+	p.SetState(655)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -12427,7 +12469,7 @@ func (p *SecLangParser) Collection_value() (localctx ICollection_valueContext) {
 	case SecLangParserXPATH_EXPRESSION:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(652)
+			p.SetState(653)
 			p.Match(SecLangParserXPATH_EXPRESSION)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -12438,7 +12480,7 @@ func (p *SecLangParser) Collection_value() (localctx ICollection_valueContext) {
 	case SecLangParserCOLLECTION_ELEMENT_VALUE:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(653)
+			p.SetState(654)
 			p.Match(SecLangParserCOLLECTION_ELEMENT_VALUE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -12542,7 +12584,7 @@ func (s *Ctl_collection_valueContext) ExitRule(listener antlr.ParseTreeListener)
 func (p *SecLangParser) Ctl_collection_value() (localctx ICtl_collection_valueContext) {
 	localctx = NewCtl_collection_valueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 126, SecLangParserRULE_ctl_collection_value)
-	p.SetState(659)
+	p.SetState(660)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -12555,7 +12597,7 @@ func (p *SecLangParser) Ctl_collection_value() (localctx ICtl_collection_valueCo
 	case SecLangParserXPATH_EXPRESSION:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(657)
+			p.SetState(658)
 			p.Match(SecLangParserXPATH_EXPRESSION)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -12566,7 +12608,7 @@ func (p *SecLangParser) Ctl_collection_value() (localctx ICtl_collection_valueCo
 	case SecLangParserCOLLECTION_ELEMENT_VALUE:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(658)
+			p.SetState(659)
 			p.Match(SecLangParserCOLLECTION_ELEMENT_VALUE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -12735,11 +12777,11 @@ func (p *SecLangParser) Setvar_action() (localctx ISetvar_actionContext) {
 	p.EnterRule(localctx, 128, SecLangParserRULE_setvar_action)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(661)
+		p.SetState(662)
 		p.Col_name()
 	}
 	{
-		p.SetState(662)
+		p.SetState(663)
 		p.Match(SecLangParserDOT)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -12747,15 +12789,15 @@ func (p *SecLangParser) Setvar_action() (localctx ISetvar_actionContext) {
 		}
 	}
 	{
-		p.SetState(663)
+		p.SetState(664)
 		p.Setvar_stmt()
 	}
 	{
-		p.SetState(664)
+		p.SetState(665)
 		p.Assignment()
 	}
 	{
-		p.SetState(665)
+		p.SetState(666)
 		p.Var_assignment()
 	}
 
@@ -12847,7 +12889,7 @@ func (p *SecLangParser) Col_name() (localctx ICol_nameContext) {
 	p.EnterRule(localctx, 130, SecLangParserRULE_col_name)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(667)
+		p.SetState(668)
 		p.Match(SecLangParserCOLLECTION_NAME_SETVAR)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -12969,7 +13011,7 @@ func (p *SecLangParser) Setvar_stmt() (localctx ISetvar_stmtContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(672)
+	p.SetState(673)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -12977,7 +13019,7 @@ func (p *SecLangParser) Setvar_stmt() (localctx ISetvar_stmtContext) {
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = _la == SecLangParserCOLLECTION_ELEMENT || _la == SecLangParserCOLLECTION_WITH_MACRO {
-		p.SetState(672)
+		p.SetState(673)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -12986,7 +13028,7 @@ func (p *SecLangParser) Setvar_stmt() (localctx ISetvar_stmtContext) {
 		switch p.GetTokenStream().LA(1) {
 		case SecLangParserCOLLECTION_ELEMENT:
 			{
-				p.SetState(669)
+				p.SetState(670)
 				p.Match(SecLangParserCOLLECTION_ELEMENT)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -12996,7 +13038,7 @@ func (p *SecLangParser) Setvar_stmt() (localctx ISetvar_stmtContext) {
 
 		case SecLangParserCOLLECTION_WITH_MACRO:
 			{
-				p.SetState(670)
+				p.SetState(671)
 				p.Match(SecLangParserCOLLECTION_WITH_MACRO)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -13004,7 +13046,7 @@ func (p *SecLangParser) Setvar_stmt() (localctx ISetvar_stmtContext) {
 				}
 			}
 			{
-				p.SetState(671)
+				p.SetState(672)
 				p.Match(SecLangParserMACRO_EXPANSION)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -13017,7 +13059,7 @@ func (p *SecLangParser) Setvar_stmt() (localctx ISetvar_stmtContext) {
 			goto errorExit
 		}
 
-		p.SetState(674)
+		p.SetState(675)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -13125,7 +13167,7 @@ func (p *SecLangParser) Assignment() (localctx IAssignmentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(676)
+		p.SetState(677)
 		_la = p.GetTokenStream().LA(1)
 
 		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&104) != 0) {
@@ -13224,7 +13266,7 @@ func (p *SecLangParser) Var_assignment() (localctx IVar_assignmentContext) {
 	p.EnterRule(localctx, 136, SecLangParserRULE_var_assignment)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(678)
+		p.SetState(679)
 		p.Match(SecLangParserVAR_ASSIGNMENT)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -13327,7 +13369,7 @@ func (p *SecLangParser) Ctl_id() (localctx ICtl_idContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(680)
+		p.SetState(681)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == SecLangParserIDENT || _la == SecLangParserINT) {

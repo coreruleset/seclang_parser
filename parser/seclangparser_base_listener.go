@@ -432,6 +432,12 @@ func (s *BaseSecLangParserListener) EnterACTION_VER(ctx *ACTION_VERContext) {}
 // ExitACTION_VER is called when production ACTION_VER is exited.
 func (s *BaseSecLangParserListener) ExitACTION_VER(ctx *ACTION_VERContext) {}
 
+// EnterACTION_LOG_DATA is called when production ACTION_LOG_DATA is entered.
+func (s *BaseSecLangParserListener) EnterACTION_LOG_DATA(ctx *ACTION_LOG_DATAContext) {}
+
+// ExitACTION_LOG_DATA is called when production ACTION_LOG_DATA is exited.
+func (s *BaseSecLangParserListener) ExitACTION_LOG_DATA(ctx *ACTION_LOG_DATAContext) {}
+
 // EnterDisruptive_action_with_params is called when production disruptive_action_with_params is entered.
 func (s *BaseSecLangParserListener) EnterDisruptive_action_with_params(ctx *Disruptive_action_with_paramsContext) {
 }

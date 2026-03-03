@@ -414,6 +414,7 @@ metadata_action_with_params:
     | ACTION_SEVERITY # ACTION_SEVERITY
     | ACTION_TAG # ACTION_TAG
     | ACTION_VER # ACTION_VER
+    | ACTION_LOG_DATA # ACTION_LOG_DATA
     ;
 
 disruptive_action_with_params:
@@ -428,7 +429,6 @@ non_disruptive_action_with_params:
     | ACTION_EXPIRE_VAR
     | ACTION_DEPRECATE_VAR
     | ACTION_INITCOL
-    | ACTION_LOG_DATA
     | ACTION_PREPEND
     | ACTION_SANITISE_ARG
     | ACTION_SANITISE_MATCHED_BYTES

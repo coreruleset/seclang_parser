@@ -31,6 +31,7 @@ class ParserResult:
     setvar_collections: list[str] = field(default_factory=list)
     setvar_names: list[str] = field(default_factory=list)
     setvar_operations: list[str] = field(default_factory=list)
+    logdata_action_count: int = 0
 
 
 class TreeShapeListener(SecLangParserListener):
@@ -149,3 +150,6 @@ class TreeShapeListener(SecLangParserListener):
 
     def enterComment_block(self, ctx: SecLangParser.Comment_blockContext):
         self.results.comment_blocks += 1
+
+    def enterACTION_LOG_DATA(self, ctx):
+        self.results.logdata_action_count += 1
