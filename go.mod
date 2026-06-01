@@ -6,7 +6,7 @@ toolchain go1.26.2
 
 require (
 	github.com/antlr4-go/antlr/v4 v4.13.1
-	github.com/magefile/mage v1.17.1
+	github.com/magefile/mage v1.17.2
 	github.com/stretchr/testify v1.11.1
 	gopkg.in/yaml.v3 v3.0.1
 )
